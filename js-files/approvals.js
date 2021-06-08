@@ -91,11 +91,19 @@ function view_approval_details(id) {
 		timeout: 60000,
 		success: function(response) {
 			if (response.status == '200') {
+				let request_date;
+				if (response.data.request_date === '0000-00-00 00:00:00') {
+					request_date = '';
+				} else {
+					request_date = moment(response.data.request_date, 'YYYY-MM-DD HH:mm:ss').format(
+						'LL',
+					);
+				}
 				let comments = response.data.comment.replace('↵', '').trim();
 				$('.dtl_of_app').show();
 				$('#applc_type').html(response.data.app_type);
 				$('#applc_code').html(response.data.code);
-				$('#applc_date').html(response.data.request_date);
+				$('#applc_date').html(request_date);
 				$('#applc_comment').html(comments);
 				$('#applc_by').html(response.data.firstname + ' ' + response.data.lastname);
 				$('#applc_leave_start').html(format_a_date(response.data.start_date));
