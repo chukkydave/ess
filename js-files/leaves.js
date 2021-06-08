@@ -236,6 +236,7 @@ function add_employee_leave() {
 	var leave_type = $('#leave_type').val();
 	var leave_start = $('#leave_start').val();
 	var resumption_date = $('#resumption_date').val();
+	var days_requested = $('#days_requested').val();
 	var comment = $('#comment').val();
 	var company_id = localStorage.getItem('company_id');
 	var email = localStorage.getItem('email');
@@ -291,6 +292,7 @@ function add_employee_leave() {
 			company_id: company_id,
 			email: email,
 			resumption_date: resumption_date,
+			days_requested: days_requested,
 			comment: comment,
 			user_id: user_id,
 		},
@@ -396,9 +398,24 @@ function fetch_leave_info(leave_id) {
 				var month = s.getMonth();
 				var datestring = s.getDate() + '/' + monthNames[month] + '/' + s.getFullYear();
 
+				let start;
+				let end;
+				if (response.data.resume === '0000-00-00') {
+					end = '';
+				} else {
+					end = moment(response.data.resume, 'YYYY-MM-DD').format('LL');
+				}
+
+				if (response.data.start_date === '0000-00-00') {
+					start = '';
+				} else {
+					start = moment(response.data.start_date, 'YYYY-MM-DD').format('LL');
+				}
+
 				$('#modal_view_leave #leave_type').html(response.data.leave_type);
-				$('#modal_view_leave #start_date').html(datestring);
-				$('#modal_view_leave #resumption_date').html(datestring12);
+				$('#modal_view_leave #start_date').html(start);
+				$('#modal_view_leave #resumption_date').html(end);
+				$('#modal_view_leave #view_days_requested').html(response.data.days_requested);
 
 				if (response.data.approval == 'yes') {
 					// aprvv_status = '<i class="fa fa-exclamation-triangle fa-2x" style="color: orange"></i>';
@@ -642,11 +659,11 @@ function list_of_leaves(page) {
                                                 <i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="Delete Leave Type"></i>  Delete
                                             </a>
                                         </li>
-                                        <li style="cursor: pointer;">
+                                        <!--<li style="cursor: pointer;">
                                             <a class="dropdown-item">
                                                 <i class="fa fa-arrow-down"  data-toggle="tooltip" data-placement="top" title="Downlod"></i>  Download
                                             </a>
-                                        </li>
+                                        </li>-->
                                     </ul>
                                 </div>
                             </td>`;
@@ -695,11 +712,11 @@ function list_of_leaves(page) {
                                             <i  class="fa fa-spinner fa-spin fa-1x fa-fw" aria-hidden="true" style="display: none;" id="loader11_${v.id}"></i>
                                         </li>
                                         
-                                        <li style="cursor: pointer;">
+                                        <!--<li style="cursor: pointer;">
                                             <a class="dropdown-item">
                                                 <i class="fa fa-arrow-down"  data-toggle="tooltip" data-placement="top" title="Downlod"></i>  Download
                                             </a>
-                                        </li>
+                                        </li>-->
                                     </ul>
                                 </div>
                             </td>`;
@@ -739,11 +756,11 @@ function list_of_leaves(page) {
                                             <i  class="fa fa-spinner fa-spin fa-1x fa-fw" aria-hidden="true" style="display: none;" id="loader11_${v.id}"></i>
                                         </li>
                                         
-                                        <li style="cursor: pointer;">
+                                        <!--<li style="cursor: pointer;">
                                             <a class="dropdown-item">
                                                 <i class="fa fa-arrow-down"  data-toggle="tooltip" data-placement="top" title="Downlod"></i>  Download
                                             </a>
-                                        </li>
+                                        </li>-->
                                     </ul>
                                 </div>
                             </td>`;

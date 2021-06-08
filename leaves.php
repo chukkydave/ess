@@ -54,6 +54,19 @@ include("_common/header.php");
                                 </div>
 
                                 <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="leave_start">Days
+                                        Requested <span>*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <!-- <div class="input-group"> -->
+
+                                        <input type="number" id="days_requested" required="required"
+                                            class="form-control col-md-7 col-xs-12 required">
+                                        <!-- </div> -->
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="leave_start">Leave
                                         Start <span>*</span>
                                     </label>
@@ -402,6 +415,16 @@ include("_common/header.php");
 
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <p id="leave_type"></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <p><strong>Days Requested:</strong></p>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <p id="view_days_requested"></p>
                         </div>
                     </div>
 
