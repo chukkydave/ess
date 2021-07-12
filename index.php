@@ -1,6 +1,5 @@
 <?php
-include_once("_common/menu.php"); // menu list
-include_once("../gen/_common/header.php"); // header contents
+include("_common/header.php");
 ?>
 
 
@@ -33,27 +32,27 @@ include_once("../gen/_common/header.php"); // header contents
         <div class="row top_tiles">
 
             <a href="approvals">
-                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="animated flipInY col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="tile-stats">
                         <div class="icon"><i class="fa fa-file"></i></div>
                         <div class="count" id="pnd_appv">
                             <i class="fa fa-spinner fa-spin fa-fw" style="display: "></i>
                         </div>
                         <h3>Approvals</h3>
-                        <p>Applications waiting for me</p>
+                        <p>Pending Approval Request</p>
                     </div>
                 </div>
             </a>
 
             <a href="leaves">
-                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="animated flipInY col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="tile-stats">
                         <div class="icon"><i class="fa fa-exclamation-triangle"></i></div>
                         <div class="count" id="low_itms">
                             <i class="fa fa-spinner fa-spin fa-fw" style="display: "></i>
                         </div>
                         <h3>My Leaves</h3>
-                        <p>My Pending Leaves</p>
+                        <p>My Pending Leave Request</p>
                     </div>
                 </div>
             </a>
@@ -65,17 +64,16 @@ include_once("../gen/_common/header.php"); // header contents
                   <p>Pending.</p>
                 </div>
               </div> -->
-            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <!-- <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="tile-stats">
                     <div class="icon"><i class="fa fa-line-chart"></i></div>
-                    <!-- <div class="count">₦90.3mil</div> -->
                     <div class="count" id="kpi_rcdd">
                         <i class="fa fa-spinner fa-spin fa-fw" style="display: "></i>
                     </div>
                     <h3>KPI</h3>
                     <p>Performance</p>
                 </div>
-            </div>
+            </div> -->
         </div>
 
 
@@ -89,7 +87,7 @@ include_once("../gen/_common/header.php"); // header contents
 
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Message Board</h2>
+                        <h2>Notice Board</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -253,13 +251,94 @@ include_once("../gen/_common/header.php"); // header contents
 
         </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
 </div>
 </div>
 <!-- /page content -->
 
 
-<script src="js-files/index.js"></script>
+
+<script>
+$(document).ready(function() {
+    defCalls(); //returns the promise object
+});
+
+function defCalls() {
+    var def = $.Deferred();
+    $.when(pending_approvals(), leave_pending_count(), get_kpi()).done(function() {
+        setTimeout(function() {
+            def.resolve();
+        }, 2000)
+    })
+    return def.promise();
+}
+
+function leave_pending_count() {
+
+    var company_id = localStorage.getItem('company_id');
+    var email = localStorage.getItem('email');
+    var user_id = localStorage.getItem('user_id');
+
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: api_path + "ess/count_balance_leave",
+        data: {
+            "company_id": company_id,
+            "email": email,
+            "user_id": user_id
+        },
+        timeout: 60000,
+        success: function(response) {
+
+            $("#low_itms").html(response.data);
+            console.log(response);
+        },
+        error: function(response) {
+            console.log(response);
+        }
+    });
+
+}
+
+
+
+
+function pending_approvals() {
+
+    $("#pnd_appv").html('0');
+
+}
+
+
+function get_kpi() {
+    $("#kpi_rcdd").html('-');
+}
+</script>
+
+
+
 <?php
-include_once("../gen/_common/footer.php");
+include_once("_common/footer.php");
 ?>

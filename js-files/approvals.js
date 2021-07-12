@@ -17,6 +17,15 @@ $(document).ready(function() {
 		let app_id = $(this).attr('data');
 		do_the_action(decision, app_id);
 	});
+	$(document).on('change', '#sort_type', () => {
+		// let order = $('#order_by').val();
+		// if ($('#sort_type').val() === 'pay_run') {
+		// 	$('#payrunDetails').show();
+		// } else {
+		// 	$('#payrunDetails').hide();
+		// }
+		pending_approvals_list('');
+	});
 });
 
 function do_the_action(decision, app_id) {
@@ -130,6 +139,7 @@ function pending_approvals_list(page) {
 	var company_id = localStorage.getItem('company_id');
 	var user_id = localStorage.getItem('user_id');
 	var email = localStorage.getItem('email');
+	let sort_type = $('#sort_type').val();
 
 	if (page == '') {
 		var page = 1;
@@ -149,6 +159,7 @@ function pending_approvals_list(page) {
 			page: page,
 			limit: limit,
 			email: email,
+			sort_type: sort_type,
 		},
 		timeout: 60000,
 
@@ -165,56 +176,193 @@ function pending_approvals_list(page) {
 
 					$.each(response.data, function(i, v) {
 						var aprvv_status = '';
+						let startDatey = moment(v.request_time, 'YYYY-MM-DD HH:mm:ss').format('LL');
 
-						if (v.decision == 'pending') {
-							aprvv_status =
-								'<i class="fa fa-exclamation-triangle fa-2x" style="color: orange"></i>';
-							strTable +=
-								'<tr> <td>' +
-								v.app_id +
-								'</td> <td>' +
-								format_a_date_time(v.request_time) +
-								'</td><td>' +
-								v.app_type +
-								'</td><td>' +
-								aprvv_status +
-								'</td><td><a class="approval_info_details btn btn-primary btn-xs"  id="apprv_id_' +
-								v.app_id +
-								'"><i  class="fa fa-folder"  data-toggle="tooltip" data-placement="top" title=""></i> View</a>  <a class="approve_or_decline btn btn-success btn-xs" data="' +
-								v.app_id +
-								'"  id="venIn_' +
-								v.app_id +
-								'"><i  class="fa fa-align-justify"  data-toggle="tooltip" data-placement="top" title="Act"></i> Act</a> </td></tr>';
-						} else if (v.decision == 'yes') {
-							aprvv_status = '<i class="fa fa-check fa-2x" style="color: green"></i>';
-							strTable +=
-								'<tr> <td>' +
-								v.app_id +
-								'</td> <td>' +
-								format_a_date_time(v.request_time) +
-								'</td><td>' +
-								v.app_type +
-								'</td><td>' +
-								aprvv_status +
-								'</td><td><a class="approval_info_details btn btn-primary btn-xs"  id="apprv_id_' +
-								v.app_id +
-								'"><i  class="fa fa-folder"  data-toggle="tooltip" data-placement="top" title=""></i> View</a>   </td></tr>';
-						} else if (v.decision == 'declined') {
-							aprvv_status = '<i class="fa fa-times fa-2x" style="color: red"></i>';
-							strTable +=
-								'<tr> <td>' +
-								v.app_id +
-								'</td> <td>' +
-								format_a_date_time(v.request_time) +
-								'</td><td>' +
-								v.app_type +
-								'</td><td>' +
-								aprvv_status +
-								'</td><td><a class="approval_info_details btn btn-primary btn-xs"  id="apprv_id_' +
-								v.app_id +
-								'"><i  class="fa fa-folder"  data-toggle="tooltip" data-placement="top" title=""></i> View</a> </td></tr>';
+						if (v.app_type === 'Payment Approval') {
+							if (v.decision == 'pending') {
+								aprvv_status =
+									'<i class="fa fa-exclamation-triangle fa-2x" style="color: orange"></i>';
+								strTable += `<tr>`;
+								strTable += `<td>${k++}</td>`;
+								strTable += `<td>${startDatey}</td>`;
+								strTable += `<td>${v.app_type}</td>`;
+								strTable += `<td>${aprvv_status}</td>`;
+								strTable += `<td><a href="payrun?id=${v.app_id}&status=${v.decision}&aID=${v.use_as_approval_id}" class="btn btn-primary btn-xs" id="apprv_id_${v.app_id}><i  class="fa fa-folder"  data-toggle="tooltip" data-placement="top" title=""></i> View</a>
+									</td>`;
+								strTable += `</tr>`;
+							} else if (v.decision == 'yes') {
+								aprvv_status =
+									'<i class="fa fa-check fa-2x" style="color: green"></i>';
+								strTable += `<tr>`;
+								strTable += `<td>${k++}</td>`;
+								strTable += `<td>${startDatey}</td>`;
+								strTable += `<td>${v.app_type}</td>`;
+								strTable += `<td>${aprvv_status}</td>`;
+								strTable += `<td><a href="payrun?id=${v.app_id}&status=${v.decision}&aID=${v.use_as_approval_id}" class="btn btn-primary btn-xs" id="apprv_id_${v.app_id}><i  class="fa fa-folder"  data-toggle="tooltip" data-placement="top" title=""></i> View</a>
+									</td>`;
+								strTable += `</tr>`;
+							} else if (v.decision == 'declined') {
+								aprvv_status =
+									'<i class="fa fa-times fa-2x" style="color: red"></i>';
+								strTable += `<tr>`;
+								strTable += `<td>${k++}</td>`;
+								strTable += `<td>${startDatey}</td>`;
+								strTable += `<td>${v.app_type}</td>`;
+								strTable += `<td>${aprvv_status}</td>`;
+								strTable += `<td><a href="payrun?id=${v.app_id}&status=${v.decision}&aID=${v.use_as_approval_id}" class="btn btn-primary btn-xs" id="apprv_id_${v.app_id}><i  class="fa fa-folder"  data-toggle="tooltip" data-placement="top" title=""></i> View</a>
+									</td>`;
+								strTable += `</tr>`;
+							} else if (v.decision == 'not_approved') {
+								aprvv_status =
+									'<i class="fa fa-exclamation-triangle fa-2x" style="color: orange"></i>';
+								strTable += `<tr>`;
+								strTable += `<td>${k++}</td>`;
+								strTable += `<td>${startDatey}</td>`;
+								strTable += `<td>${v.app_type}</td>`;
+								strTable += `<td>${aprvv_status}</td>`;
+								strTable += `<td><a href="payrun?id=${v.app_id}&status=${v.decision}&aID=${v.use_as_approval_id}" class="btn btn-primary btn-xs" id="apprv_id_${v.app_id}><i  class="fa fa-folder"  data-toggle="tooltip" data-placement="top" title=""></i> View</a>
+									</td>`;
+								strTable += `</tr>`;
+							} else if (v.decision == 'approve') {
+								aprvv_status =
+									'<i class="fa fa-check fa-2x" style="color: green"></i>';
+								strTable += `<tr>`;
+								strTable += `<td>${k++}</td>`;
+								// strTable += `<td>${format_a_date_time(v.request_time)}</td>`;
+								strTable += `<td>${startDatey}</td>`;
+								strTable += `<td>${v.app_type}</td>`;
+								strTable += `<td>${aprvv_status}</td>`;
+								strTable += `<td><a href="payrun?id=${v.app_id}&status=${v.decision}&aID=${v.use_as_approval_id}" class="btn btn-primary btn-xs" id="apprv_id_${v.app_id}><i  class="fa fa-folder"  data-toggle="tooltip" data-placement="top" title=""></i> View</a>
+									</td>`;
+								strTable += `</tr>`;
+							}
+						} else if (v.app_type === 'exit approval') {
+							if (v.decision == 'pending') {
+								aprvv_status =
+									'<i class="fa fa-exclamation-triangle fa-2x" style="color: orange"></i>';
+								strTable +=
+									'<tr> <td>' +
+									k++ +
+									'</td><td>' +
+									startDatey +
+									'</td> <td>' +
+									capitalizeFirstLetter(v.app_type) +
+									'</td><td>' +
+									aprvv_status +
+									'</td>';
+								strTable += `<td> <a href="view_exit_details?ex=${v.use_as_approval_id}&us=${v.request_from}&status=${v.decision}&app_id=${v.app_id}" class="btn btn-primary btn-xs"><i class="fa fa-folder" data-toggle="tooltip" data-placement="top" title=""></i> View</a>   </td ></tr > `;
+							} else if (v.decision == 'approved') {
+								aprvv_status =
+									'<i class="fa fa-check fa-2x" style="color: green"></i>';
+								strTable +=
+									'<tr> <td>' +
+									k++ +
+									'</td><td>' +
+									startDatey +
+									'</td> <td>' +
+									capitalizeFirstLetter(v.app_type) +
+									'</td><td>' +
+									aprvv_status +
+									'</td>';
+								strTable += `<td> <a href="view_exit_details?ex=${v.use_as_approval_id}&us=${v.request_from}&status=${v.decision}&app_id=${v.app_id}" class="btn btn-primary btn-xs"><i class="fa fa-folder" data-toggle="tooltip" data-placement="top" title=""></i> View</a>   </td ></tr > `;
+							} else if (v.decision == 'declined') {
+								aprvv_status =
+									'<i class="fa fa-times fa-2x" style="color: red"></i>';
+								strTable +=
+									'<tr> <td>' +
+									k++ +
+									'</td><td>' +
+									startDatey +
+									'</td> <td>' +
+									capitalizeFirstLetter(v.app_type) +
+									'</td><td>' +
+									aprvv_status +
+									'</td><td><a class="approval_info_details btn btn-primary btn-xs"  id="apprv_id_' +
+									v.app_id +
+									'"><i  class="fa fa-folder"  data-toggle="tooltip" data-placement="top" title=""></i> View</a> </td></tr>';
+							} else if (v.decision == 'not_approved') {
+								aprvv_status =
+									'<i class="fa fa-times fa-2x" style="color: red"></i>';
+								strTable +=
+									'<tr> <td>' +
+									k++ +
+									'</td><td>' +
+									startDatey +
+									'</td> <td>' +
+									capitalizeFirstLetter(v.app_type) +
+									'</td><td>' +
+									aprvv_status +
+									'</td><td><a class="approval_info_details btn btn-primary btn-xs"  id="apprv_id_' +
+									v.app_id +
+									'"><i  class="fa fa-folder"  data-toggle="tooltip" data-placement="top" title=""></i> View</a> </td></tr>';
+							}
+						} else {
+							if (v.decision == 'pending') {
+								aprvv_status =
+									'<i class="fa fa-exclamation-triangle fa-2x" style="color: orange"></i>';
+								strTable +=
+									'<tr> <td>' +
+									k++ +
+									'</td><td>' +
+									startDatey +
+									'</td> <td>' +
+									v.app_type +
+									'</td><td>' +
+									aprvv_status +
+									'</td><td><a class="approval_info_details btn btn-primary btn-xs"  id="apprv_id_' +
+									v.app_id +
+									'"><i  class="fa fa-folder"  data-toggle="tooltip" data-placement="top" title=""></i> View</a>  <a class="approve_or_decline btn btn-success btn-xs" data="' +
+									v.app_id +
+									'"  id="venIn_' +
+									v.app_id +
+									'"><i  class="fa fa-align-justify"  data-toggle="tooltip" data-placement="top" title="Act"></i> Act</a> </td></tr>';
+							} else if (v.decision == 'yes') {
+								aprvv_status =
+									'<i class="fa fa-check fa-2x" style="color: green"></i>';
+								strTable +=
+									'<tr> <td>' +
+									k++ +
+									'</td><td>' +
+									startDatey +
+									'</td> <td>' +
+									v.app_type +
+									'</td><td>' +
+									aprvv_status +
+									'</td><td><a class="approval_info_details btn btn-primary btn-xs"  id="apprv_id_' +
+									v.app_id +
+									'"><i  class="fa fa-folder"  data-toggle="tooltip" data-placement="top" title=""></i> View</a>   </td></tr>';
+							} else if (v.decision == 'declined') {
+								aprvv_status =
+									'<i class="fa fa-times fa-2x" style="color: red"></i>';
+								strTable +=
+									'<tr> <td>' +
+									k++ +
+									'</td><td>' +
+									startDatey +
+									'</td> <td>' +
+									v.app_type +
+									'</td><td>' +
+									aprvv_status +
+									'</td><td><a class="approval_info_details btn btn-primary btn-xs"  id="apprv_id_' +
+									v.app_id +
+									'"><i  class="fa fa-folder"  data-toggle="tooltip" data-placement="top" title=""></i> View</a> </td></tr>';
+							} else if (v.decision == 'not_approved') {
+								aprvv_status =
+									'<i class="fa fa-times fa-2x" style="color: red"></i>';
+								strTable +=
+									'<tr> <td>' +
+									k++ +
+									'</td><td>' +
+									startDatey +
+									'</td> <td>' +
+									v.app_type +
+									'</td><td>' +
+									aprvv_status +
+									'</td><td><a class="approval_info_details btn btn-primary btn-xs"  id="apprv_id_' +
+									v.app_id +
+									'"><i  class="fa fa-folder"  data-toggle="tooltip" data-placement="top" title=""></i> View</a> </td></tr>';
+							}
 						}
-
 						k++;
 					});
 
@@ -228,7 +376,7 @@ function pending_approvals_list(page) {
 						},
 					});
 				} else {
-					strTable = '<tr><td colspan="5">' + response.msg + '</td></tr>';
+					strTable = '<tr><td colspan="5">No record found</td></tr>';
 				}
 
 				$('#approvalData').html(strTable);
@@ -261,4 +409,8 @@ function pending_approvals_list(page) {
 			$('#approvalData').show();
 		},
 	});
+}
+
+function capitalizeFirstLetter(string) {
+	return string.charAt(0).toUpperCase() + string.slice(1);
 }

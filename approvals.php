@@ -1,6 +1,16 @@
 <?php
 include("_common/header.php");
 ?>
+<style>
+.no-border {
+    border: none;
+    outline: none;
+    background-color: #f5f6f8;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 2em;
+}
+</style>
 <!-- page content -->
 <div class="right_col" role="main">
     <div class="">
@@ -212,7 +222,14 @@ include("_common/header.php");
 
 
 
+
+
                         <div class="table-responsive">
+                            <select class="form-select no-border" id="sort_type" aria-label="Default select example">
+                                <option value="leaves">Leaves</option>
+                                <option value="pay_run">Pay Run</option>
+                                <option value="exit">Exits</option>
+                            </select>
                             <table class="table table-striped jambo_table bulk_action">
                                 <thead>
                                     <tr class="headings">

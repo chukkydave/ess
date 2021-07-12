@@ -1,6 +1,16 @@
 <?php
 include("_common/header.php");
 ?>
+<style>
+.no-border {
+    border: none;
+    outline: none;
+    background-color: #f5f6f8;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 2em;
+}
+</style>
 
 <!-- page content -->
 <div class="right_col" role="main">
@@ -15,7 +25,66 @@ include("_common/header.php");
                     <div class="input-group" style="float: right">
                         <!-- <button type="button" class="btn btn-default" id="incoming_filter">Filter</button> -->
                         <button type="button" class="btn btn-success" id="apply">Report</button>
+                        <button type="button" class="btn btn-primary" data-toggle="collapse"
+                            data-target="#collapseExample" aria-expanded="false"
+                            aria-controls="collapseExample">Filter</button>
 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="collapse" id="collapseExample" style="">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+
+                        <div class="x_content">
+                            <br />
+
+
+                            <div class="form-row">
+
+                                <div class="col-sm-4 col-xs-4">
+                                    <input type="text" placeholder="Grievance ID"
+                                        class="form-control col-md-7 col-xs-12 required" id="gId_filter">
+
+                                </div>
+
+                                <div class="col-sm-4 col-xs-4">
+                                    <select class="form-control col-sm-7 col-xs-12" id="gBy_filter">
+                                        <option value="">-- Grievance Against --</option>
+
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-4 col-xs-4">
+                                    <!-- <input type="" date="year" class="form-control" id=""> -->
+                                    <select class="form-control" id="status_filter">
+                                        <option vaue=''>--Status--</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="draft">Draft</option>
+                                        <option value="in-progress">In Progress</option>
+                                        <option value="on-hold">On Hold</option>
+                                        <option value="resolved">Resolved</option>
+
+                                    </select>
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-sm-2 col-xs-4" style="margin-top:10px;">
+                                    <button type="button" class="btn btn-success" id="filter_g">Search</button>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -38,9 +107,9 @@ include("_common/header.php");
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <select class="form-control col-md-7 col-xs-12 required1" id="g_type">
                                             <option value="">-- Select --</option>
-                                            <option value="assualt">Assualt</option>
-                                            <option value="molestation">Molestation</option>
-                                            <option value="Employe Conduct">Employee Conduct</option>
+                                            <option value="Assualt">Assualt</option>
+                                            <option value="Molestation">Molestation</option>
+                                            <option value="Employee Conduct">Employee Conduct</option>
                                             <option value="Employee Capability">Employee Capability</option>
                                             <option value="Working Conditions">Working Conditions</option>
                                             <option value="Management Policy">Management Policy</option>
@@ -98,7 +167,7 @@ include("_common/header.php");
                                             <option value="">-- Select --</option>
                                             <option value="Employee">Employee</option>
                                             <option value="Employer">Employer</option>
-                                            <option value="Other">Other</option>
+                                            <!-- <option value="Other">Other</option> -->
 
                                         </select>
                                     </div>
@@ -234,6 +303,11 @@ include("_common/header.php");
 
 
                         <div class="table-responsive">
+                            <select class="form-select no-border" id="sort_type" aria-label="Default select example">
+                                <option value="grievance">Reported</option>
+                                <option value="all">All</option>
+                                <option value="third_party">Third party</option>
+                            </select>
                             <table class="table table-striped jambo_table bulk_action">
                                 <thead>
                                     <tr class="headings">
@@ -241,8 +315,8 @@ include("_common/header.php");
                                         <th class="column-title">Code</th>
                                         <th class="column-title">Against</th>
                                         <th class="column-title">Grievance Type</th>
-                                        <th class="column-title">Proceedings</th>
-                                        <th class="column-title no-link last"><span class="nobr">Actions</span>
+                                        <th class="column-title">Status</th>
+                                        <th class="column-title no-link last" width="10%"><span class="nobr"></span>
                                         </th>
                                         <th class="bulk-actions" colspan="6">
                                             <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span
@@ -290,7 +364,7 @@ include("_common/header.php");
                 </h3>
 
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="modal_g_body">
                 <h4>Grievance Report Added Successfully!</h4>
             </div>
             <!-- <div class="modal-footer"> -->
@@ -324,9 +398,13 @@ include("_common/header.php");
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select class="form-control col-md-7 col-xs-12 required" id="g_type">
                                     <option value="">-- Select --</option>
-                                    <option value="misconduct">Misconduct</option>
                                     <option value="assualt">Assualt</option>
                                     <option value="molestation">Molestation</option>
+                                    <option value="Employe Conduct">Employee Conduct</option>
+                                    <option value="Employee Capability">Employee Capability</option>
+                                    <option value="Working Conditions">Working Conditions</option>
+                                    <option value="Management Policy">Management Policy</option>
+                                    <option value="Others">Others</option>
 
                                 </select>
                             </div>
@@ -339,7 +417,7 @@ include("_common/header.php");
                                 <div class="input-prepend input-group">
                                     <span class="add-on input-group-addon"><i
                                             class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
-                                    <input type="text" id="incident_dateE"
+                                    <input type="text" id="incident_date"
                                         class="form-control col-md-7 col-xs-12 required">
                                 </div>
                             </div>
@@ -367,17 +445,17 @@ include("_common/header.php");
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="g_against">Grievance Against
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="g_against_e">Grievance Against
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select class="form-control col-md-7 col-xs-12 required" id="g_against">
+                                <select class="form-control col-md-7 col-xs-12 required" id="g_against_e">
                                     <option value="">-- Select --</option>
 
                                 </select>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="emp_response">Response
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -385,7 +463,35 @@ include("_common/header.php");
 
                       </textarea>
                             </div>
+                        </div> -->
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="prior_action">Action(s) Prior
+                                to Reporting<br><span style="font-size:0.8em;">(If any)</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="prior_action_e" class="form-control col-md-7 col-xs-12">
+                            </div>
                         </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="upload_doc_e">Upload
+                                Document<br><span style="font-size:0.8em;">(If any)</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="upload_doc_e" type="file" class="form-control col-md-7 col-xs-12">
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <span id="upload_doc_e2"></span>
+                            </div>
+
+                        </div>
+
 
 
 
@@ -401,7 +507,8 @@ include("_common/header.php");
 
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" id="form_footer">
-                                <button type="submit" class="btn btn-success" id="edit_g">Update</button>
+                                <button type="submit" class="btn btn-primary" id="edit_g">Update</button>
+                                <button type="submit" class="btn btn-success" id="edit_gr">Report</button>
                                 <i class="fa fa-spinner fa-spin fa-fw fa-3x" style="display: none;"
                                     id="edit_g_loader"></i>
                             </div>
@@ -444,63 +551,85 @@ include("_common/header.php");
 
 
                 <div id="container4">
+
                     <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <p><strong>Grievance Type:</strong></p>
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <p><strong>Code:</strong></p>
                         </div>
 
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <p id="g_type"></p>
+                            <p id="griev_code">...</p>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <p><strong>Type:</strong></p>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <p id="griev_type">...</p>
                         </div>
                     </div>
 
                     <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <p><strong>From:</strong></p>
+                        </div>
+
                         <div class="col-md-6 col-sm-6 col-xs-6">
+                            <p id="griev_from">...</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <p><strong>Aganist:</strong></p>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <p id="griev_aganist">...</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-6">
                             <p><strong>Incident Date:</strong></p>
                         </div>
 
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <p id="incident_datem"></p>
+                            <p id="griev_date">...</p>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <p><strong>Report:</strong></p>
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <p><strong>Incident Report:</strong></p>
                         </div>
 
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <p id="report"></p>
+                            <p id="griev_report">...</p>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-6">
+                        <div class="col-md-4 col-sm-4 col-xs-6">
                             <p><strong>Branch:</strong></p>
                         </div>
 
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <p id="branch"></p>
+                            <p id="griev_branch">...</p>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <p><strong>Approval Status:</strong></p>
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <p><strong>Document:</strong></p>
                         </div>
 
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <p id="approval"></p>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <p><strong>Response:</strong></p>
-                        </div>
-
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <p id="report"></p>
+                            <p id="griev_doc">...</p>
                         </div>
                     </div>
 

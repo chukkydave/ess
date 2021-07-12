@@ -584,13 +584,15 @@ function list_of_leaves(page) {
 
 						var insertDate = convertDateForIos(response['data'][i]['insert_date']);
 
+						let startDatey = moment(v.insert_date, 'YYYY-MM-DD HH:mm:ss').format('LL');
+
 						if (response['data'][i]['leave_status'] == 'no') {
 							aprvv_status =
 								'<i class="fa fa-exclamation-triangle fa-2x" style="color: orange"></i>';
 
 							strTable += '<tr id="row_' + response['data'][i]['id'] + '">';
 							strTable += '<td>' + response['data'][i]['code'] + '</td>';
-							strTable += '<td>' + insert + ' ' + formatAMPM(insertDate) + '</td>';
+							strTable += '<td>' + startDatey + '</td>';
 							strTable += '<td>' + response['data'][i]['type'] + '</td>';
 
 							// strTable += '<td>'+datestring+'</td>';
@@ -683,7 +685,7 @@ function list_of_leaves(page) {
 
 							strTable += '<tr id="row_' + response['data'][i]['id'] + '">';
 							strTable += '<td>' + response['data'][i]['code'] + '</td>';
-							strTable += '<td>' + insert + ' ' + formatAMPM(insertDate) + '</td>';
+							strTable += '<td>' + startDatey + '</td>';
 							strTable += '<td>' + response['data'][i]['type'] + '</td>';
 
 							// strTable += '<td>'+datestring+'</td>';
@@ -727,7 +729,7 @@ function list_of_leaves(page) {
 
 							strTable += '<tr id="row_' + response['data'][i]['id'] + '">';
 							strTable += '<td>' + response['data'][i]['code'] + '</td>';
-							strTable += '<td>' + insert + ' ' + formatAMPM(insertDate) + '</td>';
+							strTable += '<td>' + startDatey + '</td>';
 							strTable += '<td>' + response['data'][i]['type'] + '</td>';
 
 							// strTable += '<td>'+datestring+'</td>';

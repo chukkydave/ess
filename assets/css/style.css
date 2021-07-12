@@ -1,0 +1,19 @@
+.has-error {
+	background-color: #f7cdcd;
+}
+
+.payslip-title {
+	margin-bottom: 5px;
+	text-align: center;
+	/* text-decoration: underline; */
+	text-transform: uppercase;
+}
+
+.subtitle {
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.float-right {
+	float: right;
+}

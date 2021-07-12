@@ -192,9 +192,16 @@ blockquote p {
                     </div>
 
                     <div class="x_content">
-                        <div class="col-md-9 col-sm-9  ">
+                        <div
+                            style="background:#f9f9f9; padding:10px; display:grid; justify-items:center; text-align:center; letter-spacing:1px;">
+                            <b id="desc_text">
+                                No description available yet...
+                            </b>
+                        </div>
+                        <div class="col-md-9 col-sm-9 " id="proceeding_section">
 
-                            <div>
+
+                            <!-- <div>
                                 <h2><strong>State your sides of the story<strong></h2>
 
                                 <ul class="messages">
@@ -202,15 +209,17 @@ blockquote p {
 
                                         <div class="message_wrapper">
                                             <h4 class="heading">Desmond Davison</h4>
-                                            <blockquote>
-                                                <p>Raw denim you probably haven't heard
-                                                    of them jean shorts Austin. Nesciunt tofu stumptown aliqua
-                                                    butcher retro keffiyeh dreamcatcher synth.</p>
-                                            </blockquote>
+                                            <div class="col-md-12 col-sm-12">
+                                                <blockquote>
+                                                    <p>Raw denim you probably haven't heard
+                                                        of them jean shorts Austin. Nesciunt tofu stumptown aliqua
+                                                        butcher retro keffiyeh dreamcatcher synth.</p>
+                                                </blockquote>
+                                            </div>
                                             <br />
                                             <p class="url">
                                                 <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                                <a href="#"><i class="fa fa-paperclip"></i> User Acceptance
+                                                <a href="#"><i class="fa fa-paperclip"></i> View File
                                                     Test.doc </a>
                                             </p>
                                         </div>
@@ -219,17 +228,20 @@ blockquote p {
 
                                         <div class="message_wrapper">
                                             <h4 class="heading">Brian Michaels</h4>
-                                            <blockquote>
-                                                <p>Raw denim you probably haven't heard
-                                                    of them jean shorts Austin. Nesciunt tofu stumptown aliqua
-                                                    butcher retro keffiyeh dreamcatcher
-                                                    synth.hffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-                                                </p>
-                                            </blockquote>
+                                            <div class="col-md-12 col-sm-12">
+                                                <blockquote>
+                                                    <p>Raw denim you probably haven't heard
+                                                        of them jean shorts Austin. Nesciunt tofu stumptown aliqua
+                                                        butcher retro keffiyeh dreamcatcher
+                                                        synth lorem ipsum is a way to test stuff so that we wont behave
+                                                        like those that are not trained but behave civilized, amen?
+                                                    </p>
+                                                </blockquote>
+                                            </div>
                                             <br />
                                             <p class="url">
                                                 <span class="fs1" aria-hidden="true" data-icon=""></span>
-                                                <a href="#" data-original-title="">Download</a>
+                                                <a href="#">&nbsp;</a>
                                             </p>
                                         </div>
                                     </li>
@@ -237,29 +249,55 @@ blockquote p {
 
                                         <div class="message_wrapper">
                                             <h4 class="heading">Desmond Davison</h4>
-                                            <blockquote>
-                                                <p>Raw denim you probably haven't heard
-                                                    of them jean shorts Austin. Nesciunt tofu stumptown aliqua
-                                                    butcher retro keffiyeh dreamcatcher synth.</p>
-                                            </blockquote>
+                                            <div class="col-md-12 col-sm-12">
+                                                <blockquote>
+                                                    <p>Raw denim you probably haven't heard
+                                                        of them jean shorts Austin. Nesciunt tofu stumptown aliqua
+                                                        butcher retro keffiyeh dreamcatcher synth.</p>
+                                                </blockquote>
+                                            </div>
                                             <br />
                                             <p class="url">
                                                 <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                                <a href="#"><i class="fa fa-paperclip"></i> User Acceptance
+                                                <a href="#"><i class="fa fa-paperclip"></i> View File
                                                     Test.doc </a>
                                             </p>
                                         </div>
                                     </li>
                                 </ul>
-                                <!-- <div class="col-md-8"> -->
+                                
                                 <div class="btn-group">
-                                    <button class="btn btn-sm btn-primary" type="button"><i class="fa fa-reply"></i>
+                                    <button class="btn btn-sm btn-primary" data-toggle="collapse"
+                                        data-target="#collapseExample34" aria-expanded="false"
+                                        aria-controls="collapseExample" type="button"><i class="fa fa-reply"></i>
                                         Comment</button>
                                 </div>
-                                <!-- </div> -->
-                            </div>
+                                <br>
+                                <div class="col-md-12 col-sm-12 col-xs-12 collapse" id="collapseExample34"
+                                    style="padding-left: 0; margin-top: 10px;">
+                                    <textarea cols="5" id="comment_text" class="form-control col-md-7 col-xs-12">
+
+                                    </textarea>
+                                    <div>
+                                        <input type="file" id="comment_file" class="form-control col-md-7 col-xs-12"
+                                            style="border:none;">
+                                    </div>
 
 
+                                    <div class="text-danger" id="comment_error">
+
+
+                                    </div>
+
+                                    <div style="margin-top:10px;">
+                                        <button class="btn btn-primary btn-sm">Save</button>
+                                        <i class="fa fa-spinner fa-spin fa-fw fa-3x" style="display: none;"
+                                            id="add_comment_loader"></i>
+                                    </div>
+                                </div>
+
+
+                            </div> -->
                         </div>
                     </div>
                 </div>

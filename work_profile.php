@@ -194,14 +194,14 @@ include("_common/header.php");
                             <a class="nav-link no" id="profile-tab" data-toggle="tab" href="#employment_info_block"
                                 role="tab" aria-controls="profile" aria-selected="false">Employment Info</a>
                         </li>
-                        <!-- <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link no" id="salary-tab" data-toggle="tab" href="#salary_info_block"
                                 role="tab" aria-controls="salary" aria-selected="false">Salary Info</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link no" id="payslip-tab" data-toggle="tab" href="#payslip_block" role="tab"
                                 aria-controls="payslip" aria-selected="false">Payslips</a>
-                        </li> -->
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link no" id="leaves-tab" data-toggle="tab" href="#leaves_block" role="tab"
                                 aria-controls="leaves" aria-selected="false">Leaves</a>
@@ -211,7 +211,7 @@ include("_common/header.php");
                                 href="#job_title_history_block" role="tab" aria-controls="job_title_history"
                                 aria-selected="false">Job Title History</a>
                         </li> -->
-                        <!-- <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link no" id="attendance-tab" data-toggle="tab" href="#attendance_block"
                                 role="tab" aria-controls="attendance" aria-selected="false">Attendance</a>
                         </li>
@@ -219,7 +219,7 @@ include("_common/header.php");
                             <a class="nav-link no" id="document-tab" data-toggle="tab" href="#document_block" role="tab"
                                 aria-controls="document" aria-selected="false">Documents</a>
                         </li>
-                        <li class="nav-item">
+                        <!--<li class="nav-item">
                             <a class="nav-link no" id="essConnect-tab" data-toggle="tab" href="#essConnect_block"
                                 role="tab" aria-controls="document" aria-selected="false">Ess Connect</a>
                         </li> -->
@@ -1141,120 +1141,278 @@ include("_common/header.php");
                 <div id="salary_info_block" class="tab-pane fade" role="tabpanel" aria-labelledby="salary-tab">
 
                     <!-- <br> -->
-
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Net Payment</h2>
+                                    <h2>
+                                        Bank Details
+                                        <!-- <small>Activity report</small> -->
+                                    </h2>
                                     <ul class="nav navbar-right panel_toolbox">
-                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        <li>
+                                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                                aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Settings 1</a>
-                                                </li>
-                                                <li><a href="#">Settings 2</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                        </li>
+
+                                        <!-- <li data-toggle="modal" id="edit_bank_details"
+                                            data-target="#edit_bank_details_modal" title="Edit Bank Details">
+                                            <a class=""><i class="fa fa-pencil"></i></a>
+                                        </li> -->
+
                                     </ul>
                                     <div class="clearfix"></div>
                                 </div>
+
                                 <div class="x_content">
-                                    <div id="no_record3" style="display: none;">
-                                        <p><strong>No record available</strong></p>
-                                    </div>
-                                    <div id="net_pay" style="height:50px;">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+
+                                        <div class="row">
+                                            <div class="col-md-4 col-sm-4 col-xs-6">
+                                                <p><strong>Bank Name:</strong></p>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <p id="banker_name">...</p>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-md-4 col-sm-4 col-xs-6">
+                                                <p><strong>Account Name:</strong></p>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <p id="accounter_name">...</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4 col-sm-4 col-xs-6">
+                                                <p><strong>Account Number:</strong></p>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <p id="accounter_no">...</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4 col-sm-4 col-xs-6">
+                                                <p><strong>Sort Code:</strong></p>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <p id="sorter_code">...</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12 text-danger" id="acctDetails_error">
+
+                                            </div>
+                                        </div>
+
 
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
 
 
-
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2 id="ttd_title_1">Gross Payment</h2>
+                                    <h2>Salary Details</h2>
                                     <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                                aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Settings 1</a>
-                                                </li>
-                                                <li><a href="#">Settings 2</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                        </li>
+
+
                                     </ul>
                                     <div class="clearfix"></div>
                                 </div>
-                                <div class="x_content">
 
-                                    <!-- <i class="fa fa-spinner fa-spin fa-fw fa-3x" style="display: ;" id="ddsh_loading_1" ></i> -->
-                                    <div id="no_record" style="display: none;">
-                                        <p><strong>No record available</strong></p>
+                                <div class="" style="">
+
+                                    <div class="x_content">
+                                        <div style="display:flex;">
+                                            <div class="x_panel" style="margin-right:10px;">
+                                                <div class="x_title">
+                                                    <h2>Credit</h2>
+                                                    <ul class="nav navbar-right panel_toolbox">
+
+
+                                                        <!-- <li data-toggle="tooltip" id="add_credit" title="Add Credit">
+                                                            <a class=""><i class="fa fa-plus"></i></a>
+                                                        </li> -->
+
+                                                    </ul>
+
+                                                    <div id="credit_display" style="display: none;">
+                                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="x_panel">
+
+                                                                <div class="x_content">
+                                                                    <!-- <br /> -->
+                                                                    <i class="fa fa-spinner fa-spin fa-fw fa-3x"
+                                                                        style="display: none;" id="credit_loader"></i>
+                                                                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                                                                        <div id="credit_body"></div>
+
+                                                                        <br>
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                                                                <button type="button"
+                                                                                    class="btn btn-success"
+                                                                                    id="add_creditComponent_btn">Add</button>
+                                                                                <i class="fa fa-spinner fa-spin fa-fw fa-2x"
+                                                                                    style="display: none;"
+                                                                                    id="add_creditComponent_loader"></i>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="x_content">
+                                                    <div class="table-responsive"
+                                                        style="max-height:50%;overflow-y:auto;">
+                                                        <table class="table table-striped jambo_table bulk_action">
+
+                                                            <tbody id="credit_table">
+                                                                <tr>
+                                                                    <td colspan="3">No Salary Component Found</td>
+
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <div class="form-group" style="display:flex;">
+                                                            <label class="control-label" for="total_credit"
+                                                                style="margin-right:10px;">Total:
+                                                            </label>
+
+                                                            <input type="text" id="total_credit" name="total_credit"
+                                                                class="form-control"
+                                                                pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+                                                                style="width:30%; height:25px;" data-type="currency"
+                                                                disabled>
+                                                            <!-- </div> -->
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="x_panel">
+                                                <div class="x_title">
+                                                    <h2>Debit</h2>
+                                                    <ul class="nav navbar-right panel_toolbox">
+
+
+                                                        <!-- <li data-toggle="tooltip" id="add_debit" title="Add Debit">
+                                                            <a class=""><i class="fa fa-plus"></i></a>
+                                                        </li> -->
+
+                                                    </ul>
+                                                    <div id="debit_display" style="display: none;">
+                                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="x_panel">
+
+                                                                <div class="x_content">
+                                                                    <!-- <br /> -->
+                                                                    <i class="fa fa-spinner fa-spin fa-fw fa-3x"
+                                                                        style="display: none;" id="debit_loader"></i>
+                                                                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                                                                        <div id="debit_body"></div>
+                                                                        <br>
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                                                                <button type="button"
+                                                                                    class="btn btn-success"
+                                                                                    id="add_debitComponent_btn">Add</button>
+                                                                                <i class="fa fa-spinner fa-spin fa-fw fa-2x"
+                                                                                    style="display: none;"
+                                                                                    id="add_debitComponent_loader"></i>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="x_content">
+                                                    <div class="table-responsive"
+                                                        style="max-height:50%;overflow-y:auto;">
+                                                        <table class="table table-striped jambo_table bulk_action">
+
+                                                            <tbody id="debit_table">
+                                                                <tr>
+                                                                    <td colspan="3">No Salary Component Found</td>
+
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div>
+
+                                                    <div class="form-group" style="display:flex;">
+                                                        <label class="control-label" for="total_debit"
+                                                            style="margin-right:10px;">Total:
+                                                        </label>
+                                                        <!-- <div class="col-md-6 col-sm-6 col-xs-12"> -->
+                                                        <!-- <input type="text" id="total_credit" required="required"
+                                                                class="form-control" style="width:30%; height:25px;"> -->
+                                                        <input type="text" id="total_debit" name="total_debit"
+                                                            class="form-control" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+                                                            style="width:30%; height:25px;" data-type="currency"
+                                                            disabled>
+                                                        <!-- </div> -->
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div style="display:flex; flex-direction:row;align-items:center;">
+                                            <div class="" style="font-size:1.5em;"><b>Gross
+                                                    Payment:
+                                                    <span id="salary_amt">0</span></b></div>
+                                            <!-- <div style=" display: grid; justify-content: center; align-items: center;
+                                                        font-weight: bold; margin-right: 10px;">Per</div> -->
+                                            <div style="margin-left:1.5em">
+                                                <input class="form-control" style="border:none;" id="salary_type">
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <div style="font-size:1.5em; color: #26B99A;"><b>Net Payment:
+                                                <span id="net_payment">0</span></b></div>
+                                        <i class="fa fa-spinner fa-spin fa-fw fa-3x" style="display: none;"
+                                            id="save_pay_loader"></i>
+                                        <button style="margin-top:2em; display:none;" class="btn btn-sm btn-primary"
+                                            id="save_pay">Save</button>
+
                                     </div>
-                                    <div id="yearly_sales_report" style="height:350px;">
-
-                                    </div>
-
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="x_panel">
-                                <div class="x_title">
-                                    <h2 id="ttd_title">Total Deductions</h2>
-                                    <ul class="nav navbar-right panel_toolbox">
-                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                                aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Settings 1</a>
-                                                </li>
-                                                <li><a href="#">Settings 2</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                        </li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="x_content">
-
-                                    <i class="fa fa-spinner fa-spin fa-fw fa-3x" style="display: ;"
-                                        id="ddsh_loading"></i>
-                                    <div id="no_record2" style="display: none;">
-                                        <p><strong>No record available</strong></p>
-                                    </div>
-                                    <div id="echart_pie2" style="height:350px;">
 
 
-                                    </div>
-
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -1269,85 +1427,79 @@ include("_common/header.php");
                                 <div class="x_title">
                                     <h2>Salary Payment History</h2>
                                     <ul class="nav navbar-right panel_toolbox">
-                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                                aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Settings 1</a>
-                                                </li>
-                                                <li><a href="#">Settings 2</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                        </li>
+
+                                        <li><button type="button" class="btn btn-sm btn-primary" data-toggle="collapse"
+                                                data-target="#collapseExample" aria-expanded="false"
+                                                aria-controls="collapseExample">Filter</button></li>
                                     </ul>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
-                                    <i class="fa fa-spinner fa-spin fa-fw fa-3x" style="display: ;"
-                                        id="graph_loader"></i>
-                                    <div id="no_recordpay" style="display: none;">
-                                        <h3><strong>No record available</strong></h3>
-                                    </div>
-                                    <div id="mainb" style="height:350px;"></div>
+                                    <div class="collapse" id="collapseExample" style="margin-bottom:2em;">
 
+
+
+                                        <div class="form-row">
+
+                                            <div class="col-sm-4 col-xs-4">
+                                                <input class="form-control col-sm-7 col-xs-12" type="text"
+                                                    placeholder="Pay Period" id="payperiod_filter">
+
+                                            </div>
+
+                                            <button type="button" class="btn btn-success"
+                                                id="slip_filter">Search</button>
+
+
+                                        </div>
+
+                                    </div>
+                                    <i class="fa fa-spinner fa-spin fa-fw fa-3x" style="display: none;"
+                                        id="list_slip_loader"></i>
+                                    <div class="table-responsive" id="list_slip_table">
+                                        <table class="table table-striped jambo_table bulk_action">
+                                            <thead>
+                                                <tr class="headings">
+
+                                                    <th class="column-title">Name</th>
+                                                    <th class="column-title">Pay Period</th>
+                                                    <th class="column-title"></th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody id="list_slip_body">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
+
+
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="table-responsive">
+                            <i class="fa fa-spinner fa-spin fa-fw fa-3x" style="display: none;"
+                                id="list_slip_loader"></i>
+                            <div class="table-responsive" id="list_slip_table">
                                 <table class="table table-striped jambo_table bulk_action">
                                     <thead>
                                         <tr class="headings">
 
+                                            <th class="column-title">Name</th>
+                                            <th class="column-title">Pay Period</th>
+                                            <th class="column-title"></th>
 
-                                            <th class="column-title">Code</th>
-                                            <th class="column-title">Payment Date</th>
-                                            <th class="column-title">Payment Types</th>
-                                            <th class="column-title">Credit or Debit</th>
-
-
-                                            <th class="column-title no-link last"><span class="nobr">Amount</span>
-                                            </th>
-                                            <th class="bulk-actions" colspan="5">
-                                                <a class="antoo" style="color:#fff; font-weight:500;">Bulk
-                                                    Actions ( <span class="action-cnt"> </span> ) <i
-                                                        class="fa fa-chevron-down"></i></a>
-                                            </th>
                                         </tr>
                                     </thead>
-
-                                    <tr id="loading">
-                                        <td colspan="4"><i class="fa fa-spinner fa-spin fa-fw fa-3x"
-                                                style="display: ;"></i>
-                                        </td>
-                                    </tr>
-
-                                    <tbody id="salaryHistoryData">
-
-
+                                    <tbody id="list_slip_body">
 
                                     </tbody>
-
-
                                 </table>
-
-
-                                <div class="container">
-                                    <nav aria-label="Page navigation">
-                                        <ul class="pagination" id="pagination"></ul>
-                                    </nav>
-                                </div>
-
-
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
 
@@ -1689,46 +1841,106 @@ include("_common/header.php");
 
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="table-responsive">
-                                <table class="table table-striped jambo_table bulk_action">
-                                    <thead>
-                                        <tr class="headings">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Employee Attendance History</h2>
+                                    <ul class="nav navbar-right panel_toolbox">
 
-
-                                            <th class="column-title">Date</th>
-
-                                            <th class="column-title">Clock In Time</th>
-                                            <th class="column-title">Clock Out Time</th>
-                                            <th class="column-title">Work Hours</th>
-                                            <th class="column-title">Over Time/Late By</th>
-
-
-                                            <th class="bulk-actions" colspan="5">
-                                                <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions (
-                                                    <span class="action-cnt"> </span> ) <i
-                                                        class="fa fa-chevron-down"></i></a>
-                                            </th>
-                                        </tr>
-                                    </thead>
-
-                                    <tr id="loading_atten">
-                                        <td colspan="5"><i class="fa fa-spinner fa-spin fa-fw fa-3x"
-                                                style="display: none;"></i></td>
-                                    </tr>
-
-                                    <tbody id="attData">
+                                        <li><button type="button" class="btn btn-sm btn-primary" data-toggle="collapse"
+                                                data-target="#collapseExample23" aria-expanded="false"
+                                                aria-controls="collapseExample">Filter</button></li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <div class="collapse" id="collapseExample23" style="margin-bottom:2em;">
 
 
 
-                                    </tbody>
+                                        <div class="form-row">
+
+                                            <div class="col-sm-4 col-xs-4">
+                                                <select class="form-control col-sm-7 col-xs-12" id="atten_month_filter">
+                                                    <option value="0">January</option>
+                                                    <option value="1">Febuary</option>
+                                                    <option value="2">March</option>
+                                                    <option value="3">April</option>
+                                                    <option value="4">May</option>
+                                                    <option value="5">June</option>
+                                                    <option value="6">July</option>
+                                                    <option value="7">August</option>
+                                                    <option value="8">September</option>
+                                                    <option value="9">October</option>
+                                                    <option value="10">November</option>
+                                                    <option value="11">December</option>
+                                                </select>
+
+                                            </div>
+                                            <div class="col-sm-4 col-xs-4">
+                                                <select class="form-control col-sm-7 col-xs-12" id="atten_year_filter">
+                                                    <?php
+                                                    for ($year = (int)date('Y'); 1900 <= $year; $year--): ?>
+                                                    <option value="<?=$year;?>"><?=$year;?></option>
+                                                    <?php endfor; ?>
+                                                </select>
+
+                                            </div>
+
+                                            <button type="button" class="btn btn-success"
+                                                id="atten_filter">Search</button>
 
 
-                                </table>
+                                        </div>
+
+                                    </div>
+                                    <!-- <i class="fa fa-spinner fa-spin fa-fw fa-3x" style="display: none;"
+                                        id="loading_atten"></i> -->
+                                    <div class="table-responsive">
+                                        <table class="table table-striped jambo_table bulk_action">
+                                            <thead>
+                                                <tr class="headings">
 
 
+                                                    <th class="column-title">Date</th>
+
+                                                    <th class="column-title">Clock In Time</th>
+                                                    <th class="column-title">Clock Out Time</th>
+                                                    <th class="column-title">Work Hours</th>
+                                                    <!-- <th class="column-title">Over Time/Late By</th> -->
+
+
+                                                    <th class="bulk-actions" colspan="5">
+                                                        <a class="antoo" style="color:#fff; font-weight:500;">Bulk
+                                                            Actions (
+                                                            <span class="action-cnt"> </span> ) <i
+                                                                class="fa fa-chevron-down"></i></a>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+
+                                            <tr id="loading_atten">
+                                                <td colspan="5"><i class="fa fa-spinner fa-spin fa-fw fa-3x"
+                                                        style="display: none;"></i></td>
+                                            </tr>
+
+                                            <tbody id="attData">
+
+
+
+                                            </tbody>
+
+
+                                        </table>
+
+
+
+
+                                    </div>
+                                </div>
 
 
                             </div>
+
                         </div>
                     </div>
 
@@ -1950,6 +2162,132 @@ include("_common/header.php");
                         <strong>No Employee Info Found</strong>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="view_payslip_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <h3 class="modal-title" id="exampleModalLabel" style="color: #fff;">View Payslip
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </h3>
+
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12" style="margin-top:2em;">
+                    <!-- <div class="card"> -->
+                    <!-- <div class="card-body"> -->
+                    <h3 class="payslip-title title_center" id="com_name"></h3>
+                    <!-- <h5 class="subtitle">8/10 Ilupeju Byepass, Lagos State, Nigeria</h5> -->
+
+                    <div class="row" style="background:#17a2b8;color:white;">
+                        <div class="col-sm-6 m-b-20">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h3 class="text-uppercase" id="emy_name"><strong></strong></h3>
+                                </li>
+                                <li><span id="depy_name"> </span> - <span id="joby_name"></span>
+                                </li>
+                                <li>Bank Name: <span id="banky_name"></span></li>
+                                <li>Account Number: <span id="banky_no"></span></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6 m-b-20">
+                            <!-- <div class="invoice-details"> -->
+
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h3 class="text-uppercase">&#8203;</h3>
+                                </li>
+                                <li>Pay Period: <span id="pay_period_datey"></span>
+                                </li>
+                                <li>Payment Date: <span id="pay_datey"></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- </div> -->
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div>
+                                <h4 class="m-b-10"><strong>Earnings</strong></h4>
+                                <i class="fa fa-spinner fa-spin fa-fw fa-3x" style="display: none;"
+                                    id="credit_loader2"></i>
+                                <table class="table table-bordered" id="credit_body2">
+                                    <tbody id="credit_table2">
+                                        <!-- <tr>
+                                                <td><strong>Basic Salary</strong> <span class="float-right">$6500</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>House Rent Allowance (H.R.A.)</strong> <span
+                                                        class="float-right">$55</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Conveyance</strong> <span class="float-right">$55</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Other Allowance</strong> <span
+                                                        class="float-right">$55</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Total Earnings</strong> <span
+                                                        class="float-right"><strong>$55</strong></span></td>
+                                            </tr> -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div>
+                                <h4 class="m-b-10"><strong>Deductions</strong></h4>
+                                <i class="fa fa-spinner fa-spin fa-fw fa-3x" style="display: none;"
+                                    id="debit_loader2"></i>
+                                <table class="table table-bordered" id="debit_body2">
+                                    <tbody id="debit_table2">
+                                        <!-- <tr>
+                                                <td><strong>Tax Deducted at Source (T.D.S.)</strong> <span
+                                                        class="float-right">$0</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Provident Fund</strong> <span class="float-right">$0</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>ESI</strong> <span class="float-right">$0</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Loan</strong> <span class="float-right">$300</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Total Deductions</strong> <span
+                                                        class="float-right"><strong>$59698</strong></span></td>
+                                            </tr> -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <p><strong>Gross Pay: <span id="gpay"></span></strong></p>
+                            <p><strong>Net Salary: <span id="npay"></span></strong></p>
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-success" id="edit_nok_btn">Save</button>
+                <i class="fa fa-spinner fa-spin fa-fw fa-3x" style="display: none;" id="edit_nok_loader"></i> -->
             </div>
         </div>
     </div>
@@ -2875,8 +3213,7 @@ include("_common/header.php");
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header ">
-                <h3 class="modal-title" id="exampleModalLabel" style="color: #fff;">Edit Qualifcations and
-                    Certifications
+                <h3 class="modal-title" id="exampleModalLabel" style="color: #fff;">Edit Next of Kin
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -3017,4 +3354,7 @@ include("_common/footer.php");
     <script type="text/javascript" src="js-files/employment_info_jsFiles/emp_info.js"></script>
     <script type="text/javascript" src="js-files/employment_info_jsFiles/documents.js"></script>
     <script type="text/javascript" src="js-files/employment_info_jsFiles/leave_days.js"></script>
+    <script type="text/javascript" src="js-files/employment_info_jsFiles/salary_info.js"></script>
+    <script type="text/javascript" src="js-files/employment_info_jsFiles/payslip.js"></script>
+    <script type="text/javascript" src="js-files/employment_info_jsFiles/attendance.js"></script>
     <script type="text/javascript" src="js-files/employee_info_general.js"></script>

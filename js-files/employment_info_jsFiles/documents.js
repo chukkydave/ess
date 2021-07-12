@@ -12,7 +12,7 @@ $(document).ready(() => {
 //department starts
 function addDocument() {
 	let company_id = localStorage.getItem('company_id');
-	let employee_id = localStorage.getItem('user_id');
+	let employee_id = '';
 	let user_id = localStorage.getItem('user_id');
 
 	$('#add_docx_btn').hide();
@@ -27,7 +27,8 @@ function addDocument() {
 	data.append('file_tag', '');
 	data.append('document_name', name);
 	data.append('company_id', company_id);
-	data.append('employee_id', employee_id);
+	data.append('employee_id', '');
+	data.append('user_id', user_id);
 	data.append('uploaded_by', user_id);
 	data.append('file', doc_file);
 
@@ -68,7 +69,8 @@ function addDocument() {
 
 function list_employee_documents() {
 	let company_id = localStorage.getItem('company_id');
-	let employee_id = localStorage.getItem('user_id');
+	let employee_id = '';
+	let user_id = localStorage.getItem('user_id');
 	$('#list_docx_table').hide();
 	$('#list_docx_loader').show();
 	axios
@@ -76,6 +78,7 @@ function list_employee_documents() {
 			params: {
 				company_id: company_id,
 				employee_id: employee_id,
+				user_id: user_id,
 			},
 		})
 		.then(function(response) {
@@ -265,13 +268,16 @@ function viewDocument(id) {
 	$('#edit_docx_loader').show();
 
 	let company_id = localStorage.getItem('company_id');
-	let employee_id = localStorage.getItem('user_id');
+	let employee_id = '';
+	let user_id = localStorage.getItem('user_id');
+
 	axios
 		.get(`${api_path}hrm/single_employee_doc`, {
 			params: {
 				document_id: id,
 				employee_id: employee_id,
 				company_id: company_id,
+				user_id: user_id,
 			},
 		})
 		.then(function(response) {
@@ -313,12 +319,14 @@ function deleteDocument(id) {
 		$(`#docx_row${id}`).hide();
 		$(`#docx_loader${id}`).show();
 		let company_id = localStorage.getItem('company_id');
-		let employee_id = localStorage.getItem('user_id');
+		let employee_id = '';
+		let user_id = localStorage.getItem('user_id');
 
 		let data = {
 			document_id: id,
 			employee_id: employee_id,
 			company_id: company_id,
+			user_id: user_id,
 		};
 
 		$.ajax({

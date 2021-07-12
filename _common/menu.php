@@ -19,7 +19,8 @@ $menu = '<ul class="nav side-menu">
            -->
            <li><a href="grievances"><i class="fa fa-desktop"></i> Grievances </a>
           </li>
-
+          <li><a href="exit"><i class="fa fa-power-off"></i> Exit </a>
+                                </li>
           
 
           <li><a href="approvals"><i class="fa fa-list-alt"></i> Approvals </a>

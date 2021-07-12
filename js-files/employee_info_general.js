@@ -3,8 +3,7 @@ $(document).ready(function() {
 
 	$('#payslip-tab').on('click', () => {
 		if ($('#payslip-tab').hasClass('no')) {
-			list_of_salary_history('');
-			init_echarts();
+			listPayslip(1);
 			$('#payslip-tab').removeClass('no');
 		}
 
@@ -13,6 +12,9 @@ $(document).ready(function() {
 	$('#salary-tab').on('click', () => {
 		if ($('#salary-tab').hasClass('no')) {
 			fetch_employee_view_details_salary_info();
+			list_employment_payment_type();
+			showBankDetails();
+			showSalaryDetails();
 			$('#salary-tab').removeClass('no');
 		}
 	});
@@ -1315,97 +1317,97 @@ function isEmptyInput(first) {
 
 // attendance start
 
-function list_employee_attendance() {
-	var company_id = localStorage.getItem('company_id');
-	// var pathArray = window.location.pathname.split( '/' );
-	var employee_id = ''; //pathArray[4].replace(/%20/g,' ');
-	let user_id = localStorage.getItem('user_id');
+// function list_employee_attendance() {
+// 	var company_id = localStorage.getItem('company_id');
+// 	// var pathArray = window.location.pathname.split( '/' );
+// 	var employee_id = ''; //pathArray[4].replace(/%20/g,' ');
+// 	let user_id = localStorage.getItem('user_id');
 
-	var page = 1;
-	var limit = 10;
+// 	var page = 1;
+// 	var limit = 10;
 
-	$('#loading_atten').show();
-	$('#attData').html('');
+// 	$('#loading_atten').show();
+// 	$('#attData').html('');
 
-	$.ajax({
-		type: 'POST',
-		dataType: 'json',
-		url: api_path + 'hrm/list_of_employee_attendances',
-		data: {
-			company_id: company_id,
-			employee_id: employee_id,
-			page: page,
-			limit: limit,
-			user_id: user_id,
-		},
-		timeout: 60000,
+// 	$.ajax({
+// 		type: 'POST',
+// 		dataType: 'json',
+// 		url: api_path + 'hrm/list_of_employee_attendances',
+// 		data: {
+// 			company_id: company_id,
+// 			employee_id: employee_id,
+// 			page: page,
+// 			limit: limit,
+// 			user_id: user_id,
+// 		},
+// 		timeout: 60000,
 
-		success: function(response) {
-			console.log(response);
-			$('#loading_atten').hide();
-			var strTable = '';
+// 		success: function(response) {
+// 			console.log(response);
+// 			$('#loading_atten').hide();
+// 			var strTable = '';
 
-			if (response.status == '200') {
-				if (response.data.length > 0) {
-					var k = 1;
-					$.each(response['data'], function(i, v) {
-						strTable += '<tr>';
+// 			if (response.status == '200') {
+// 				if (response.data.length > 0) {
+// 					var k = 1;
+// 					$.each(response['data'], function(i, v) {
+// 						strTable += '<tr>';
 
-						strTable += '<td width="25%">' + response['data'][i]['date'] + '</td>';
-						strTable += '<td>' + response['data'][i]['clock_in'] + '</td>';
-						strTable += '<td>' + response['data'][i]['clock_out'] + '</td>';
-						strTable += '<td>' + response['data'][i]['work_hours'] + '</td>';
+// 						strTable += '<td width="25%">' + response['data'][i]['date'] + '</td>';
+// 						strTable += '<td>' + response['data'][i]['clock_in'] + '</td>';
+// 						strTable += '<td>' + response['data'][i]['clock_out'] + '</td>';
+// 						strTable += '<td>' + response['data'][i]['work_hours'] + '</td>';
 
-						strTable += '<td></td>';
+// 						strTable += '<td></td>';
 
-						strTable += '</tr>';
+// 						strTable += '</tr>';
 
-						k++;
-					});
-				} else {
-					strTable = '<tr><td colspan="5">No record.</td></tr>';
-				}
+// 						k++;
+// 					});
+// 				} else {
+// 					strTable = '<tr><td colspan="5">No record.</td></tr>';
+// 				}
 
-				$('#attData').html(strTable);
-				$('#attData').show();
-			} else if (response.status == '400') {
-				$('#loading_atten').hide();
-				strTable += '<tr>';
-				strTable += '<td colspan="5">' + response.msg + '</td>';
-				strTable += '</tr>';
+// 				$('#attData').html(strTable);
+// 				$('#attData').show();
+// 			} else if (response.status == '400') {
+// 				$('#loading_atten').hide();
+// 				strTable += '<tr>';
+// 				strTable += '<td colspan="5">' + response.msg + '</td>';
+// 				strTable += '</tr>';
 
-				$('#attData').html(strTable);
-				$('#attData').show();
-			} else if (response.status == '401') {
-				//missing parameters
-				var strTable = '';
-				$('#loading_atten').hide();
-				strTable += '<tr>';
-				strTable += '<td colspan="5">Technical Error</td>';
-				strTable += '</tr>';
+// 				$('#attData').html(strTable);
+// 				$('#attData').show();
+// 			} else if (response.status == '401') {
+// 				//missing parameters
+// 				var strTable = '';
+// 				$('#loading_atten').hide();
+// 				strTable += '<tr>';
+// 				strTable += '<td colspan="5">Technical Error</td>';
+// 				strTable += '</tr>';
 
-				$('#attData').html(strTable);
-				$('#attData').show();
-			}
+// 				$('#attData').html(strTable);
+// 				$('#attData').show();
+// 			}
 
-			$('#loading_atten').hide();
-		},
+// 			$('#loading_atten').hide();
+// 		},
 
-		error: function(response) {
-			var strTable = '';
-			$('#loading_atten').hide();
-			// alert(response.msg);
-			strTable += '<tr>';
-			strTable +=
-				'<td colspan="5"><strong class="text-danger">Connection error!</strong></td>';
-			strTable += '</tr>';
+// 		error: function(response) {
+// 			var strTable = '';
+// 			$('#loading_atten').hide();
+// 			// alert(response.msg);
+// 			strTable += '<tr>';
+// 			strTable +=
+// 				'<td colspan="5"><strong class="text-danger">Connection error!</strong></td>';
+// 			strTable += '</tr>';
 
-			$('#attData').html(strTable);
-			$('#attData').show();
-			$('#loading_atten').hide();
-		},
-	});
-}
+// 			$('#attData').html(strTable);
+// 			$('#attData').show();
+// 			$('#loading_atten').hide();
+// 		},
+// 	});
+// }
 // attendance end
 
 // documents start

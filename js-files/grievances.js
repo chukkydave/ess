@@ -23,8 +23,13 @@ $(document).ready(function() {
 	$(document).on('click', '#add_d', function() {
 		add_grievance_report2();
 	});
+
 	$(document).on('click', '#add_g', function() {
 		add_grievance_report();
+	});
+
+	$(document).on('click', '#filter_g', function() {
+		list_of_grievances(1);
 	});
 	// $('#add_leave').on('click', add_employee_leave);
 
@@ -61,10 +66,15 @@ $(document).ready(function() {
 		fetch_grievance_details(grievance_id);
 	});
 
-	$(document).on('click', '#edit_g', function() {
+	$(document).on('click', '#edit_gr', function() {
 		// var warehouse_id = $(this).attr('id').replace(/edt_/,'');
 		edit_employee_grievance(grievance_id);
-		alert(grievance_id);
+		// alert(grievance_id);
+	});
+	$(document).on('click', '#edit_g', function() {
+		// var warehouse_id = $(this).attr('id').replace(/edt_/,'');
+		edit_employee_grievance2(grievance_id);
+		// alert(grievance_id);
 	});
 
 	$('#g_against').on('change', () => {
@@ -73,6 +83,11 @@ $(document).ready(function() {
 		} else {
 			$('#selct_empl').fadeOut();
 		}
+	});
+
+	$(document).on('change', '#sort_type', () => {
+		// let order = $('#order_by').val();
+		list_of_grievances('');
 	});
 });
 
@@ -126,14 +141,15 @@ function load_employee() {
 		success: function(response) {
 			console.log(response);
 
-			var options = '';
+			var options = '<option value="employer">Employer</option>';
 
 			$(response.data).each((i, v) => {
 				options += `<option value="${v.employee_id}">${v.firstname} ${v.lastname}(${v.position})</option>`;
 			});
 
-			$('#g_against').append(options);
-			$('#modal_edit_g #g_against').append(options);
+			$('#g_against_select').append(options);
+			$('#gBy_filter').append(options);
+			$('#modal_edit_g #g_against_e').append(options);
 		},
 		// jqXHR, textStatus, errorThrown
 		error(response) {
@@ -146,13 +162,15 @@ function edit_employee_grievance(grievance_id) {
 	var g_type = $('#modal_edit_g #g_type').val();
 
 	var incident_date = $('#modal_edit_g #incident_date').val();
-	var emp_response = $('#modal_edit_g #emp_response').val();
+	// var emp_response = $('#modal_edit_g #emp_response').val();
 	var incident = $('#modal_edit_g #incident').val();
-	var approval = $('#modal_edit_g #approval').val();
+	// var approval = $('#modal_edit_g #approval').val();
 	var branch = $('#modal_edit_g #branch').val();
-	var against = $('#modal_edit_g #against').val();
+	var against = $('#modal_edit_g #g_against_e').val();
 	var company_id = localStorage.getItem('company_id');
-	var g_by = localStorage.getItem('email');
+	var g_by = localStorage.getItem('user_id');
+	let action = $('#modal_edit_g #prior_action_e').val();
+	let upImage = document.querySelector('input#upload_doc_e').files[0];
 
 	var blank;
 
@@ -176,6 +194,21 @@ function edit_employee_grievance(grievance_id) {
 		return;
 	}
 
+	let data = new FormData();
+	data.append('file', upImage);
+	data.append('greviance_id', grievance_id);
+	// data.append('company_id', company_id);
+	data.append('g_type', g_type);
+	data.append('incident_date', incident_date);
+	data.append('incident', incident);
+	data.append('company_id', company_id);
+	data.append('g_by', g_by);
+	data.append('g_against', against);
+	data.append('branch', branch);
+	// data.append('emp_response', emp_response);
+	data.append('draft_or_completed', 'completed');
+	data.append('action_b4_acting', action);
+
 	// $("#modal_edit_warehouse #error").html("");
 
 	$('#modal_edit_g #edit_g').hide();
@@ -186,15 +219,117 @@ function edit_employee_grievance(grievance_id) {
 		dataType: 'json',
 		cache: false,
 		url: api_path + 'ess/edit_grievance',
-		data: {
-			g_by: g_by,
-			g_against: g_against,
-			company_id: company_id,
-			grievance_id: grievance_id,
-			incident: incident,
-			incident_date: incident_date,
-			emp_response: emp_response,
+		processData: false,
+		contentType: false,
+		headers: {
+			enctype: 'multipart/form-data',
 		},
+		data: data,
+
+		success: function(response) {
+			console.log(response);
+
+			if (response.status == '200') {
+				$('#modal_edit_g #error').html('');
+				$('#modal_edit_g #edit_g_loader').hide();
+				$('#modal_edit_g #edit_g').show();
+
+				$('#modal_edit_g #edit_form').hide();
+				$('#modal_edit_g #edit_msg').show();
+
+				// $('#modal_department_edit').on('hidden.bs.modal', function () {
+				//     $('#department_name').val();
+				//     $('#department_description').val();
+				window.location.reload();
+				//     window.location.href = base_url+"/erp/hrm/departments";
+				// })
+			} else if (response.status == '400') {
+				// coder error message
+
+				$('#modal_edit_g #error').html('Technical Error. Please try again later.');
+			} else if (response.status == '401') {
+				//user error message
+
+				$('#modal_edit_g #error').html(response.msg);
+			}
+		},
+
+		error: function(response) {
+			console.log(response);
+			$('#modal_edit_g #edit_g_loader').hide();
+			$('#modal_edit_g #edit_g').show();
+			$('#modal_edit_g #error').html('Connection Error.');
+		},
+	});
+}
+
+function edit_employee_grievance2(grievance_id) {
+	var g_type = $('#modal_edit_g #g_type').val();
+
+	var incident_date = $('#modal_edit_g #incident_date').val();
+	// var emp_response = $('#modal_edit_g #emp_response').val();
+	var incident = $('#modal_edit_g #incident').val();
+	// var approval = $('#modal_edit_g #approval').val();
+	var branch = $('#modal_edit_g #branch').val();
+	var against = $('#modal_edit_g #g_against_e').val();
+	var company_id = localStorage.getItem('company_id');
+	var g_by = localStorage.getItem('user_id');
+	let action = $('#modal_edit_g #prior_action_e').val();
+	let upImage = document.querySelector('input#upload_doc_e').files[0];
+
+	var blank;
+
+	// alert(warehouse_id);
+
+	$('#modal_edit_g .required').each(function() {
+		var the_val = $.trim($(this).val());
+
+		if (the_val == '' || the_val == '0') {
+			$(this).addClass('has-error');
+
+			blank = 'yes';
+		} else {
+			$(this).removeClass('has-error');
+		}
+	});
+
+	if (blank == 'yes') {
+		$('#modal_edit_g #error').html('You have a blank field');
+
+		return;
+	}
+
+	let data = new FormData();
+	data.append('file', upImage);
+	data.append('greviance_id', grievance_id);
+	// data.append('company_id', company_id);
+	data.append('g_type', g_type);
+	data.append('incident_date', incident_date);
+	data.append('incident', incident);
+	data.append('company_id', company_id);
+	data.append('g_by', g_by);
+	data.append('g_against', against);
+	data.append('branch', branch);
+	// data.append('emp_response', emp_response);
+	data.append('draft_or_completed', 'draft');
+	data.append('action_b4_acting', action);
+
+	// $("#modal_edit_warehouse #error").html("");
+
+	$('#modal_edit_g #edit_g').hide();
+	$('#modal_edit_g #edit_g_loader').show();
+
+	$.ajax({
+		type: 'POST',
+		dataType: 'json',
+		cache: false,
+		url: api_path + 'ess/edit_grievance',
+		processData: false,
+		contentType: false,
+		headers: {
+			enctype: 'multipart/form-data',
+		},
+		data: data,
 
 		success: function(response) {
 			console.log(response);
@@ -265,11 +400,23 @@ function fetch_grievance_details(grievance_id) {
 			$('#gri_' + grievance_id).show();
 
 			if (response.status == '200') {
+				let date = response.data.incident_date.split(' ');
+				let doc;
+				if (response.data.document === null) {
+					doc = '';
+				} else {
+					doc = `<a target="_blank" href="${window.location
+						.origin}/files/images/greviance_document/${response.data
+						.document}"><i class="fa fa-paperclip"></i> View attachment</a>`;
+				}
 				$('#modal_edit_g #g_type').val(response.data.gri_type);
-				$('#modal_edit_g #incident_date').val(response.data.incident_date);
+				$('#modal_edit_g #incident_date').val(date[0]);
 				$('#modal_edit_g #incident').val(response.data.incident);
-				$('#modal_edit_g #approval').val(response.data.approval);
+				// $('#modal_edit_g #approval').val(response.data.approval);
 				$('#modal_edit_g #branch').val(response.data.branch);
+				$('#modal_edit_g #g_against_e').val(response.data.g_against);
+				$('#modal_edit_g #prior_action_e').val(response.data.action_prior_reporting);
+				$('#modal_edit_g #upload_doc_e2').html(doc);
 
 				$('#modal_edit_g').modal('show');
 			}
@@ -324,7 +471,7 @@ function add_grievance_report() {
 	}
 
 	let data = new FormData();
-	// data.append('file', upImage);
+	data.append('file', upImage);
 	data.append('g_type', g_type);
 	data.append('incident_date', incident_date);
 	data.append('incident', incident);
@@ -434,7 +581,7 @@ function add_grievance_report2() {
 	}
 
 	let data = new FormData();
-	// data.append('file', upImage);
+	data.append('file', upImage);
 	data.append('g_type', g_type);
 	data.append('incident_date', incident_date);
 	data.append('incident', incident);
@@ -470,6 +617,7 @@ function add_grievance_report2() {
 			$('#add_g').show();
 
 			if (response.status == '200') {
+				$('#modal_g_body h4').html('Grievance Report Saved As Draft Successfully!');
 				$('#modal_g').modal('show');
 
 				$('#modal_g').on('hidden.bs.modal', function() {
@@ -554,12 +702,24 @@ function fetch_grievance_info(grievance_id) {
 				var month = s.getMonth();
 				var datestring = s.getDate() + '/' + monthNames[month] + '/' + s.getFullYear();
 
-				$('#modal_view_g #g_type').html(response.data.gri_type);
-				$('#modal_view_g #incident_date').html(datestring);
-				$('#modal_view_g #approval').html();
-				$('#modal_view_g #report').html(response.data.incident);
-				$('#modal_view_g #response').html();
-				$('#modal_view_g #branch').html();
+				let doc;
+
+				if (response.data.document === null) {
+					doc = 'None';
+				} else {
+					doc = `<a target="_blank" href="${window.location
+						.origin}/files/images/greviance_document/${response.data
+						.document}">View Document</a>`;
+				}
+
+				$('#griev_code').html(response.data.g_code);
+				$('#griev_type').html(capitalizeFirstLetter(response.data.gri_type));
+				$('#griev_from').html(response.data.g_by_full_name);
+				$('#griev_aganist').html(response.data.g_against_full_name);
+				$('#griev_date').html(datestring);
+				$('#griev_report').html(response.data.incident);
+				$('#griev_branch').html(response.data.branch_name);
+				$('#griev_doc').html(doc);
 
 				$('#modal_view_g').modal('show');
 			}
@@ -618,6 +778,14 @@ function delete_grievance(grievance_id) {
 function list_of_grievances(page) {
 	var company_id = localStorage.getItem('company_id');
 	var user_id = localStorage.getItem('user_id');
+	let greviance_code = $('#gId_filter').val();
+	let status;
+	if ($('#status_filter').val() == '--Status--') {
+		status = '';
+	} else {
+		status = $('#status_filter').val();
+	}
+	let gr_by = $('#gBy_filter').val();
 	if (page == '') {
 		var page = 1;
 	}
@@ -625,6 +793,7 @@ function list_of_grievances(page) {
 
 	$('#loading').show();
 	$('#grievanceData').html('');
+	let sort_type = $('#sort_type').val();
 
 	$.ajax({
 		type: 'POST',
@@ -635,6 +804,10 @@ function list_of_grievances(page) {
 			page: page,
 			limit: limit,
 			user_id: user_id,
+			greviance_code: greviance_code,
+			status: status,
+			sort_type: sort_type,
+			grievance_against: gr_by,
 		},
 		timeout: 60000,
 
@@ -651,9 +824,10 @@ function list_of_grievances(page) {
 						strTable += `<tr id="row_${v.id}">`;
 						strTable += `<td>${v.code}</td>`;
 						strTable += `<td>${v.against}</td>`;
-						strTable += `<td>${v.complaint}</td>`;
-						strTable += `<td>${v.disciplinary}</td>`;
-						strTable += `<td>
+						strTable += `<td>${capitalizeFirstLetter(v.greivance_type)}</td>`;
+						strTable += `<td>${capitalizeFirstLetter(v.greviance_status)}</td>`;
+						if (v.greviance_status === 'draft' || v.greviance_status === 'Draft') {
+							strTable += `<td>
                                         <div class="dropdown">
                                             <button
                                                 class="btn btn-secondary dropdown-toggle"
@@ -679,14 +853,50 @@ function list_of_grievances(page) {
                                                         <i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="Delete Grievance"/> Delete
                                                     </a>
                                                 </li>
+                                                <!--<li>
+                                                    <a class="dropdown-item" href="view_grieviance?id=${v.id}" id="">
+                                                        <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title=""/> View
+                                                    </a>
+                                                </li>-->
+                                            </ul>
+                                        </div>
+                                    </td>`;
+						} else {
+							strTable += `<td>
+                                        <div class="dropdown">
+                                            <button
+                                                class="btn btn-secondary dropdown-toggle"
+                                                type="button"
+                                                id="dropdownMenuButton1"
+                                                data-toggle="dropdown"
+                                                aria-expanded="false">
+                                                Actions
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                <!--<li>
+                                                    <a class="dropdown-item g_info" id="gr_${v.id}">
+                                                        <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View Grievance info" /> View
+                                                    </a>
+                                                </li>-->
+                                                <!--<li>
+                                                    <a class="dropdown-item edit_g_icon" id="gri_${v.id}">
+                                                        <i class="fa fa-pencil" data-toggle="tooltip" data-placement="top" title="Edit Grievance"/> Edit
+                                                    </a>
+                                                </li>-->
+                                                <!--<li>
+                                                    <a class="dropdown-item delete_g" id="grie_${v.id}">
+                                                        <i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="Delete Grievance"/> Delete
+                                                    </a>
+                                                </li>-->
                                                 <li>
-                                                    <a class="dropdown-item" href="view_grieviance" id="">
-                                                        <i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title=""/> Test Case
+                                                    <a class="dropdown-item" href="view_grieviance?id=${v.id}" id="">
+                                                        <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title=""/> View
                                                     </a>
                                                 </li>
                                             </ul>
                                         </div>
                                     </td>`;
+						}
 						strTable += `</tr>`;
 
 						strTable += `<tr style="display: none;" id="loader_row_${v.id}">`;
@@ -696,82 +906,8 @@ function list_of_grievances(page) {
 
 						k++;
 					});
-					// $.each(response['data'], function(i, v) {
-					// 	strTable += '<tr id="row_' + response['data'][i]['id'] + '">';
-					// 	strTable += '<td>' + response['data'][i]['code'] + '</td>';
-					// 	strTable += '<td>' + response['data'][i]['against'] + '</td>';
-					// 	strTable += '<td>' + response['data'][i]['complaint'] + '</td>';
-					// 	strTable += '<td>' + response['data'][i]['disciplinary'] + '</td>';
-					// 	strTable += `<td>
-					//                     <div class="dropdown">
-					//                         <button
-					//                             class="btn btn-secondary dropdown-toggle"
-					//                             type="button"
-					//                             id="dropdownMenuButton1"
-					//                             data-toggle="dropdown"
-					//                             aria-expanded="false">
-					//                             Actions
-					//                         </button>
-					//                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-					//                             <li>
-					//                                 <a class="dropdown-item g_info" id="gr_${v.id}">
-					//                                     <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View Grievance info" /> View
-					//                                 </a>
-					//                             </li>
-					//                             <li>
-					//                                 <a class="dropdown-item edit_g_icon" id="gri_${v.id}">
-					//                                     <i class="fa fa-pencil" data-toggle="tooltip" data-placement="top" title="Edit Grievance"/> Edit
-					//                                 </a>
-					//                             </li>
-					//                             <li>
-					//                                 <a class="dropdown-item delete_g" id="grie_${v.id}">
-					//                                     <i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="Delete Grievance"/> Delete
-					//                                 </a>
-					//                             </li>
-					//                         </ul>
-					//                     </div>
-					//                 </td>`;
-
-					// 	// strTable +=
-					// 	// 	'<td valign="top"><a class="g_info btn btn-primary btn-xs"  id="gr_' +
-					// 	// 	response['data'][i]['id'] +
-					// 	// 	'"><i  class="fa fa-folder"  data-toggle="tooltip" data-placement="top" title="View Grievance info"></i> View</a>';
-
-					// 	// strTable +=
-					// 	// 	'<i  class="fa fa-spinner fa-spin fa-1x fa-fw" aria-hidden="true" style="display: none;" id="loader11_' +
-					// 	// 	response['data'][i]['id'] +
-					// 	// 	'"></i>&nbsp;&nbsp;';
-
-					// 	// strTable +=
-					// 	// 	'<a class="edit_g_icon btn btn-info btn-xs"id="gri_' +
-					// 	// 	response['data'][i]['id'] +
-					// 	// 	'"><i  class="fa fa-pencil"  data-toggle="tooltip" data-placement="top" title="Edit Grievance"></i> Edit</a>&nbsp;&nbsp;';
-
-					// 	// strTable +=
-					// 	// 	'<i  class="fa fa-spinner fa-spin fa-1x fa-fw" aria-hidden="true" style="display: none;" id="loader12_' +
-					// 	// 	response['data'][i]['id'] +
-					// 	// 	'"></i>&nbsp;&nbsp;';
-
-					// 	// strTable +=
-					// 	// 	'<a class="delete_g btn btn-danger btn-xs" style="cursor: pointer;" id="grie_' +
-					// 	// 	response['data'][i]['id'] +
-					// 	// 	'"><i  class="fa fa-trash"  data-toggle="tooltip" data-placement="top" title="Delete Grievance"></i> Delete</a></td>';
-
-					// 	strTable += '</tr>';
-
-					// 	strTable +=
-					// 		'<tr style="display: none;" id="loader_row_' +
-					// 		response['data'][i]['id'] +
-					// 		'">';
-					// 	strTable +=
-					// 		'<td colspan="5"><i class="fa fa-spinner fa-spin fa-fw fa-2x"  id="loading"></i>';
-					// 	strTable += '</td>';
-					// 	strTable += '</tr>';
-
-					// 	k++;
-					// });
 				} else {
-					strTable = '<tr><td colspan="5">' + response.msg + '</td></tr>';
+					strTable = '<tr><td colspan="5">No Grievance Currently</td></tr>';
 				}
 
 				$('#pagination').twbsPagination({
@@ -817,4 +953,8 @@ function list_of_grievances(page) {
 			$('#grievanceData').show();
 		},
 	});
+}
+
+function capitalizeFirstLetter(string) {
+	return string.charAt(0).toUpperCase() + string.slice(1);
 }
