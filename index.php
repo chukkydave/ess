@@ -52,7 +52,7 @@ include("_common/header.php");
                             <i class="fa fa-spinner fa-spin fa-fw" style="display: "></i>
                         </div>
                         <h3>My Leaves</h3>
-                        <p>My Pending Leave Request</p>
+                        <p>My Pending Leave Requests</p>
                     </div>
                 </div>
             </a>
