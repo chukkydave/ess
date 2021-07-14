@@ -104,23 +104,6 @@ function fetch_notice_board() {
 				                </li>`;
 				});
 
-				// schedule_notification.map((items) => {
-				// 	let timer = moment(items.created_at, 'YYYY-MM-DD HH:mm:ss').fromNow();
-				// 	allNotice += `<li>
-				//                     <div class="block" style="margin:0;">
-
-				//                         <div class="block_content">
-				//                             <h2 class="title">
-				//                                 <a>${items.notification}</a>
-				//                             </h2>
-				//                             <div class="byline">
-				//                                 <span>${timer}</span>
-				//                             </div>
-
-				//                         </div>
-				//                     </div>
-				//                 </li>`;
-				// });
 				$('#notice_board').html(allNotice);
 			} else {
 				$('#notice_board').html('No Notification for now');
