@@ -1,7 +1,7 @@
 <?php
 include("_common/header.php");
 ?>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css">
 
 
 <!-- page content -->
@@ -108,11 +108,13 @@ include("_common/header.php");
                     </div>
                     <div class="x_content">
 
+                        <div style="height:350px;">
+                            <i class="fa fa-spinner fa-spin fa-fw fa-3x" style="display: none;"
+                                id="notice_board_loading"></i>
+                            <ul class="list-unstyled timeline" id="notice_board">
 
-                        <div id="yearly_sales_report2" style="height:350px;">There are currently no notices</div>
-
-
-                        <!-- <div id="yearly_sales_report" style="height:350px;"><i class="fa fa-spinner fa-spin fa-fw fa-3x loader_lga_grh" style="display: " id="loader_lgn"></i></div> -->
+                            </ul>
+                        </div>
 
                     </div>
                 </div>
@@ -145,10 +147,7 @@ include("_common/header.php");
                     </div>
                     <div class="x_content">
 
-                        <div id="warehouse_pie2" style="height:350px;">Currently no calendar events</div>
-
-
-                        <!-- <div id="warehouse_pie" style="height:350px;"><i class="fa fa-spinner fa-spin fa-fw fa-3x loader_lga_grh" style="display: " id="loader_lgn"></i></div> -->
+                        <div id="calendarly" style="height:350px !important;"></div>
 
                     </div>
                 </div>
@@ -278,64 +277,9 @@ include("_common/header.php");
 <!-- /page content -->
 
 
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js"></script>
+<script type="text/javascript" src="js-files/indexes.js"></script>
 
-<script>
-$(document).ready(function() {
-    defCalls(); //returns the promise object
-});
-
-function defCalls() {
-    var def = $.Deferred();
-    $.when(pending_approvals(), leave_pending_count(), get_kpi()).done(function() {
-        setTimeout(function() {
-            def.resolve();
-        }, 2000)
-    })
-    return def.promise();
-}
-
-function leave_pending_count() {
-
-    var company_id = localStorage.getItem('company_id');
-    var email = localStorage.getItem('email');
-    var user_id = localStorage.getItem('user_id');
-
-    $.ajax({
-        type: "POST",
-        dataType: "json",
-        url: api_path + "ess/count_balance_leave",
-        data: {
-            "company_id": company_id,
-            "email": email,
-            "user_id": user_id
-        },
-        timeout: 60000,
-        success: function(response) {
-
-            $("#low_itms").html(response.data);
-            console.log(response);
-        },
-        error: function(response) {
-            console.log(response);
-        }
-    });
-
-}
-
-
-
-
-function pending_approvals() {
-
-    $("#pnd_appv").html('0');
-
-}
-
-
-function get_kpi() {
-    $("#kpi_rcdd").html('-');
-}
-</script>
 
 
 

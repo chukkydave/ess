@@ -166,7 +166,7 @@ include("_common/header.php");
                                         <select class="form-control col-md-7 col-xs-12 required1" id="g_against">
                                             <option value="">-- Select --</option>
                                             <option value="Employee">Employee</option>
-                                            <option value="Employer">Employer</option>
+                                            <option value="employer">Employer</option>
                                             <!-- <option value="Other">Other</option> -->
 
                                         </select>
