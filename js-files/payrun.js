@@ -5,7 +5,7 @@ $(document).ready(function() {
 	let params = new URL(url).searchParams;
 	let statusi = params.get('status');
 
-	if (statusi === 'not_approved') {
+	if (statusi.toLocaleLowerCase() === 'pending') {
 		$('#buttons_section').show();
 	}
 
@@ -201,10 +201,10 @@ function listPayRunHistory() {
 					payrun_list += `<tr class="even pointer" id="spay_row${v.employee_id}">`;
 					payrun_list += `<td>${v.fullname}<br>${v.workshift}</td>`;
 					payrun_list += `<td>${v.department}<div>${v.job_title}</div></td>`;
-					payrun_list += `<td>₦${numberWithCommas(v.salary)}</td>`;
-					payrun_list += `<td>₦${numberWithCommas(deduc)}</td>`;
-					payrun_list += `<td>₦${numberWithCommas(tax)}</td>`;
-					payrun_list += `<td>₦${numberWithCommas(v.net_pay)}</td>`;
+					payrun_list += `<td>${formatToCurrency(parseInt(v.salary))}</td>`;
+					payrun_list += `<td>${formatToCurrency(parseInt(deduc))}</td>`;
+					payrun_list += `<td>${formatToCurrency(parseInt(tax))}</td>`;
+					payrun_list += `<td>${formatToCurrency(parseInt(v.net_pay))}</td>`;
 					payrun_list += `<td onClick="getPaySlipDetails(${v.employee_id})"><i class="fas fa-money-check-alt"></i></td>`;
 					payrun_list += `</tr>`;
 					payrun_list += `<tr id="spay_loader${v.employee_id}" style="display:none;"><td colspan="4"><i class="fa fa-spinner fa-spin fa-fw"></i></tr>`;
@@ -217,10 +217,10 @@ function listPayRunHistory() {
 					payrun_list2 += `<tr class="even pointer" id="spay_row${v.employee_id}">`;
 					payrun_list2 += `<td>${v.fullname}<br>${v.workshift}</td>`;
 					payrun_list2 += `<td>${v.department}<div>${v.job_title}</div></td>`;
-					payrun_list2 += `<td>₦${numberWithCommas(v.salary)}</td>`;
-					payrun_list2 += `<td>₦${numberWithCommas(deduc)}</td>`;
-					payrun_list2 += `<td>₦${numberWithCommas(tax)}</td>`;
-					payrun_list2 += `<td>₦${numberWithCommas(v.net_pay)}</td>`;
+					payrun_list2 += `<td>${formatToCurrency(parseInt(v.salary))}</td>`;
+					payrun_list2 += `<td>${formatToCurrency(parseInt(deduc))}</td>`;
+					payrun_list2 += `<td>${formatToCurrency(parseInt(tax))}</td>`;
+					payrun_list2 += `<td>${formatToCurrency(parseInt(v.net_pay))}</td>`;
 					payrun_list2 += `<td onClick="getPaySlipDetails2(${v.employee_id})"><i class="fas fa-money-check-alt"></i></td>`;
 					payrun_list2 += `</tr>`;
 					payrun_list2 += `<tr id="spay_loader${v.employee_id}" style="display:none;"><td colspan="4"><i class="fa fa-spinner fa-spin fa-fw"></i></tr>`;
@@ -228,10 +228,10 @@ function listPayRunHistory() {
 					payrun_list3 += `<tr class="even pointer" id="spay_row${v.employee_id}">`;
 					payrun_list3 += `<td>${v.fullname}<br>${v.workshift}</td>`;
 					payrun_list3 += `<td>${v.department}<div>${v.job_title}</div></td>`;
-					payrun_list3 += `<td>₦${numberWithCommas(v.salary)}</td>`;
-					payrun_list3 += `<td>₦${numberWithCommas(deduc)}</td>`;
-					payrun_list3 += `<td>₦${numberWithCommas(tax)}</td>`;
-					payrun_list3 += `<td>₦${numberWithCommas(v.net_pay)}</td>`;
+					payrun_list3 += `<td>${formatToCurrency(parseInt(v.salary))}</td>`;
+					payrun_list3 += `<td>${formatToCurrency(parseInt(deduc))}</td>`;
+					payrun_list3 += `<td>${formatToCurrency(parseInt(tax))}</td>`;
+					payrun_list3 += `<td>${formatToCurrency(parseInt(v.net_pay))}</td>`;
 					payrun_list3 += `<td onClick="getPaySlipDetails2(${v.employee_id})"><i class="fas fa-money-check-alt"></i></td>`;
 					payrun_list3 += `</tr>`;
 					payrun_list3 += `<tr id="spay_loader${v.employee_id}" style="display:none;"><td colspan="4"><i class="fa fa-spinner fa-spin fa-fw"></i></tr>`;
@@ -239,10 +239,10 @@ function listPayRunHistory() {
 					payrun_list4 += `<tr class="even pointer" id="spay_row${v.employee_id}">`;
 					payrun_list4 += `<td>${v.fullname}<br>${v.workshift}</td>`;
 					payrun_list4 += `<td>${v.department}<div>${v.job_title}</div></td>`;
-					payrun_list4 += `<td>₦${numberWithCommas(v.salary)}</td>`;
-					payrun_list4 += `<td>₦${numberWithCommas(deduc)}</td>`;
-					payrun_list4 += `<td>₦${numberWithCommas(tax)}</td>`;
-					payrun_list4 += `<td>₦${numberWithCommas(v.net_pay)}</td>`;
+					payrun_list4 += `<td>${formatToCurrency(parseInt(v.salary))}</td>`;
+					payrun_list4 += `<td>${formatToCurrency(parseInt(deduc))}</td>`;
+					payrun_list4 += `<td>${formatToCurrency(parseInt(tax))}</td>`;
+					payrun_list4 += `<td>${formatToCurrency(parseInt(v.net_pay))}</td>`;
 					payrun_list4 += `<td onClick="getPaySlipDetails2(${v.employee_id})"><i class="fas fa-money-check-alt"></i></td>`;
 					payrun_list4 += `</tr>`;
 					payrun_list4 += `<tr id="spay_loader${v.employee_id}" style="display:none;"><td colspan="4"><i class="fa fa-spinner fa-spin fa-fw"></i></tr>`;
@@ -259,10 +259,10 @@ function listPayRunHistory() {
 					`<tr style="border-top:3px solid; border-bottom:3px solid;">
                     <td></td>
                     <td><b>Total</b></td>
-                    <td><b>₦${numberWithCommas(totalGross)}</b></td>
-                    <td><b>₦${numberWithCommas(totalDeduc)}</b></td>
-                    <td><b>₦${numberWithCommas(totalTax)}</b></td>
-                    <td><b>₦${numberWithCommas(totalNet)}</b></td>
+                    <td><b>${formatToCurrency(parseInt(totalGross))}</b></td>
+                    <td><b>${formatToCurrency(parseInt(totalDeduc))}</b></td>
+                    <td><b>${formatToCurrency(parseInt(totalTax))}</b></td>
+                    <td><b>${formatToCurrency(parseInt(totalNet))}</b></td>
                     <td></td>
                     </tr>`,
 				);
@@ -270,10 +270,10 @@ function listPayRunHistory() {
 					`<tr style="border-top:3px solid; border-bottom:3px solid;">
                     <td></td>
                     <td><b>Total</b></td>
-                    <td><b>₦${numberWithCommas(totalGross)}</b></td>
-                    <td><b>₦${numberWithCommas(totalDeduc)}</b></td>
-                    <td><b>₦${numberWithCommas(totalTax)}</b></td>
-                    <td><b>₦${numberWithCommas(totalNet)}</b></td>
+                    <td><b>${formatToCurrency(parseInt(totalGross))}</b></td>
+                    <td><b>${formatToCurrency(parseInt(totalDeduc))}</b></td>
+                    <td><b>${formatToCurrency(parseInt(totalTax))}</b></td>
+                    <td><b>${formatToCurrency(parseInt(totalNet))}</b></td>
                     <td></td>
                     </tr>`,
 				);
@@ -281,10 +281,10 @@ function listPayRunHistory() {
 					`<tr style="border-top:3px solid; border-bottom:3px solid;">
                     <td></td>
                     <td><b>Total</b></td>
-                    <td><b>₦${numberWithCommas(totalGross)}</b></td>
-                    <td><b>₦${numberWithCommas(totalDeduc)}</b></td>
-                    <td><b>₦${numberWithCommas(totalTax)}</b></td>
-                    <td><b>₦${numberWithCommas(totalNet)}</b></td>
+                    <td><b>${formatToCurrency(parseInt(totalGross))}</b></td>
+                    <td><b>${formatToCurrency(parseInt(totalDeduc))}</b></td>
+                    <td><b>${formatToCurrency(parseInt(totalTax))}</b></td>
+                    <td><b>${formatToCurrency(parseInt(totalNet))}</b></td>
                     <td></td>
                     </tr>`,
 				);
@@ -292,10 +292,10 @@ function listPayRunHistory() {
 					`<tr style="border-top:3px solid; border-bottom:3px solid;">
                     <td></td>
                     <td><b>Total</b></td>
-                    <td><b>₦${numberWithCommas(totalGross)}</b></td>
-                    <td><b>₦${numberWithCommas(totalDeduc)}</b></td>
-                    <td><b>₦${numberWithCommas(totalTax)}</b></td>
-                    <td><b>₦${numberWithCommas(totalNet)}</b></td>
+                    <td><b>${formatToCurrency(parseInt(totalGross))}</b></td>
+                    <td><b>${formatToCurrency(parseInt(totalDeduc))}</b></td>
+                    <td><b>${formatToCurrency(parseInt(totalTax))}</b></td>
+                    <td><b>${formatToCurrency(parseInt(totalNet))}</b></td>
                     <td></td>
                     </tr>`,
 				);
@@ -652,8 +652,8 @@ function getPaySlipDetails2(emp_id) {
 					$('#banky_no').html(response.data.bank_no);
 					$('#pay_period_datey').html(response.data.pay_period);
 					$('#pay_datey').html(response.data.payment_date);
-					$('#gpay').html(`₦${numberWithCommas(response.data.salary)}`);
-					$('#npay').html(`₦${numberWithCommas(response.net_pay)}`);
+					$('#gpay').html(`${formatToCurrency(parseInt(response.data.salary))}`);
+					$('#npay').html(`${formatToCurrency(parseInt(response.net_pay))}`);
 					// $('#total_credit').val(response.total_credit);
 					// $('#net_payment').html(`₦${numberWithCommas(response.net_pay)}`);
 					// $('#salary_amt').html(`₦${numberWithCommas(response.data.salary)}`);
@@ -1347,6 +1347,7 @@ function HRApprove() {
 					// $(`#approve_btnn`).remove();
 					// $(`#approvee_loader`).hide();
 					$('#buttons_section').hide();
+					alert('Success');
 					// window.location.reload()
 				}
 			},
@@ -1385,7 +1386,7 @@ function HRDecline() {
 				$(`#declinee_loader`).hide();
 				$(`#decline_btnn`).show();
 
-				alert('error');
+				alert('Error');
 			},
 			success: function(response) {
 				if (response.status == 200 || response.status == 201) {
@@ -1393,8 +1394,17 @@ function HRDecline() {
 					// $(`#declinee_loader`).hide();
 					// $(`#decline_btnn`).show();
 					$('#buttons_section').hide();
+					alert('Success');
 				}
 			},
 		});
+	}
+}
+
+function formatToCurrency(amount) {
+	if (amount === 0 || amount === 0.0) {
+		return amount;
+	} else {
+		return '₦' + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 	}
 }

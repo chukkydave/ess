@@ -166,6 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						left: 'prev,next',
 						center: 'title',
 						// contentHeight: auto,
+						// height: '350px',
 						right: 'dayGridMonth,timeGridWeek,timeGridDay',
 					},
 
@@ -173,8 +174,9 @@ document.addEventListener('DOMContentLoaded', function() {
 				});
 				calendar.render();
 				setTimeout(() => {
-					calendar.updateSize();
-				}, 2000);
+					// calendar.updateSize();
+					calendar.setOption('height', 350);
+				}, 1000);
 				// calendar.setOption('height', 700);
 			} else {
 				// $('#list_QC_body').html(`<tr><td colspan="4">No record</td></tr>`);

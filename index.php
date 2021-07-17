@@ -83,7 +83,7 @@ include("_common/header.php");
 
 
 
-            <div class="col-md-8 col-sm-8 col-xs-12">
+            <div class="col-md-4 col-sm-4 col-xs-12">
 
                 <div class="x_panel">
                     <div class="x_title">
@@ -106,9 +106,9 @@ include("_common/header.php");
                         </ul>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="x_content">
+                    <div class="x_content" style="height:350px;">
 
-                        <div style="height:350px;">
+                        <div>
                             <i class="fa fa-spinner fa-spin fa-fw fa-3x" style="display: none;"
                                 id="notice_board_loading"></i>
                             <ul class="list-unstyled timeline" id="notice_board">
@@ -123,7 +123,7 @@ include("_common/header.php");
 
 
 
-            <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="col-md-8 col-sm-8 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Calendar Events</h2>
@@ -145,9 +145,9 @@ include("_common/header.php");
                         </ul>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="x_content">
+                    <div class="x_content" style="height:350px !important;">
 
-                        <div id="calendarly" style="height:350px !important;"></div>
+                        <div id="calendarly"></div>
 
                     </div>
                 </div>
@@ -158,17 +158,6 @@ include("_common/header.php");
 
 
         </div>
-
-
-
-
-
-
-
-
-
-
-
 
         <!-- <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
@@ -200,20 +189,6 @@ include("_common/header.php");
                 </div>
               </div>
               </div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <div class="row">
 
@@ -249,28 +224,6 @@ include("_common/header.php");
 
 
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
 </div>
 </div>

@@ -305,7 +305,7 @@ include("_common/header.php");
                         <div class="table-responsive">
                             <select class="form-select no-border" id="sort_type" aria-label="Default select example">
                                 <option value="grievance">Reported</option>
-                                <option value="all">All</option>
+                                <!-- <option value="all">All</option> -->
                                 <option value="third_party">Third party</option>
                             </select>
                             <table class="table table-striped jambo_table bulk_action">

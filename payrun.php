@@ -26,11 +26,12 @@ include("_common/header.php");
 
                         <!-- button type="button" class="btn btn-primary" id="filter_attendence">Filter</button>
                     
-                    <button type="button" class="btn btn-success" id="add_attendence">Add</button>
+                    
                     
                     <button type="button" class="btn btn-success" id="upload_attendence">Upload</button>
  -->
-
+                        <a href="approvals"><button type="button" class="btn btn-danger"
+                                id="add_attendence">Back</button></a>
                     </div>
                 </div>
             </div>
@@ -196,12 +197,13 @@ include("_common/header.php");
                                 <li>Account Number: <span id="banky_no">1234567890</span></li>
                             </ul>
                         </div>
+
                         <div class="col-sm-6 m-b-20">
                             <!-- <div class="invoice-details"> -->
 
                             <ul class="list-unstyled">
                                 <li>
-                                    <h3 class="text-uppercase">Payslip #49029</h3>
+                                    <h3 class="text-uppercase">&#8203;</h3>
                                 </li>
                                 <li>Pay Period: <span id="pay_period_datey">March 15th 2019 - March 28th 2019</span>
                                 </li>
