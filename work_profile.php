@@ -1,5 +1,6 @@
 <?php
-include("_common/header.php");
+include_once("_common/menu.php"); // menu list
+include_once("../gen/_common/header.php"); // header contents
 ?>
 <style>
 .inc {
@@ -3345,7 +3346,7 @@ include("_common/header.php");
         </div>
     </div>
     <?php
-include("_common/footer.php");
+include_once("../gen/_common/footer.php");
 ?>
 
     <!-- <script type="text/javascript" src="assets/js/hrm.js"></script> -->

@@ -1,5 +1,6 @@
 <?php
-include("_common/header.php");
+include_once("_common/menu.php"); // menu list
+include_once("../gen/_common/header.php"); // header contents
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css">
 
@@ -237,5 +238,5 @@ include("_common/header.php");
 
 
 <?php
-include_once("_common/footer.php");
+include_once("../gen/_common/footer.php");
 ?>

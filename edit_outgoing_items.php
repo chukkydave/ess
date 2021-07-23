@@ -1,293 +1,320 @@
 <?php
-include("_common/header.php");
+include_once("_common/menu.php"); // menu list
+include_once("../gen/_common/header.php"); // header contents
 ?>
 
-        <!-- page content -->
-        <div class="right_col" role="main">
-          <div class="">
-            <div class="page-title">
-              <div class="title_left">
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
                 <h3>Edit Outgoing Items</h3>
-              </div>
-
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group" style="float: right">
-                    <a href="incoming"><button type="button" class="btn btn-primary">Back</button></a>
-                  </div>
-                </div>
-              </div>
             </div>
+
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group" style="float: right">
+                        <a href="incoming"><button type="button" class="btn btn-primary">Back</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
 
             <div class="clearfix"></div>
 
-            <div class="row">
-
-              <div class="clearfix"></div>
-
-              <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-                  
-                  <br>
 
-                  <div class="x_content">
+                    <br>
 
-                    
-
-                    <span id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-
-                      
-
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="item_name">Item Name <span>*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                         
-                          <input type="text" name="item_name" id="item_name" class="form-control col-md-7 col-xs-12 required">
-                        </div>
-
-                      </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="unit_type">Unit Type <span>*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control col-md-7 col-xs-12 required" id="unit_type">
-                            <option>-- Select --</option>
-                            
-                          </select>
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="quantity">Quantity <span>*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" id="quantity" required="required" class="form-control col-md-7 col-xs-12 required">
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date_recieved">Outgoing Date<span>*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <div class="input-prepend input-group">
-                              <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
-                             <input type="text" id="date_recieved" required="required" class="form-control col-md-7 col-xs-12 required">
-                          </div>
-                        </div>
-                      </div>
+                    <div class="x_content">
 
 
 
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="expiry_date">Issued to<span>*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <div class="input-prepend input-group">
-                            <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
-                           <input type="text" id="expiry_date" required="required" class="form-control col-md-7 col-xs-12 required">
-                          </div>
-                        </div>
-                      </div>
+                        <span id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
-                      
-                    
 
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="warehouse">Releasing Warehouse <span>*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control col-md-7 col-xs-12 required" id="warehouse">
-                            <option>-- Select --</option>
-                            
-                          </select>
-                        </div>
-                      </div>
 
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="warehouse_selection">Releasing Section <span>*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control col-md-7 col-xs-12 required" id="warehouse_selection">
-                            <option>-- Select --</option>
-                            
-                          </select>
-                        </div>
-                      </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="item_name">Item Name
+                                    <span>*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
 
-      
+                                    <input type="text" name="item_name" id="item_name"
+                                        class="form-control col-md-7 col-xs-12 required">
+                                </div>
 
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="comment">Comment
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea cols="3" class="form-control col-md-7 col-xs-12" id="comment">
-                            
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="unit_type">Unit Type
+                                    <span>*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select class="form-control col-md-7 col-xs-12 required" id="unit_type">
+                                        <option>-- Select --</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="quantity">Quantity
+                                    <span>*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="number" id="quantity" required="required"
+                                        class="form-control col-md-7 col-xs-12 required">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date_recieved">Outgoing
+                                    Date<span>*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="input-prepend input-group">
+                                        <span class="add-on input-group-addon"><i
+                                                class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+                                        <input type="text" id="date_recieved" required="required"
+                                            class="form-control col-md-7 col-xs-12 required">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="expiry_date">Issued
+                                    to<span>*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="input-prepend input-group">
+                                        <span class="add-on input-group-addon"><i
+                                                class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+                                        <input type="text" id="expiry_date" required="required"
+                                            class="form-control col-md-7 col-xs-12 required">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="warehouse">Releasing
+                                    Warehouse <span>*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select class="form-control col-md-7 col-xs-12 required" id="warehouse">
+                                        <option>-- Select --</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                    for="warehouse_selection">Releasing Section <span>*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select class="form-control col-md-7 col-xs-12 required" id="warehouse_selection">
+                                        <option>-- Select --</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="comment">Comment
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <textarea cols="3" class="form-control col-md-7 col-xs-12" id="comment">
+
                           </textarea>
-                        </div>
-                      </div>
+                                </div>
+                            </div>
 
-                      
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12"> 
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12 text-danger" id="error">
-                          
-                        </div>
-                      </div>
 
-                      <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12 text-danger" id="error">
 
-                      <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button type="submit" class="btn btn-success" id="update_item">Update</button>
-                          <i class="fa fa-spinner fa-spin fa-fw fa-3x" style="display: none;" id="loader"></i>
-                          <!-- <div id="add_user_loading" style="display:  none">Loading...</div> -->
-                        </div>
-                      </div>
+                                </div>
+                            </div>
 
-                    </span>
-							
-						
-                  </div>
+                            <div class="ln_solid"></div>
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button type="submit" class="btn btn-success" id="update_item">Update</button>
+                                    <i class="fa fa-spinner fa-spin fa-fw fa-3x" style="display: none;" id="loader"></i>
+                                    <!-- <div id="add_user_loading" style="display:  none">Loading...</div> -->
+                                </div>
+                            </div>
+
+                        </span>
+
+
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-        <!-- /page content -->
+    </div>
+</div>
+<!-- /page content -->
 
-         <!-- modal -->
-        <div class="modal fade" id="modal_outgoing_item" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header ">
+<!-- modal -->
+<div class="modal fade" id="modal_outgoing_item" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header ">
                 <h3 class="modal-title" id="exampleModalLabel" style="color: #fff;">Success
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </h3>
-                
-              </div>
-              <div class="modal-body">
-                <h4>Item Edited Successfully!</h4>
-              </div>
-              <!-- <div class="modal-footer"> -->
-                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-              <!-- </div> -->
+
             </div>
-          </div>
+            <div class="modal-body">
+                <h4>Item Edited Successfully!</h4>
+            </div>
+            <!-- <div class="modal-footer"> -->
+            <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            <!-- </div> -->
         </div>
+    </div>
+</div>
 
-        <script type="text/javascript">
-          $(document).ready(function(){
-  
-            load_unit_type(); 
-            load_warehouse();
-            fetch_outgoing_info();
+<script type="text/javascript">
+$(document).ready(function() {
 
-            // init_autocomplete1(); 
+    load_unit_type();
+    load_warehouse();
+    fetch_outgoing_info();
 
-            $('input#date_recieved').datepicker({
-              dateFormat: "yy-mm-dd"
-            });
-            $('input#expiry_date').datepicker({
-              dateFormat: "yy-mm-dd"
-            });
+    // init_autocomplete1(); 
 
-            // $('#update_item').on('click', edit_company_outgoing_item);
-            
+    $('input#date_recieved').datepicker({
+        dateFormat: "yy-mm-dd"
+    });
+    $('input#expiry_date').datepicker({
+        dateFormat: "yy-mm-dd"
+    });
 
-          });
-
-           $.urlParam = function(name){
-              var results = new RegExp('[\?&]' + name + '=([^]*)').exec(window.location.href);
-              if (results==null){
-                 return null;
-              }
-              else{
-                 return results[1] || 0;
-              }
-          }
-
-           function edit_company_outgoing_item(){
-            var item_name = $("#item_name").val();
-            var vendor_name = $("#vendor_name").val();                 
-            var unit_type =  $("#unit_type").val();
-            var quantity =  $("#quantity").val();
-            var outgoing_date =  $("#date_recieved").val();
-            var issued_to =  $("#expiry_date").val();
-            var warehouse =  $("#warehouse").val();
-            var warehouse_section =  $("#warehouse_section").val();
-            var comment =  $("#comment").val();
-            var company_id = localStorage.getItem('company_id');
-            var user_id = localStorage.getItem('user_id');
-            var list_id = $.urlParam('id');
-            
-            var blank;
-
-            
-            // alert(warehouse_id);
-
-            $(".required").each(function(){
-
-              var the_val = $.trim($(this).val());
-
-              if(the_val == "" || the_val == "0"){
-
-                $(this).addClass('has-error');
-
-                blank = "yes";
-
-              }else{
-
-                $(this).removeClass("has-error");
-
-              }
-
-            });
-
-            if(blank == "yes"){
-    
-              $("#error").html("You have a blank field");
-
-              return; 
-
-            }
-
-                        
-           // $("#modal_edit_warehouse #error").html("");
-
-          $("#update_item").hide();
-          $("#loader").show();
+    // $('#update_item').on('click', edit_company_outgoing_item);
 
 
+});
 
-          $.ajax({
+$.urlParam = function(name) {
+    var results = new RegExp('[\?&]' + name + '=([^]*)').exec(window.location.href);
+    if (results == null) {
+        return null;
+    } else {
+        return results[1] || 0;
+    }
+}
 
-            type: "POST",
-            dataType: "json",
-            cache: false,
-            url: api_path+"wms/edit_incoming_item",
-            data: { "item_name" : item_name, "vendor_name" : vendor_name, "company_id" : company_id, "user_id" : user_id, "list_id" : list_id, "quantity" : quantity, "unit_type" : unit_type, "warehouse" : warehouse, "warehouse_section" : warehouse_section, "comment" : comment, "outgoing_date" : outgoing_date, "issued_to" : issued_to},
+function edit_company_outgoing_item() {
+    var item_name = $("#item_name").val();
+    var vendor_name = $("#vendor_name").val();
+    var unit_type = $("#unit_type").val();
+    var quantity = $("#quantity").val();
+    var outgoing_date = $("#date_recieved").val();
+    var issued_to = $("#expiry_date").val();
+    var warehouse = $("#warehouse").val();
+    var warehouse_section = $("#warehouse_section").val();
+    var comment = $("#comment").val();
+    var company_id = localStorage.getItem('company_id');
+    var user_id = localStorage.getItem('user_id');
+    var list_id = $.urlParam('id');
 
-            success: function(response) {
+    var blank;
 
-              console.log(response);
 
-              $("#error").html("");
-              $("#loader").hide();   
-              $("#update_item").show();
+    // alert(warehouse_id);
 
-              if (response.status == '200') {
-                
+    $(".required").each(function() {
+
+        var the_val = $.trim($(this).val());
+
+        if (the_val == "" || the_val == "0") {
+
+            $(this).addClass('has-error');
+
+            blank = "yes";
+
+        } else {
+
+            $(this).removeClass("has-error");
+
+        }
+
+    });
+
+    if (blank == "yes") {
+
+        $("#error").html("You have a blank field");
+
+        return;
+
+    }
+
+
+    // $("#modal_edit_warehouse #error").html("");
+
+    $("#update_item").hide();
+    $("#loader").show();
+
+
+
+    $.ajax({
+
+        type: "POST",
+        dataType: "json",
+        cache: false,
+        url: api_path + "wms/edit_incoming_item",
+        data: {
+            "item_name": item_name,
+            "vendor_name": vendor_name,
+            "company_id": company_id,
+            "user_id": user_id,
+            "list_id": list_id,
+            "quantity": quantity,
+            "unit_type": unit_type,
+            "warehouse": warehouse,
+            "warehouse_section": warehouse_section,
+            "comment": comment,
+            "outgoing_date": outgoing_date,
+            "issued_to": issued_to
+        },
+
+        success: function(response) {
+
+            console.log(response);
+
+            $("#error").html("");
+            $("#loader").hide();
+            $("#update_item").show();
+
+            if (response.status == '200') {
+
                 $('#modal_outgoing_item').modal('show');
 
-                $('#modal_outgoing_item').on('hidden.bs.modal', function () {
+                $('#modal_outgoing_item').on('hidden.bs.modal', function() {
                     $("#item_name").val();
-                    $("#vendor_name").val();                 
+                    $("#vendor_name").val();
                     $("#unit_type").val();
                     $("#quantity").val();
                     $("#date_recieved").val();
@@ -296,170 +323,182 @@ include("_common/header.php");
                     $("#warehouse_section").val();
                     $("#comment").val();
                     // window.location.reload();
-                    window.location.href = base_url+"/warehouse/outgoing";
+                    window.location.href = base_url + "/warehouse/outgoing";
                 })
-                
-                
-              }else if(response.status == '400'){ // coder error message
-
-                
-                 $("#error").html('Technical Error. Please try again later.');
-
-              }else if(response.status == '401'){ //user error message
-
-                
-                 $("#error").html(response.msg);
-
-              }           
-          
 
 
-            },
+            } else if (response.status == '400') { // coder error message
 
-            error: function(response){
 
-                  console.log(response);
-                 $("#loader").hide(); 
-                 $("#update_item").show();
-                 $("#error").html("Connection Error.");
+                $("#error").html('Technical Error. Please try again later.');
+
+            } else if (response.status == '401') { //user error message
+
+
+                $("#error").html(response.msg);
 
             }
 
-          });
 
-          }
-        
-          function fetch_outgoing_info(){
-             
-            var company_id = localStorage.getItem('company_id');
-            var list_id = $.urlParam('id');
 
-            $('#update_item').hide();
-            $('#loader').show();
-             
-          $.ajax({
+        },
 
-            type: "POST",
-            dataType: "json",
-            cache: false,
-            url: api_path+"wms/fetch_outgoing_item",
-            data: { "list_id" : list_id, "company_id" : company_id},
+        error: function(response) {
 
-            success: function(response) {
+            console.log(response);
+            $("#loader").hide();
+            $("#update_item").show();
+            $("#error").html("Connection Error.");
 
-              console.log(response);
-        
-              $('#loader').hide();  
-              $('#update_item').show();
-            
+        }
 
-              if (response.status == '200') {
+    });
 
-                
-                $("#item_name").val( response.data.item_name); 
-                $("#vendor_name").val( response.data.vendor_name);
+}
+
+function fetch_outgoing_info() {
+
+    var company_id = localStorage.getItem('company_id');
+    var list_id = $.urlParam('id');
+
+    $('#update_item').hide();
+    $('#loader').show();
+
+    $.ajax({
+
+        type: "POST",
+        dataType: "json",
+        cache: false,
+        url: api_path + "wms/fetch_outgoing_item",
+        data: {
+            "list_id": list_id,
+            "company_id": company_id
+        },
+
+        success: function(response) {
+
+            console.log(response);
+
+            $('#loader').hide();
+            $('#update_item').show();
+
+
+            if (response.status == '200') {
+
+
+                $("#item_name").val(response.data.item_name);
+                $("#vendor_name").val(response.data.vendor_name);
                 $("#date_recieved").val(response.data.date_recieved);
-                $("#quantity").val( response.data.qty);
-                $("#unit_type").val( response.data.unit_type);
+                $("#quantity").val(response.data.qty);
+                $("#unit_type").val(response.data.unit_type);
                 // $("#modal_view_vendor #comment").val( response.data.comment);
 
 
-                
-                  
-              }
 
-
-            },
-
-            error: function(response){
-              $('#loader').hide();  
-              $('#update_item').show();
-              alert("Connection Error.");
 
             }
 
+
+        },
+
+        error: function(response) {
+            $('#loader').hide();
+            $('#update_item').show();
+            alert("Connection Error.");
+
+        }
+
+    });
+}
+
+function load_warehouse() {
+
+    var company_id = localStorage.getItem('company_id');
+    var page = -1;
+    var limit = 0;
+
+    $.ajax({
+        url: api_path + "wms/list_warehouse",
+        type: "POST",
+        data: {
+            "company_id": company_id,
+            "page": page,
+            "limit": limit
+        },
+        dataType: "json",
+
+
+        success: function(response) {
+
+            // $('#page_loader').hide();
+            // $('#employee_details_display').show();
+
+            console.log(response);
+            var options = '';
+
+            $.each(response['data'], function(i, v) {
+                options += '<option value="' + response['data'][i]['warehouse_id'] + '">' +
+                    response['data'][i]['warehouse_name'] + '</option>';
+
+                // emp_type = response['data'][i]['type_id'];
             });
-          }
+            $('#warehouse').append(options);
+        },
+        // jqXHR, textStatus, errorThrown
+        error(response) {
+            alert('Connection error');
+            // $('#page_loader').hide();
+            // $('#employee_details_display').hide();
+            // $('#employee_error_display').show();
+        }
+    });
 
-          function load_warehouse(){
+}
 
-            var company_id = localStorage.getItem('company_id');
-            var page = -1;
-            var limit = 0;
+function load_unit_type() {
 
-             $.ajax({
-                url: api_path+"wms/list_warehouse",
-                type: "POST",
-                data: {"company_id" : company_id, "page" : page, "limit" : limit},
-                dataType: "json",
-                
-                
-                success: function (response) {
-                    
-                    // $('#page_loader').hide();
-                    // $('#employee_details_display').show();
-                    
-                    console.log(response);
-                    var options = '';
+    var company_id = localStorage.getItem('company_id');
 
-                    $.each(response['data'], function (i, v) {
-                        options += '<option value="'+ response['data'][i]['warehouse_id'] +'">' + response['data'][i]['warehouse_name'] +'</option>';
+    $.ajax({
+        url: api_path + "wms/list_unit",
+        type: "POST",
+        data: {
+            "company_id": company_id
+        },
+        dataType: "json",
 
-                        // emp_type = response['data'][i]['type_id'];
-                    });
-                    $('#warehouse').append(options);
-                },
-                // jqXHR, textStatus, errorThrown
-                error(response) {
-                  alert('Connection error');
-                    // $('#page_loader').hide();
-                    // $('#employee_details_display').hide();
-                    // $('#employee_error_display').show();
-                }
+
+        success: function(response) {
+
+            // $('#page_loader').hide();
+            // $('#employee_details_display').show();
+
+            console.log(response);
+            var options = '';
+
+            $.each(response['data'], function(i, v) {
+                options += '<option value="' + response['data'][i]['id'] + '">' + response['data'][
+                    i
+                ]['unit_name'] + '</option>';
+
+                // emp_type = response['data'][i]['type_id'];
             });
+            $('#unit_type').append(options);
+        },
+        // jqXHR, textStatus, errorThrown
+        error(response) {
+            alert('Connection error');
+            // $('#page_loader').hide();
+            // $('#employee_details_display').hide();
+            // $('#employee_error_display').show();
+        }
+    });
 
-          }
-           function load_unit_type(){
-
-            var company_id = localStorage.getItem('company_id');
-
-             $.ajax({
-                url: api_path+"wms/list_unit",
-                type: "POST",
-                data: {"company_id" : company_id},
-                dataType: "json",
-                
-                
-                success: function (response) {
-                    
-                    // $('#page_loader').hide();
-                    // $('#employee_details_display').show();
-                    
-                    console.log(response);
-                    var options = '';
-
-                    $.each(response['data'], function (i, v) {
-                        options += '<option value="'+ response['data'][i]['id'] +'">' + response['data'][i]['unit_name'] +'</option>';
-
-                        // emp_type = response['data'][i]['type_id'];
-                    });
-                    $('#unit_type').append(options);
-                },
-                // jqXHR, textStatus, errorThrown
-                error(response) {
-                  alert('Connection error');
-                    // $('#page_loader').hide();
-                    // $('#employee_details_display').hide();
-                    // $('#employee_error_display').show();
-                }
-            });
-
-          }
-          
-        </script>
+}
+</script>
 
 
 
 <?php
-include("_common/footer.php");
+include_once("../gen/_common/footer.php");
 ?>

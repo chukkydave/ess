@@ -524,7 +524,7 @@ function list_of_leaves(page) {
 	if (page == '') {
 		var page = 1;
 	}
-	var limit = 50;
+	var limit = 10;
 
 	$('#loading').show();
 	$('#leaveData').html('');

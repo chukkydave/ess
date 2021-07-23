@@ -1,5 +1,6 @@
 <?php
-include("_common/header.php");
+include_once("_common/menu.php"); // menu list
+include_once("../gen/_common/header.php"); // header contents
 ?>
 <style>
 .no-border {
@@ -356,11 +357,11 @@ include("_common/header.php");
                                 <td class="dtl_vl" id="applc_by"></td>
                             </tr>
                             <tr>
-                                <td>Leave Start </td>
+                                <td>Start Date </td>
                                 <td class="dtl_vl" id="applc_leave_start"></td>
                             </tr>
                             <tr>
-                                <td>Leave End</td>
+                                <td>Resumption Date</td>
                                 <td class="dtl_vl" id="applc_leave_end"></td>
                             </tr>
                             <tr>
@@ -458,5 +459,5 @@ include("_common/header.php");
 
 
 <?php
-include("_common/footer.php");
+include_once("../gen/_common/footer.php");
 ?>
