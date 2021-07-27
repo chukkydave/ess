@@ -235,14 +235,13 @@ function edit_employee_grievance(grievance_id) {
 				$('#modal_edit_g #edit_g').show();
 
 				$('#modal_edit_g #edit_form').hide();
-				$('#modal_edit_g #edit_msg').show();
-
-				// $('#modal_department_edit').on('hidden.bs.modal', function () {
-				//     $('#department_name').val();
-				//     $('#department_description').val();
-				window.location.reload();
-				//     window.location.href = base_url+"/erp/hrm/departments";
-				// })
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: window.location.reload(),
+				});
 			} else if (response.status == '400') {
 				// coder error message
 
@@ -340,14 +339,15 @@ function edit_employee_grievance2(grievance_id) {
 				$('#modal_edit_g #edit_g').show();
 
 				$('#modal_edit_g #edit_form').hide();
-				$('#modal_edit_g #edit_msg').show();
+				// $('#modal_edit_g #edit_msg').show();
 
-				// $('#modal_department_edit').on('hidden.bs.modal', function () {
-				//     $('#department_name').val();
-				//     $('#department_description').val();
-				window.location.reload();
-				//     window.location.href = base_url+"/erp/hrm/departments";
-				// })
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: window.location.reload(),
+				});
 			} else if (response.status == '400') {
 				// coder error message
 
@@ -514,11 +514,12 @@ function add_grievance_report() {
 			$('#add_g').show();
 
 			if (response.status == '200') {
-				$('#modal_g').modal('show');
-
-				$('#modal_g').on('hidden.bs.modal', function() {
-					window.location.reload();
-					// window.location.href = base_url+"incoming";
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: window.location.reload(),
 				});
 			} else if (response.status == '400') {
 				// coder error message
@@ -617,12 +618,12 @@ function add_grievance_report2() {
 			$('#add_g').show();
 
 			if (response.status == '200') {
-				$('#modal_g_body h4').html('Grievance Report Saved As Draft Successfully!');
-				$('#modal_g').modal('show');
-
-				$('#modal_g').on('hidden.bs.modal', function() {
-					window.location.reload();
-					// window.location.href = base_url+"incoming";
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: window.location.reload(),
 				});
 			} else if (response.status == '400') {
 				// coder error message
@@ -760,14 +761,31 @@ function delete_grievance(grievance_id) {
 			$('#loader_row_' + grievance_id).hide();
 			$('#row_' + grievance_id).show();
 
-			alert('connection error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${response.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 
 		success: function(response) {
 			// console.log(response);
 			if (response.status == '200') {
 				// $('#row_'+user_id).hide();
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+				});
 			} else if (response.status == '401') {
+				Swal.fire({
+					title: 'Error!',
+					text: `${response.msg}`,
+					icon: 'error',
+					confirmButtonText: 'Close',
+				});
 			}
 
 			$('#loader_row_' + grievance_id).hide();

@@ -153,10 +153,13 @@ function edit_employee_leave(leave_id) {
 				$('#modal_edit_leave #edit_leave').show();
 
 				$('#modal_edit_leave #edit_form').hide();
-				$('#modal_edit_leave #edit_msg').show();
 
-				$('#modal_edit_leave').on('hidden.bs.modal', function() {
-					window.location.reload();
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: window.location.reload(),
 				});
 			} else if (response.status == '400') {
 				// coder error message
@@ -305,11 +308,12 @@ function add_employee_leave() {
 			$('#add_leave').show();
 
 			if (response.status == '200') {
-				$('#modal_leave').modal('show');
-
-				$('#modal_leave').on('hidden.bs.modal', function() {
-					window.location.reload();
-					// window.location.href = base_url+"incoming";
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: window.location.reload(),
 				});
 			} else if (response.status == '400') {
 				// coder error message
@@ -477,14 +481,32 @@ function delete_leave(leave_id) {
 			$('#loader_row_' + leave_id).hide();
 			$('#row_' + leave_id).show();
 
-			alert('connection error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${response.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 
 		success: function(response) {
 			// console.log(response);
 			if (response.status == '200') {
 				// $('#row_'+user_id).hide();
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					// onClose: window.location.reload(),
+				});
 			} else if (response.status == '401') {
+				Swal.fire({
+					title: 'Error!',
+					text: `${response.msg}`,
+					icon: 'error',
+					confirmButtonText: 'Close',
+				});
 			}
 
 			$('#loader_row_' + leave_id).hide();

@@ -3,7 +3,7 @@ $app_title = "Employee Self Service Software";
 $app_abr = "ESS";
 $app_id = 3;
 $menu = '<ul class="nav side-menu">
-          <li><a href="/ess/"><i class="fa fa-home"></i> Home </a>                    
+          <li><a href="/ess/"><i class="fa fa-home"></i> Dashboard </a>                    
           </li>
           <li><a href="leaves"><i class="fa fa-edit"></i> Leaves </a>
           </li>
@@ -19,12 +19,12 @@ $menu = '<ul class="nav side-menu">
            -->
            <li><a href="grievances"><i class="fa fa-desktop"></i> Grievances </a>
           </li>
-          <li><a href="exit"><i class="fa fa-power-off"></i> Exit </a>
-                                </li>
+         
           
 
           <li><a href="approvals"><i class="fa fa-list-alt"></i> Approvals </a>
           </li>
+           <li><a href="exit"><i class="fa fa-power-off"></i> Exit </a></li>
           <li><a href="work_profile"><i class="fa fa-folder"></i> Work Profile </a>
           </li>
           <!-- <li><a href="expense_claims"><i class="fa fa-desktop"></i> Expense Claims </a>

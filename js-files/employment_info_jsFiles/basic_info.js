@@ -60,57 +60,6 @@ $('#edit_workExp_end').datepicker({
 	dateFormat: 'yy-mm-dd',
 });
 
-// function addQC() {
-// 	let company_id = localStorage.getItem('company_id');
-// 	let employee_id =localStorage.getItem('user_id');
-
-// 	$('#add_QC_btn').hide();
-// 	$('#add_QC_loader').show();
-
-// 	let institution = $('#QC_institute_name').val();
-// 	let degree = $('#QC_degree').val();
-// 	let year_concluded = $('#QC_year_concluded').val();
-
-// 	axios({
-// 		method: 'post',
-// 		url: `${api_path}hrm/update_cv_eduhistory`,
-// 		// params: {},
-// 		data: {
-// 			school_name: institution,
-// 			qualification: degree,
-// 			year_concluded: year_concluded,
-// 			type: 'new',
-// 			company_id: company_id,
-// 			employee_id: employee_id,
-// 			from_year: '0000-00-00',
-// 			to_year: '0000-00-00',
-// 			grade: '',
-// 		},
-// 		headers: {
-// 			'Content-Type': 'application/x-www-form-urlencoded',
-// 			'Accept-Encoding': 'gzip, deflate, br',
-// 			Connection: 'keep-alive',
-// 			'Cache-Control': 'no-cache',
-// 		},
-// 	})
-// 		.then(function(response) {
-// 			if (response.data.data.status == 200 || response.data.data.status == 201) {
-// 				$('#add_QC_loader').hide();
-// 				$('#add_QC_btn').show();
-
-// 				$('#mod_body').html('Q&C creation successful');
-// 				$('#successModal').modal('show');
-// 				listQC();
-// 			}
-// 		})
-// 		.catch(function(error) {
-// 			console.log(error);
-// 			$('#add_QC_loader').hide();
-// 			$('#add_QC_btn').show();
-// 			alert('error');
-// 		});
-// }
-
 //QC starts
 function addQC() {
 	let company_id = localStorage.getItem('company_id');
@@ -150,20 +99,29 @@ function addQC() {
 			console.log(res);
 			$('#add_QC_loader').hide();
 			$('#add_QC_btn').show();
-			alert('error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${res.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 		success: function(response) {
 			if (response.status == 200 || response.status == 201) {
 				$('#add_QC_loader').hide();
 				$('#add_QC_btn').show();
 
-				$('#mod_body').html('Q&C creation successful');
-				$('#successModal').modal('show');
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: listQC(),
+				});
 				$('#QC_institute_name').val('');
 				$('#QC_degree').val('');
 				$('#QC_year_concluded').val('');
 				$('#QC_display').toggle();
-				listQC();
 			}
 		},
 	});
@@ -322,7 +280,7 @@ function editQC() {
 			console.log(res);
 			$('#edit_QC_loader').hide();
 			$('#edit_QC_btn').show();
-			$('#edit_QC_error').html(res);
+			$('#edit_QC_error').html(res.msg);
 			// alert('error');
 		},
 		success: function(response) {
@@ -332,13 +290,17 @@ function editQC() {
 
 				$('#edit_QC_modal').modal('hide');
 
-				$('#mod_body').html('Q&C Edit Successful');
-				$('#successModal').modal('show');
-				listQC();
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: listQC(),
+				});
 			} else {
 				$('#edit_QC_loader').hide();
 				$('#edit_QC_btn').show();
-				$('#edit_QC_error').html(response);
+				$('#edit_QC_error').html(response.msg);
 			}
 		},
 	});
@@ -370,12 +332,24 @@ function deleteQC(id) {
 				$(`#qc_loader${id}`).hide();
 				$(`#qc_row${id}`).show();
 
-				alert('error');
+				Swal.fire({
+					title: 'Error!',
+					text: `${res.msg}`,
+					icon: 'error',
+					confirmButtonText: 'Close',
+				});
 			},
 			success: function(response) {
 				if (response.status == 200 || response.status == 201) {
 					$(`#qc_row${id}`).remove();
 					$(`#qc_loader${id}`).remove();
+					Swal.fire({
+						title: 'Success',
+						text: `Success`,
+						icon: 'success',
+						confirmButtonText: 'Okay',
+						// onClose: window.location.reload(),
+					});
 				}
 			},
 		});
@@ -422,21 +396,30 @@ function addWorkExp() {
 			console.log(error);
 			$('#add_workExp_loader').hide();
 			$('#add_workExp_btn').show();
-			alert('error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${error.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 		success: function(response) {
 			if (response.status == 200 || response.status == 201) {
 				$('#add_workExp_loader').hide();
 				$('#add_workExp_btn').show();
 
-				$('#mod_body').html('Work Experience creation successful');
-				$('#successModal').modal('show');
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: listWorkExp(),
+				});
 				$('#workExp_prevCom').val('');
 				$('#workExp_jobTitle').val('');
 				$('#workExp_start').val('');
 				$('#workExp_end').val('');
 				$('#work-exp_display').toggle();
-				listWorkExp();
 			}
 		},
 	});
@@ -601,7 +584,12 @@ function editWorkExp() {
 			console.log(res);
 			$('#edit_workExp_loader').hide();
 			$('#edit_workExp_btn').show();
-			alert('error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${res.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 		success: function(response) {
 			if (response.status == 200 || response.status == 201) {
@@ -610,9 +598,13 @@ function editWorkExp() {
 
 				$('#edit_workExp_modal').modal('hide');
 
-				$('#mod_body').html('Work Experience Edit Successful');
-				$('#successModal').modal('show');
-				listWorkExp();
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: listWorkExp(),
+				});
 			}
 		},
 	});
@@ -644,12 +636,23 @@ function deleteWorkExp(id) {
 				$(`#workExp_loader${id}`).hide();
 				$(`#workExp_row${id}`).show();
 
-				alert('error');
+				Swal.fire({
+					title: 'Error!',
+					text: `${res.msg}`,
+					icon: 'error',
+					confirmButtonText: 'Close',
+				});
 			},
 			success: function(response) {
 				if (response.status == 200 || response.status == 201) {
 					$(`#workExp_row${id}`).remove();
 					$(`#workExp_loader${id}`).remove();
+					Swal.fire({
+						title: 'Success',
+						text: `Success`,
+						icon: 'success',
+						confirmButtonText: 'Okay',
+					});
 				}
 			},
 		});
@@ -697,22 +700,31 @@ function addNOK() {
 			console.log(error);
 			$('#add_nok_loader').hide();
 			$('#add_nok_btn').show();
-			alert('error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${error.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 		success: function(response) {
 			if (response.status == 200 || response.status == 201) {
 				$('#add_nok_loader').hide();
 				$('#add_nok_btn').show();
 
-				$('#mod_body').html('Next Of Kin creation successful');
-				$('#successModal').modal('show');
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: listNOK(),
+				});
 				$('#nok_name').val('');
 				$('#nok_address').val('');
 				$('#nok_email').val('');
 				$('#nok_phone').val('');
 				$('#nok_relationship').val('');
 				$('#NOK_display').toggle();
-				listNOK();
 			}
 		},
 	});
@@ -885,7 +897,12 @@ function editNOK() {
 			console.log(res);
 			$('#edit_nok_loader').hide();
 			$('#edit_nok_btn').show();
-			alert('error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${res.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 		success: function(response) {
 			if (response.status == 200 || response.status == 201) {
@@ -894,9 +911,13 @@ function editNOK() {
 
 				$('#edit_nok_modal').modal('hide');
 
-				$('#mod_body').html('Next Of Kin Edit Successful');
-				$('#successModal').modal('show');
-				listNOK();
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: listNOK(),
+				});
 			}
 		},
 	});
@@ -929,12 +950,24 @@ function deleteNOK(id) {
 				$(`#nok_loader${id}`).hide();
 				$(`#nok_row${id}`).show();
 
-				alert('error');
+				Swal.fire({
+					title: 'Error!',
+					text: `${res.msg}`,
+					icon: 'error',
+					confirmButtonText: 'Close',
+				});
 			},
 			success: function(response) {
 				if (response.status == 200 || response.status == 201) {
 					$(`#nok_row${id}`).remove();
 					$(`#nok_loader${id}`).remove();
+					Swal.fire({
+						title: 'Success',
+						text: `Success`,
+						icon: 'success',
+						confirmButtonText: 'Okay',
+						// onClose: window.location.reload(),
+					});
 				}
 			},
 		});

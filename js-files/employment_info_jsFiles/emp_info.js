@@ -163,20 +163,30 @@ function addDepartment() {
 			console.log(error);
 			$('#add_dept_loader').hide();
 			$('#add_dept_btn').show();
-			alert('error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${error.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 		success: function(response) {
 			if (response.status == 200 || response.status == 201) {
 				$('#add_dept_loader').hide();
 				$('#add_dept_btn').show();
 
-				$('#mod_body').html('Department creation successful');
-				$('#successModal').modal('show');
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: listDepartment(),
+				});
 				$('#dept_name').val('');
 				$('#dept_from').val('');
 				$('#dept_to').val('');
 				$('#dept_display').toggle();
-				listDepartment();
+				// listDepartment();
 			}
 		},
 	});
@@ -350,7 +360,12 @@ function editDepartment() {
 			console.log(res);
 			$('#edit_dept_loader').hide();
 			$('#edit_dept_btn').show();
-			alert('error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${res.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 		success: function(response) {
 			if (response.status == 200 || response.status == 201) {
@@ -359,9 +374,13 @@ function editDepartment() {
 
 				$('#edit_dept_modal').modal('hide');
 
-				$('#mod_body').html('Department Edit Successful');
-				$('#successModal').modal('show');
-				listDepartment();
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: listDepartment(),
+				});
 			}
 		},
 	});
@@ -394,12 +413,24 @@ function deleteDepartment(id) {
 				$(`#dept_loader${id}`).hide();
 				$(`#dept_row${id}`).show();
 
-				alert('error');
+				Swal.fire({
+					title: 'Error!',
+					text: `${res.msg}`,
+					icon: 'error',
+					confirmButtonText: 'Close',
+				});
 			},
 			success: function(response) {
 				if (response.status == 200 || response.status == 201) {
 					$(`#dept_row${id}`).remove();
 					$(`#dept_loader${id}`).remove();
+					Swal.fire({
+						title: 'Success',
+						text: `Success`,
+						icon: 'success',
+						confirmButtonText: 'Okay',
+						// onClose: listDepartment(),
+					});
 				}
 			},
 		});
@@ -485,20 +516,29 @@ function addWorkShift() {
 			console.log(error);
 			$('#add_workShift_loader').hide();
 			$('#add_workShift_btn').show();
-			alert('error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${error.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 		success: function(response) {
 			if (response.status == 200 || response.status == 201) {
 				$('#add_workShift_loader').hide();
 				$('#add_workShift_btn').show();
 
-				$('#mod_body').html('Work Shift creation successful');
-				$('#successModal').modal('show');
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: listWorkShift(),
+				});
 				$('#workShift_name').val('');
 				$('#workShift_from').val('');
 				$('#workShift_to').val('');
 				$('#workShift_display').toggle();
-				listWorkShift();
 			}
 		},
 	});
@@ -674,7 +714,12 @@ function editWorkShift() {
 			console.log(res);
 			$('#edit_workShift_loader').hide();
 			$('#edit_workShift_btn').show();
-			alert('error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${res.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 		success: function(response) {
 			if (response.status == 200 || response.status == 201) {
@@ -683,9 +728,13 @@ function editWorkShift() {
 
 				$('#edit_workShift_modal').modal('hide');
 
-				$('#mod_body').html('Work Shift Edit Successful');
-				$('#successModal').modal('show');
-				listWorkShift();
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: listWorkShift(),
+				});
 			}
 		},
 	});
@@ -718,12 +767,23 @@ function deleteWorkShift(id) {
 				$(`#workShift_loader${id}`).hide();
 				$(`#workShift_row${id}`).show();
 
-				alert('error');
+				Swal.fire({
+					title: 'Error!',
+					text: `${res.msg}`,
+					icon: 'error',
+					confirmButtonText: 'Close',
+				});
 			},
 			success: function(response) {
 				if (response.status == 200 || response.status == 201) {
 					$(`#workShift_row${id}`).remove();
 					$(`#workShift_loader${id}`).remove();
+					Swal.fire({
+						title: 'Success',
+						text: `Success`,
+						icon: 'success',
+						confirmButtonText: 'Okay',
+					});
 				}
 			},
 		});
@@ -811,7 +871,12 @@ function EditEmpInf() {
 			console.log(error);
 			$('#edit_emp_loader').hide();
 			$('#edit_emp_btn').show();
-			alert('error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${error.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 		success: function(response) {
 			if (response.status == 200 || response.status == 201) {
@@ -822,9 +887,14 @@ function EditEmpInf() {
 				$('#edit_emp_type').val('');
 				$('#edit_emp_branch').val('');
 				$('#edit_employment_info_modal').modal('hide');
-				$('#mod_body').html('Employee details creation successful');
-				$('#successModal').modal('show');
-				showEmployeeDataInfo();
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: showEmployeeDataInfo(),
+				});
+
 				// employementInfo();
 			}
 		},
@@ -1005,20 +1075,29 @@ function addJobTitle() {
 			console.log(error);
 			$('#add_jobTitle_loader').hide();
 			$('#add_jobTitle_btn').show();
-			alert('error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${error.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 		success: function(response) {
 			if (response.status == 200 || response.status == 201) {
 				$('#add_jobTitle_loader').hide();
 				$('#add_jobTitle_btn').show();
 
-				$('#mod_body').html('Job Title creation successful');
-				$('#successModal').modal('show');
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: listJobTitle(),
+				});
 				$('#jobTitle_name').val('');
 				$('#jobTitle_from').val('');
 				$('#jobTitle_to').val('');
 				$('#jobTitle_display').toggle();
-				listJobTitle();
 			}
 		},
 	});
@@ -1204,7 +1283,12 @@ function editJobTitle() {
 			console.log(res);
 			$('#edit_jobTitle_loader').hide();
 			$('#edit_jobTitle_btn').show();
-			alert('error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${res.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 		success: function(response) {
 			if (response.status == 200 || response.status == 201) {
@@ -1213,9 +1297,13 @@ function editJobTitle() {
 				$('#edit_jobTitle_error').html('');
 				$('#edit_jobTitle_modal').modal('hide');
 
-				$('#mod_body').html('Job Title Edit Successful');
-				$('#successModal').modal('show');
-				listJobTitle();
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: listJobTitle(),
+				});
 			} else {
 				$('#edit_jobTitle_loader').hide();
 				$('#edit_jobTitle_btn').show();
@@ -1252,17 +1340,33 @@ function deleteJobTitle(id) {
 				$(`#jobTitle_loader${id}`).hide();
 				$(`#jobTitle_row${id}`).show();
 
-				alert('error');
+				Swal.fire({
+					title: 'Error!',
+					text: `${res.msg}`,
+					icon: 'error',
+					confirmButtonText: 'Close',
+				});
 			},
 			success: function(response) {
 				if (response.status == 200 || response.status == 201) {
 					$(`#jobTitle_row${id}`).remove();
 					$(`#jobTitle_loader${id}`).remove();
+					Swal.fire({
+						title: 'Success',
+						text: `Success`,
+						icon: 'success',
+						confirmButtonText: 'Okay',
+					});
 				} else {
 					$(`#jobTitle_loader${id}`).hide();
 					$(`#jobTitle_row${id}`).show();
 
-					alert('error');
+					Swal.fire({
+						title: 'Error!',
+						text: `${response.msg}`,
+						icon: 'error',
+						confirmButtonText: 'Close',
+					});
 				}
 			},
 		});
@@ -1397,18 +1501,26 @@ function addAdditionalInfo() {
 			console.log(error);
 			$('#edit_additional_loader').hide();
 			$('#edit_additional_btn').show();
-			alert('error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${error.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 		success: function(response) {
 			if (response.status == 200 || response.status == 201) {
 				$('#edit_additional_loader').hide();
 				$('#edit_additional_btn').show();
 				$('#edit_additional_info_modal').modal('hide');
-				$('#mod_body').html('Additional Info Edit successful');
-				$('#successModal').modal('show');
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: showAdditionalInfo(),
+				});
 				// $('#additional_info').val('');
-
-				showAdditionalInfo();
 			}
 		},
 	});
@@ -1516,7 +1628,12 @@ function connectEmployee() {
 			console.log(error);
 			$('#view_ess_connect_loader').hide();
 			$('#view_ess_connect_btn').show();
-			alert('error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${error.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 		success: function(response) {
 			if (response.status == 200 || response.status == 201) {
@@ -1524,9 +1641,14 @@ function connectEmployee() {
 				$('#view_ess_connect_btn').show();
 				$('#view_ess_modal').modal('hide');
 
-				$('#mod_body').html('Employee Connect successful');
-				$('#successModal').modal('show');
-				showConnectedInfo();
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: showConnectedInfo(),
+				});
+
 				// $('#jobTitle_name').val('');
 				// $('#jobTitle_from').val('');
 				// $('#jobTitle_to').val('');
@@ -1535,7 +1657,12 @@ function connectEmployee() {
 			} else {
 				$('#view_ess_connect_loader').hide();
 				$('#view_ess_connect_btn').show();
-				alert(response.msg);
+				Swal.fire({
+					title: 'Error!',
+					text: `${response.msg}`,
+					icon: 'error',
+					confirmButtonText: 'Close',
+				});
 			}
 		},
 	});

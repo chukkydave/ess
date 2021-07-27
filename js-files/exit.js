@@ -277,12 +277,15 @@ function initiateExit() {
 			if (response.status == 200 || response.status == 201) {
 				$('#add_exit_loader').hide();
 				$('#add_exit_btn').show();
-
-				$('#mod_bodi').html('<h4>Exit Initiation successful</h4>');
-				$('#successModal').modal('show');
-
 				$(`#collapseExample`).removeClass('in');
-				listExits();
+
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: listExits(),
+				});
 			}
 		},
 	});
@@ -315,13 +318,24 @@ function updateSupervisor() {
 			console.log(res);
 			$('#edit_visor_loader').hide();
 			$('#supervisor').show();
-			alert('error updating supervisor');
+			Swal.fire({
+				title: 'Error!',
+				text: `${res.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 		success: function(response) {
 			if (response.status == 200 || response.status == 201) {
 				$('#edit_visor_loader').hide();
 				$('#supervisor').show();
 
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+				});
 				// $('#edit_nok_modal').modal('hide');
 
 				// $('#mod_body').html('Next Of Kin Edit Successful');
@@ -504,10 +518,12 @@ function viewExit(id) {
 				exited_date,
 			} = response.data.data;
 			let DOJ = moment(date_of_employ, 'YYYY-MM-DD').format('LL');
-			let ED =
-
-					exited_date !== '' ? moment(exited_date, 'YYYY-MM-DD').format('LL') :
-					'...';
+			let ED;
+			if (exited_date === '' || exited_date === '0000-00-00') {
+				ED = '...';
+			} else {
+				ED = moment(exited_date, 'YYYY-MM-DD').format('LL');
+			}
 			let exStat;
 			if (exit_status.toLowerCase() === 'approve') {
 				exStat = 'Approved';

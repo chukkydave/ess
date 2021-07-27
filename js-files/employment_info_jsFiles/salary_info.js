@@ -302,26 +302,34 @@ function addDebitComponent() {
 			console.log(error);
 			$('#add_debitComponent_loader').hide();
 			$('#add_debitComponent_btn').show();
-			alert('error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${error.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 		success: function(response) {
 			if (response.status == 200 || response.status == 201) {
 				$('#add_debitComponent_loader').hide();
 				$('#add_debitComponent_btn').show();
-				list_employment_payment_type();
-				// $('#edit_bank_details_modal').modal('hide');
-				// $('#mod_body').html('Salary Account Details Added successfully');
-				// $('#successModal').modal('show');
-				// showBankDetails();
-				// $('#acct_name').val('');
-				// $('#bank_name').val('');
-				// $('#acct_no').val('');
-				// $('#sort_code').val('');
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: list_employment_payment_type(),
+				});
 			} else {
-				console.log(error);
+				console.log(response);
 				$('#add_debitComponent_loader').hide();
 				$('#add_debitComponent_btn').show();
-				alert('error');
+				Swal.fire({
+					title: 'Error!',
+					text: `${response.msg}`,
+					icon: 'error',
+					confirmButtonText: 'Close',
+				});
 			}
 		},
 	});
@@ -363,26 +371,34 @@ function addCreditComponent() {
 			console.log(error);
 			$('#add_creditComponent_loader').hide();
 			$('#add_creditComponent_btn').show();
-			alert('error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${error.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 		success: function(response) {
 			if (response.status == 200 || response.status == 201) {
 				$('#add_creditComponent_loader').hide();
 				$('#add_creditComponent_btn').show();
-				list_employment_payment_type();
-				// $('#edit_bank_details_modal').modal('hide');
-				// $('#mod_body').html('Salary Account Details Added successfully');
-				// $('#successModal').modal('show');
-				// showBankDetails();
-				// $('#acct_name').val('');
-				// $('#bank_name').val('');
-				// $('#acct_no').val('');
-				// $('#sort_code').val('');
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: list_employment_payment_type(),
+				});
 			} else {
-				console.log(error);
+				console.log(response);
 				$('#add_creditComponent_loader').hide();
 				$('#add_creditComponent_btn').show();
-				alert('error');
+				Swal.fire({
+					title: 'Error!',
+					text: `${response.msg}`,
+					icon: 'error',
+					confirmButtonText: 'Close',
+				});
 			}
 		},
 	});
@@ -423,11 +439,22 @@ function deleteBreakdown(id) {
 					// $(`#qc_loader${id}`).hide();
 					// $(`#qc_row${id}`).show();
 
-					alert('error');
+					Swal.fire({
+						title: 'Error!',
+						text: `${res.msg}`,
+						icon: 'error',
+						confirmButtonText: 'Close',
+					});
 				},
 				success: function(response) {
 					if (response.status == 200 || response.status == 201) {
-						list_employment_payment_type();
+						Swal.fire({
+							title: 'Success',
+							text: `Success`,
+							icon: 'success',
+							confirmButtonText: 'Okay',
+							onClose: list_employment_payment_type(),
+						});
 						// $(`#qc_row${id}`).remove();
 						// $(`#qc_loader${id}`).remove();
 					}
@@ -467,11 +494,22 @@ function deleteBreakdown2(id) {
 				// $(`#qc_loader${id}`).hide();
 				// $(`#qc_row${id}`).show();
 
-				alert('error');
+				Swal.fire({
+					title: 'Error!',
+					text: `${res.msg}`,
+					icon: 'error',
+					confirmButtonText: 'Close',
+				});
 			},
 			success: function(response) {
 				if (response.status == 200 || response.status == 201) {
-					list_employment_payment_type();
+					Swal.fire({
+						title: 'Success',
+						text: `Success`,
+						icon: 'success',
+						confirmButtonText: 'Okay',
+						onClose: list_employment_payment_type(),
+					});
 					// $(`#qc_row${id}`).remove();
 					// $(`#qc_loader${id}`).remove();
 				}
@@ -517,16 +555,25 @@ function addAcctDetails() {
 			console.log(error);
 			$('#add_acctDetails_loader').hide();
 			$('#add_acctDetails_btn').show();
-			alert('error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${error.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 		success: function(response) {
 			if (response.status == 200 || response.status == 201) {
 				$('#add_acctDetails_loader').hide();
 				$('#add_acctDetails_btn').show();
 				$('#edit_bank_details_modal').modal('hide');
-				$('#mod_body').html('Salary Account Details Added successfully');
-				$('#successModal').modal('show');
-				showBankDetails();
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: showBankDetails(),
+				});
 				// $('#acct_name').val('');
 				// $('#bank_name').val('');
 				// $('#acct_no').val('');
@@ -628,14 +675,23 @@ function addSalaryDetails() {
 			console.log(error);
 			$('#add_salaryDetails_loader').hide();
 			$('#add_salaryDetails_btn').show();
-			alert('error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${error.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 		success: function(response) {
 			if (response.status == 200 || response.status == 201) {
 				$('#add_salaryDetails_loader').hide();
 				$('#add_salaryDetails_btn').show();
-				$('#mod_body').html('Salary Amount Details Added successfully');
-				$('#successModal').modal('show');
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+				});
 				// $('#salary_amt').val('');
 				// $('#salary_type').val('');
 			}
@@ -881,14 +937,23 @@ function saveSalaryBreakdown() {
 			console.log(error);
 			$('#save_pay_loader').hide();
 			$('#save_pay').show();
-			alert('error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${error.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 		success: function(response) {
 			if (response.status == 200 || response.status == 201) {
 				$('#save_pay_loader').hide();
 				// $('#save_pay').show();
-				$('#mod_body').html('Salary Breakdown Saved successfully');
-				$('#successModal').modal('show');
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+				});
 				// $('#acct_name').val('');
 				// $('#bank_name').val('');
 				// $('#acct_no').val('');

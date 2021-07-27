@@ -54,16 +54,33 @@ function do_the_action(decision, app_id) {
 				if (decision == 'yes') {
 					$('#checkdgood').show();
 					setTimeout(() => {
-						window.location.reload();
+						Swal.fire({
+							title: 'Success',
+							text: `Success`,
+							icon: 'success',
+							confirmButtonText: 'Okay',
+							onClose: window.location.reload(),
+						});
 					}, 2000);
 				} else if (decision == 'declined') {
 					$('#checkdx').show();
 					setTimeout(() => {
-						window.location.reload();
+						Swal.fire({
+							title: 'Success',
+							text: `Success`,
+							icon: 'success',
+							confirmButtonText: 'Okay',
+							onClose: window.location.reload(),
+						});
 					}, 2000);
 				}
 			} else if (response.status == '400') {
-				alert(response.msg);
+				Swal.fire({
+					title: 'Error!',
+					text: `${response.msg}`,
+					icon: 'error',
+					confirmButtonText: 'Close',
+				});
 			}
 
 			$('#lda_apprva').hide();
@@ -73,7 +90,12 @@ function do_the_action(decision, app_id) {
 			console.log(response);
 			$('#lda_apprva').hide();
 			$('#apprrv_btns').show();
-			alert('Error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${response.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 	});
 }

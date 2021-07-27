@@ -67,17 +67,26 @@ function addAllotDays() {
 			console.log(res);
 			$('#save_allot_loader').hide();
 			$('#save_allot_btn').show();
-			alert('error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${res.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 		success: function(response) {
 			if (response.status == 200 || response.status == 201) {
 				$('#save_allot_loader').hide();
 				$('#save_allot_btn').show();
 
-				$('#mod_body').html('Extra days alloted successfully');
-				$('#successModal').modal('show');
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: listAllotDays(),
+				});
 				$('#allot-btns').fadeOut();
-				listAllotDays();
 			}
 		},
 	});

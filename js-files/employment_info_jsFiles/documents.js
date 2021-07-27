@@ -48,20 +48,29 @@ function addDocument() {
 			console.log(error);
 			$('#add_docx_loader').hide();
 			$('#add_docx_btn').show();
-			alert('error');
+			Swal.fire({
+				title: 'Error!',
+				text: `${error.msg}`,
+				icon: 'error',
+				confirmButtonText: 'Close',
+			});
 		},
 		success: function(response) {
 			if (response.status == 200 || response.status == 201) {
 				$('#add_docx_loader').hide();
 				$('#add_docx_btn').show();
 
-				$('#mod_body').html('Document Upload successful');
-				$('#successModal').modal('show');
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: list_employee_documents(),
+				});
 				$('#docx_name').val('');
 				$('#docx_type').val('');
 				$('#docx_file').val('');
 				$('#docx_display').toggle();
-				list_employee_documents();
 			}
 		},
 	});
@@ -340,12 +349,23 @@ function deleteDocument(id) {
 				$(`#docx_loader${id}`).hide();
 				$(`#docx_row${id}`).show();
 
-				alert('error');
+				Swal.fire({
+					title: 'Error!',
+					text: `${res.msg}`,
+					icon: 'error',
+					confirmButtonText: 'Close',
+				});
 			},
 			success: function(response) {
 				if (response.status == 200 || response.status == 201) {
 					$(`#docx_row${id}`).remove();
 					$(`#docx_loader${id}`).remove();
+					Swal.fire({
+						title: 'Success',
+						text: `Success`,
+						icon: 'success',
+						confirmButtonText: 'Okay',
+					});
 				}
 			},
 		});
