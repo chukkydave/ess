@@ -192,7 +192,7 @@ function listExits() {
 				$('#list_exit_loader').hide();
 				$('#list_exit_table').show();
 			} else {
-				$('#list_exit_body').html(`<tr><td colspan="5">No record</td></tr>`);
+				$('#list_exit_body').html(`<tr><td colspan="5">No record found</td></tr>`);
 				$('#list_exit_loader').hide();
 				$('#list_exit_table').show();
 			}

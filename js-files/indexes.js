@@ -179,9 +179,23 @@ document.addEventListener('DOMContentLoaded', function() {
 				}, 1000);
 				// calendar.setOption('height', 700);
 			} else {
-				// $('#list_QC_body').html(`<tr><td colspan="4">No record</td></tr>`);
-				// $('#list_QC_loader').hide();
-				// $('#list_QC_table').show();
+				var calendarEl = document.getElementById('calendarly');
+				var calendar = new FullCalendar.Calendar(calendarEl, {
+					initialView: 'dayGridMonth',
+					// initialDate: new Date(),
+					headerToolbar: {
+						left: 'prev,next',
+						center: 'title',
+						// contentHeight: auto,
+						// height: '350px',
+						right: 'dayGridMonth,timeGridWeek,timeGridDay',
+					},
+				});
+				calendar.render();
+				setTimeout(() => {
+					// calendar.updateSize();
+					calendar.setOption('height', 350);
+				}, 1000);
 			}
 		})
 		.catch(function(error) {
