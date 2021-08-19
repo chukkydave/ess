@@ -836,7 +836,7 @@ function list_of_grievances(page) {
 
 			if (response.status == '200') {
 				$('#loading').hide();
-				if (response.data.length > 0) {
+				if (response.data.length != 0) {
 					var k = 1;
 					$(response.data).each((i, v) => {
 						strTable += `<tr id="row_${v.id}">`;
