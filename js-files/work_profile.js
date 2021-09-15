@@ -13,7 +13,7 @@ function fetch_employee_details() {
 		type: 'GET',
 		dataType: 'json',
 		url: api_path + 'hrm/new_employee_info',
-		data: { company_id: company_id, employee_id: employee_id, user_id: user_id },
+		data: { employee_id: employee_id },
 		timeout: 60000,
 
 		success: function(response) {

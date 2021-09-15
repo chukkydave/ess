@@ -143,22 +143,21 @@ function addDepartment() {
 	let data = {
 		started: from,
 		department_id: name,
-		company_id: company_id,
+		// company_id: company_id,
 		employee_id: employee_id,
 		ended: to,
 		type: 'new',
-		user_id: user_id,
+		// user_id: user_id,
 	};
 	$.ajax({
 		type: 'Post',
 		dataType: 'json',
 		url: `${api_path}hrm/update_employee_department`,
 		data: data,
-		// headers: {
-		// 	Accept: 'application/json',
-		// 	'Content-Type': 'application/json',
-		// 	// Authorization: `Bearer ${authy}`,
-		// },
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
+
 		error: function(error) {
 			console.log(error);
 			$('#add_dept_loader').hide();
@@ -201,9 +200,9 @@ function listDepartment() {
 	axios
 		.get(`${api_path}hrm/new_employee_info`, {
 			params: {
-				company_id: company_id,
+				// company_id: company_id,
 				employee_id: employee_id,
-				user_id: user_id,
+				// user_id: user_id,
 			},
 		})
 		.then(function(response) {
@@ -295,8 +294,8 @@ function viewDepartment(id) {
 			params: {
 				dep_his_id: id,
 				employee_id: employee_id,
-				company_id: company_id,
-				user_id: user_id,
+				// company_id: company_id,
+				// user_id: user_id,
 			},
 		})
 		.then(function(response) {
@@ -339,18 +338,21 @@ function editDepartment() {
 	let data = {
 		started: from,
 		department_id: name,
-		company_id: company_id,
+		// company_id: company_id,
 		employee_id: employee_id,
 		ended: to,
 		dep_his_id: id,
 		type: 'edit',
-		user_id: user_id,
+		// user_id: user_id,
 	};
 	$.ajax({
 		type: 'Post',
 		dataType: 'json',
 		url: `${api_path}hrm/update_employee_department`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -398,8 +400,8 @@ function deleteDepartment(id) {
 		let data = {
 			dep_his_id: id,
 			employee_id: employee_id,
-			company_id: company_id,
-			user_id: user_id,
+			// company_id: company_id,
+			// user_id: user_id,
 		};
 
 		$.ajax({
@@ -407,6 +409,9 @@ function deleteDepartment(id) {
 			dataType: 'json',
 			url: `${api_path}hrm/delete_employee_department`,
 			data: data,
+			headers: {
+				Authorization: localStorage.getItem('token'),
+			},
 
 			error: function(res) {
 				console.log(res);
@@ -458,8 +463,11 @@ function getEmployeeList(param) {
 	axios
 		.get(`${api_path}hrm/search_staff_autocomplete`, {
 			params: {
-				company_id: company_id,
+				// company_id: company_id,
 				query_param: param,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -496,17 +504,20 @@ function addWorkShift() {
 	let data = {
 		started: from,
 		workshift_id: name,
-		company_id: company_id,
+		// company_id: company_id,
 		employee_id: employee_id,
 		ended: to,
 		type: 'new',
-		user_id: user_id,
+		// user_id: user_id,
 	};
 	$.ajax({
 		type: 'Post',
 		dataType: 'json',
 		url: `${api_path}hrm/update_workshift_history`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -553,9 +564,12 @@ function listWorkShift() {
 	axios
 		.get(`${api_path}hrm/new_employee_info`, {
 			params: {
-				company_id: company_id,
+				// company_id: company_id,
 				employee_id: employee_id,
-				user_id: user_id,
+				// user_id: user_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -649,8 +663,11 @@ function viewWorkShift(id) {
 			params: {
 				wrkshift_his_id: id,
 				employee_id: employee_id,
-				company_id: company_id,
-				user_id: user_id,
+				// company_id: company_id,
+				// user_id: user_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -693,12 +710,12 @@ function editWorkShift() {
 	let data = {
 		started: from,
 		workshift_id: name,
-		company_id: company_id,
+		// company_id: company_id,
 		employee_id: employee_id,
 		ended: to,
 		wrkshift_his_id: id,
 		type: 'edit',
-		user_id: user_id,
+		// user_id: user_id,
 	};
 	$.ajax({
 		type: 'Post',
@@ -752,8 +769,8 @@ function deleteWorkShift(id) {
 		let data = {
 			wrkshift_his_id: id,
 			employee_id: employee_id,
-			company_id: company_id,
-			user_id: user_id,
+			// company_id: company_id,
+			// user_id: user_id,
 		};
 
 		$.ajax({
@@ -761,6 +778,9 @@ function deleteWorkShift(id) {
 			dataType: 'json',
 			url: `${api_path}hrm/delete_workshift_history`,
 			data: data,
+			headers: {
+				Authorization: localStorage.getItem('token'),
+			},
 
 			error: function(res) {
 				console.log(res);
@@ -799,7 +819,10 @@ function fetch_workList() {
 		dataType: 'json',
 		cache: false,
 		url: api_path + 'workshifts/list_shifts',
-		data: { company_id: company_id },
+		data: {},
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 
 		success: function(response) {
 			console.log(response);
@@ -851,17 +874,20 @@ function EditEmpInf() {
 	let data = {
 		employee_type: type,
 		supervisor: name,
-		company_id: company_id,
+		// company_id: company_id,
 		employee_id: employee_id,
 		employee_date: date,
 		branch: branch,
-		user_id: user_id,
+		// user_id: user_id,
 	};
 	$.ajax({
 		type: 'Post',
 		dataType: 'json',
 		url: `${api_path}hrm/update_employement_info`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -910,9 +936,12 @@ function showEmployeeDataInfo() {
 	axios
 		.get(`${api_path}hrm/new_employee_info`, {
 			params: {
-				company_id: company_id,
+				// company_id: company_id,
 				employee_id: employee_id,
-				user_id: user_id,
+				// user_id: user_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -982,9 +1011,12 @@ function viewEmpInfo() {
 	axios
 		.get(`${api_path}hrm/new_employee_info`, {
 			params: {
-				company_id: company_id,
+				// company_id: company_id,
 				employee_id: employee_id,
-				user_id: user_id,
+				// user_id: user_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -1056,16 +1088,19 @@ function addJobTitle() {
 	let data = {
 		from_date: from,
 		to_date: to,
-		company_id: company_id,
+		// company_id: company_id,
 		employee_id: employee_id,
 		position_id: name,
-		user_id: user_id,
+		// user_id: user_id,
 	};
 	$.ajax({
 		type: 'Post',
 		dataType: 'json',
 		url: `${api_path}hrm/add_company_employee_position_history`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -1115,7 +1150,10 @@ function listJobTitle() {
 		dataType: 'json',
 		cache: false,
 		url: `${api_path}hrm/list_company_employee_positions_history`,
-		data: { company_id: company_id, employee_id: employee_id, user_id: user_id },
+		data: { employee_id: employee_id },
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 
 		success: function(response) {
 			console.log(response);
@@ -1219,9 +1257,9 @@ function viewJobTitle(id) {
 		.get(`${api_path}hrm/single_job_history`, {
 			params: {
 				history_id: id,
-				// employee_id: employee_id,
-				company_id: company_id,
-				user_id: user_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -1260,13 +1298,9 @@ function editJobTitle() {
 	let to = $('#edit_jobTitle_to').val();
 
 	let data = {
-		// started: from,
-		// jobTitle_id: name,
-		company_id: company_id,
-		// employee_id: employee_id,
 		enddate: to,
 		history_id: id,
-		user_id: user_id,
+		// user_id: user_id,
 		// type: 'edit',
 	};
 	$.ajax({
@@ -1274,6 +1308,9 @@ function editJobTitle() {
 		dataType: 'json',
 		url: `${api_path}hrm/end_position_history`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -1324,9 +1361,6 @@ function deleteJobTitle(id) {
 
 		let data = {
 			id: id,
-			// employee_id: employee_id,
-			company_id: company_id,
-			user_id: user_id,
 		};
 
 		$.ajax({
@@ -1334,6 +1368,9 @@ function deleteJobTitle(id) {
 			dataType: 'json',
 			url: `${api_path}hrm/delete_company_employee_position_history`,
 			data: data,
+			headers: {
+				Authorization: localStorage.getItem('token'),
+			},
 
 			error: function(res) {
 				console.log(res);
@@ -1384,7 +1421,10 @@ function fetch_jobTitle() {
 		dataType: 'json',
 		cache: false,
 		url: `${api_path}hrm/list_of_company_positions`,
-		data: { company_id: company_id, page: 1, limit: 1000, user_id: user_id },
+		data: { page: 1, limit: 1000 },
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 
 		success: function(response) {
 			console.log(response);
@@ -1431,9 +1471,10 @@ function showAdditionalInfo() {
 	axios
 		.get(`${api_path}hrm/new_employee_info`, {
 			params: {
-				company_id: company_id,
 				employee_id: employee_id,
-				user_id: user_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -1482,16 +1523,19 @@ function addAdditionalInfo() {
 	let name = $('#additional_info').val();
 
 	let data = {
-		company_id: company_id,
+		// company_id: company_id,
 		employee_id: employee_id,
 		additional_info: name,
-		user_id: user_id,
+		// user_id: user_id,
 	};
 	$.ajax({
 		type: 'Put',
 		dataType: 'json',
 		url: `${api_path}hrm/update_additional_information`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -1557,6 +1601,9 @@ function getEmployeeEmail() {
 				// company_id: company_id,
 				email: param,
 			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
+			},
 		})
 		.then(function(response) {
 			// console.log('res', response);
@@ -1609,8 +1656,6 @@ function connectEmployee() {
 	let email = $('#view_ess_email').html();
 
 	let data = {
-		user_id: user_id,
-		company_id: company_id,
 		employee_id: employee_id,
 		email: email,
 	};
@@ -1619,6 +1664,9 @@ function connectEmployee() {
 		dataType: 'json',
 		url: `${api_path}hrm/assign_ess_users`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -1681,9 +1729,10 @@ function showConnectedInfo() {
 	axios
 		.get(`${api_path}hrm/ess_company_staff_image`, {
 			params: {
-				company_id: company_id,
 				employee_id: employee_id,
-				user_id: user_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {

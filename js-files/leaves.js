@@ -63,7 +63,10 @@ function load_leave_type() {
 		url: api_path + 'ess/fetch_leave_type',
 		type: 'POST',
 		data: {
-			company_id: company_id,
+			// company_id: company_id,
+		},
+		headers: {
+			Authorization: localStorage.getItem('token'),
 		},
 		dataType: 'json',
 
@@ -136,12 +139,15 @@ function edit_employee_leave(leave_id) {
 		data: {
 			leave_type: leave_type,
 			comment: comment,
-			company_id: company_id,
+			// company_id: company_id,
 			leave_id: leave_id,
 			email: email,
 			leave_start: leave_start,
 			resumption_date: resumption_date,
-			user_id: user_id,
+			// user_id: user_id,
+		},
+		headers: {
+			Authorization: localStorage.getItem('token'),
 		},
 
 		success: function(response) {
@@ -197,8 +203,11 @@ function fetch_leave_details(leave_id) {
 		data: {
 			leave_id: leave_id,
 			email: email,
-			company_id: company_id,
-			user_id: user_id,
+			// company_id: company_id,
+			// user_id: user_id,
+		},
+		headers: {
+			Authorization: localStorage.getItem('token'),
 		},
 
 		success: function(response) {
@@ -292,12 +301,15 @@ function add_employee_leave() {
 		data: {
 			leave_type: leave_type,
 			leave_start: leave_start,
-			company_id: company_id,
+			// company_id: company_id,
 			email: email,
 			resumption_date: resumption_date,
 			days_requested: days_requested,
 			comment: comment,
-			user_id: user_id,
+			// user_id: user_id,
+		},
+		headers: {
+			Authorization: localStorage.getItem('token'),
 		},
 
 		success: function(response) {
@@ -366,9 +378,9 @@ function fetch_leave_info(leave_id) {
 		url: api_path + 'ess/view_leave_status',
 		data: {
 			leave_id: leave_id,
-			company_id: company_id,
+			// company_id: company_id,
 			email: email,
-			user_id: user_id,
+			// user_id: user_id,
 		},
 
 		success: function(response) {
@@ -469,10 +481,10 @@ function delete_leave(leave_id) {
 		dataType: 'json',
 		url: api_path + 'ess/delete_leave_request',
 		data: {
-			company_id: company_id,
+			// company_id: company_id,
 			email: email,
 			leave_id: leave_id,
-			user_id: user_id,
+			// user_id: user_id,
 		},
 		timeout: 60000, // sets timeout to one minute
 		// objAJAXRequest, strError
@@ -556,11 +568,14 @@ function list_of_leaves(page) {
 		dataType: 'json',
 		url: api_path + 'ess/list_of_ess_leaves',
 		data: {
-			company_id: company_id,
+			// company_id: company_id,
 			page: page,
 			limit: limit,
 			email: email,
-			user_id: user_id,
+			// user_id: user_id,
+		},
+		headers: {
+			Authorization: localStorage.getItem('token'),
 		},
 		timeout: 60000,
 

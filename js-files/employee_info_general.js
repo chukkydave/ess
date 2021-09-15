@@ -98,7 +98,10 @@ function fetch_employee_view_details_salary_info() {
 		type: 'POST',
 		dataType: 'json',
 		url: api_path + 'hrm/fetch_company_employee_profile',
-		data: { company_id: company_id, employee_id: employee_id, user_id: user_id },
+		data: { employee_id: employee_id },
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		timeout: 60000,
 
 		success: function(response) {
@@ -249,11 +252,14 @@ function list_of_salary_history(page) {
 		dataType: 'json',
 		url: api_path + 'hrm/view_company_employee_salary_history',
 		data: {
-			company_id: company_id,
+			// company_id: company_id,
 			page: page,
 			limit: limit,
 			employee_id: employee_id,
-			user_id: user_id,
+			// user_id: user_id,
+		},
+		headers: {
+			Authorization: localStorage.getItem('token'),
 		},
 		timeout: 60000,
 
@@ -610,7 +616,10 @@ function init_echarts() {
 			type: 'POST',
 			dataType: 'json',
 			url: api_path + 'hrm/view_employee_salary_history_for_graph',
-			data: { company_id: company_id, employee_id: employee_id, user_id: user_id },
+			data: { employee_id: employee_id },
+			headers: {
+				Authorization: localStorage.getItem('token'),
+			},
 			timeout: 60000,
 
 			success: function(response) {
@@ -716,7 +725,10 @@ function fetch_employee_view_details_leave_history() {
 		type: 'POST',
 		dataType: 'json',
 		url: api_path + 'hrm/fetch_company_employee_profile',
-		data: { company_id: company_id, employee_id: employee_id, user_id: user_id },
+		data: { employee_id: employee_id },
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		timeout: 60000,
 
 		success: function(response) {
@@ -1114,7 +1126,10 @@ function init_echartsleave() {
 			type: 'POST',
 			dataType: 'json',
 			url: api_path + 'hrm/view_employee_leave_history_for_graph',
-			data: { company_id: company_id, employee_id: employee_id, user_id: user_id },
+			data: { employee_id: employee_id },
+			headers: {
+				Authorization: localStorage.getItem('token'),
+			},
 			timeout: 60000,
 
 			success: function(response) {
@@ -1419,7 +1434,10 @@ function load_employee_type() {
 	$.ajax({
 		url: api_path + 'hrm/list_of_company_employment_types',
 		type: 'POST',
-		data: { company_id: company_id },
+		data: {},
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		dataType: 'json',
 
 		success: function(response) {
@@ -1455,8 +1473,11 @@ function load_branch() {
 	$.ajax({
 		url: api_path + 'hrm/list_of_company_branches',
 		type: 'POST',
-		data: { company_id: company_id },
+		data: {},
 		dataType: 'json',
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 
 		success: function(response) {
 			// $('#employee_details_display').show();
@@ -1497,7 +1518,10 @@ function list_employee_position_history() {
 		type: 'POST',
 		dataType: 'json',
 		url: api_path + 'hrm/list_company_employee_positions_history',
-		data: { company_id: company_id, employee_id: employee_id, user_id: user_id },
+		data: { employee_id: employee_id },
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		timeout: 60000,
 
 		success: function(response) {
@@ -1590,7 +1614,10 @@ function list_all_departments() {
 	$.ajax({
 		url: api_path + 'hrm/list_of_company_departments',
 		type: 'POST',
-		data: { company_id: company_id, page: 1, limit: 100 },
+		data: { page: 1, limit: 100 },
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		dataType: 'json',
 
 		success: function(response) {
@@ -1641,7 +1668,10 @@ function viewBasicInfo() {
 		type: 'GET',
 		dataType: 'json',
 		url: api_path + 'hrm/new_employee_info',
-		data: { company_id: company_id, employee_id: employee_id, user_id: user_id },
+		data: { employee_id: employee_id },
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// timeout: 60000,
 
 		success: function(response) {
@@ -1712,9 +1742,9 @@ function edit_employee() {
 			lastname: lastname,
 			middlename: middlename,
 			email: email,
-			company_id: company_id,
+			// company_id: company_id,
 			employee_id: employee_id,
-			user_id: user_id,
+			// user_id: user_id,
 			gender: gender,
 			religion: religion,
 			phone: phone,
@@ -1724,6 +1754,9 @@ function edit_employee() {
 			dob: dob,
 			status: status,
 			// user_id: user_id,
+		},
+		headers: {
+			Authorization: localStorage.getItem('token'),
 		},
 
 		success: function(response) {

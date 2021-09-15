@@ -22,7 +22,10 @@ function listPolicy() {
 	axios
 		.get(`${api_path}hrm/get_exit_policy`, {
 			params: {
-				company_id: company_id,
+				// company_id: company_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -78,8 +81,11 @@ function listExits() {
 	axios
 		.get(`${api_path}ess/get_staff_record_to_exit`, {
 			params: {
-				company_id: company_id,
-				user_id: user_id,
+				// company_id: company_id,
+				// user_id: user_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -251,7 +257,7 @@ function initiateExit() {
 	data.append('exit_type_id', exitType);
 	data.append('date_initiated', formatedDate);
 	// data.append('supervisor', supervisor);
-	data.append('company_id', company_id);
+	// data.append('company_id', company_id);
 	data.append('employee_id', employee_id);
 	console.log(data);
 
@@ -264,6 +270,7 @@ function initiateExit() {
 		contentType: false,
 		headers: {
 			enctype: 'multipart/form-data',
+			Authorization: localStorage.getItem('token'),
 		},
 		data: data,
 		error: function(error) {
@@ -300,7 +307,7 @@ function updateSupervisor() {
 	let supervisor = $('#supervisor').val();
 
 	let data = {
-		company_id: company_id,
+		// company_id: company_id,
 		employee_id: employee_id,
 		supervisor: supervisor,
 	};
@@ -309,6 +316,9 @@ function updateSupervisor() {
 		dataType: 'json',
 		url: `${api_path}hrm/update_supervisor`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -376,8 +386,11 @@ function viewEmploymentInfo() {
 	axios
 		.get(`${api_path}ess/get_staff_record_to_exit`, {
 			params: {
-				company_id: company_id,
-				user_id: user_id,
+				// company_id: company_id,
+				// user_id: user_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -424,7 +437,10 @@ function load_employee() {
 	$.ajax({
 		url: api_path + 'hrm/list_of_company_employees',
 		type: 'POST',
-		data: { company_id: company_id, page: page, limit: limit },
+		data: { page: page, limit: limit },
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		dataType: 'json',
 
 		success: function(response) {
@@ -452,7 +468,10 @@ function listExitType() {
 	axios
 		.get(`${api_path}hrm/company_exit_type`, {
 			params: {
-				company_id: company_id,
+				// company_id: company_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -489,7 +508,7 @@ function viewExit(id) {
 			params: {
 				exited_id: id,
 				user_id: user_id,
-				company_id: company_id,
+				// company_id: company_id,
 			},
 		})
 		.then(function(response) {

@@ -78,18 +78,21 @@ function addQC() {
 		qualification: degree,
 		year_concluded: year_concluded,
 		type: 'new',
-		company_id: company_id,
+		// company_id: company_id,
 		employee_id: employee_id,
 		from_year: '0000-00-00',
 		to_year: '0000-00-00',
 		grade: '',
-		user_id: user_id,
+		// user_id: user_id,
 	};
 	$.ajax({
 		type: 'Post',
 		dataType: 'json',
 		url: `${api_path}hrm/update_cv_eduhistory`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -136,9 +139,12 @@ function listQC() {
 	axios
 		.get(`${api_path}hrm/new_employee_info`, {
 			params: {
-				company_id: company_id,
+				// company_id: company_id,
 				employee_id: employee_id,
-				user_id: user_id,
+				// user_id: user_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -215,7 +221,10 @@ function viewQC(id) {
 			params: {
 				empl_edu_id: id,
 				employee_id: employee_id,
-				user_id: user_id,
+				// user_id: user_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -261,9 +270,9 @@ function editQC() {
 		qualification: degree,
 		year_concluded: year_concluded,
 		type: 'edit',
-		company_id: company_id,
+		// company_id: company_id,
 		employee_id: employee_id,
-		user_id: user_id,
+		// user_id: user_id,
 	};
 
 	$.ajax({
@@ -271,6 +280,9 @@ function editQC() {
 		dataType: 'json',
 		url: `${api_path}hrm/update_cv_eduhistory`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -318,7 +330,7 @@ function deleteQC(id) {
 		let data = {
 			empl_edu_id: id,
 			employee_id: employee_id,
-			user_id: user_id,
+			// user_id: user_id,
 		};
 
 		$.ajax({
@@ -326,6 +338,9 @@ function deleteQC(id) {
 			dataType: 'json',
 			url: `${api_path}hrm/delete_cv_eduhistory`,
 			data: data,
+			headers: {
+				Authorization: localStorage.getItem('token'),
+			},
 
 			error: function(res) {
 				console.log(res);
@@ -374,19 +389,22 @@ function addWorkExp() {
 	let data = {
 		company_name: prevCom,
 		position: jobTitle,
-		company_id: company_id,
+		// company_id: company_id,
 		employee_id: employee_id,
 		from_year: start,
 		to_year: end,
 		description: '..',
 		type: 'new',
-		user_id: user_id,
+		// user_id: user_id,
 	};
 	$.ajax({
 		type: 'Post',
 		dataType: 'json',
 		url: `${api_path}hrm/update_cv_workhistory`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -434,9 +452,12 @@ function listWorkExp() {
 	axios
 		.get(`${api_path}hrm/new_employee_info`, {
 			params: {
-				company_id: company_id,
+				// company_id: company_id,
 				employee_id: employee_id,
-				user_id: user_id,
+				// user_id: user_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -516,7 +537,10 @@ function viewWorkExp(id) {
 			params: {
 				wrkhisid: id,
 				employee_id: employee_id,
-				user_id: user_id,
+				// user_id: user_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -561,20 +585,23 @@ function editWorkExp() {
 	let data = {
 		company_name: prevCom,
 		position: jobTitle,
-		company_id: company_id,
+		// company_id: company_id,
 		employee_id: employee_id,
 		from_year: start,
 		to_year: end,
 		description: '..',
 		type: 'edit',
 		wrkhisid: id,
-		user_id: user_id,
+		// user_id: user_id,
 	};
 	$.ajax({
 		type: 'Post',
 		dataType: 'json',
 		url: `${api_path}hrm/update_cv_workhistory`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -622,7 +649,7 @@ function deleteWorkExp(id) {
 		let data = {
 			wrkhisid: id,
 			employee_id: employee_id,
-			user_id: user_id,
+			// user_id: user_id,
 		};
 
 		$.ajax({
@@ -630,6 +657,9 @@ function deleteWorkExp(id) {
 			dataType: 'json',
 			url: `${api_path}hrm/delete_cv_workhistory`,
 			data: data,
+			headers: {
+				Authorization: localStorage.getItem('token'),
+			},
 
 			error: function(res) {
 				console.log(res);
@@ -678,19 +708,22 @@ function addNOK() {
 	let data = {
 		nxt_kin_relationship: relationship,
 		nxt_kin_fullname: name,
-		company_id: company_id,
+		// company_id: company_id,
 		employee_id: employee_id,
 		nxt_kin_address: address,
 		nxt_kin_phone: phone,
 		nxt_kin_email: email,
 		type: 'new',
-		user_id: user_id,
+		// user_id: user_id,
 	};
 	$.ajax({
 		type: 'Post',
 		dataType: 'json',
 		url: `${api_path}hrm/update_employee_kin`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -739,9 +772,12 @@ function listNOK() {
 	axios
 		.get(`${api_path}hrm/new_employee_info`, {
 			params: {
-				company_id: company_id,
+				// company_id: company_id,
 				employee_id: employee_id,
-				user_id: user_id,
+				// user_id: user_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -820,8 +856,11 @@ function viewNOK(id) {
 			params: {
 				kin_id: id,
 				employee_id: employee_id,
-				company_id: company_id,
-				user_id: user_id,
+				// company_id: company_id,
+				// user_id: user_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -874,20 +913,23 @@ function editNOK() {
 	let data = {
 		nxt_kin_relationship: relationship,
 		nxt_kin_fullname: name,
-		company_id: company_id,
+		// company_id: company_id,
 		employee_id: employee_id,
 		nxt_kin_address: address,
 		nxt_kin_phone: phone,
 		nxt_kin_email: email,
 		type: 'edit',
 		kin_id: id,
-		user_id: user_id,
+		// user_id: user_id,
 	};
 	$.ajax({
 		type: 'Post',
 		dataType: 'json',
 		url: `${api_path}hrm/update_employee_kin`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -935,8 +977,8 @@ function deleteNOK(id) {
 		let data = {
 			kin_id: id,
 			employee_id: employee_id,
-			company_id: company_id,
-			user_id: user_id,
+			// company_id: company_id,
+			// user_id: user_id,
 		};
 
 		$.ajax({
@@ -944,6 +986,9 @@ function deleteNOK(id) {
 			dataType: 'json',
 			url: `${api_path}hrm/delete_employee_kin`,
 			data: data,
+			headers: {
+				Authorization: localStorage.getItem('token'),
+			},
 
 			error: function(res) {
 				console.log(res);

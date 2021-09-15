@@ -29,9 +29,12 @@ function listInterviewQuestionAndAnswer() {
 	axios
 		.get(`${api_path}ess/get_employee_question`, {
 			params: {
-				company_id: company_id,
-				user_id: user_id,
+				// company_id: company_id,
+				// user_id: user_id,
 				exit_id: exit_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -93,8 +96,8 @@ function sendInterviewResponseDraft() {
 	$('#add_res_loader').show();
 
 	let data = {
-		user_id: user_id,
-		company_id: company_id,
+		// user_id: user_id,
+		// company_id: company_id,
 		exit_id: exit_id,
 		questionaire: response,
 		response_state: 'draft',
@@ -105,6 +108,9 @@ function sendInterviewResponseDraft() {
 		dataType: 'json',
 		url: `${api_path}ess/submit_questionaire`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 
 		error: function(res) {
 			console.log(res);
@@ -139,8 +145,8 @@ function sendInterviewResponse() {
 	$('#add_res_loader').show();
 
 	let data = {
-		user_id: user_id,
-		company_id: company_id,
+		// user_id: user_id,
+		// company_id: company_id,
 		exit_id: exit_id,
 		questionaire: response,
 		response_state: 'completed',
@@ -151,6 +157,9 @@ function sendInterviewResponse() {
 		dataType: 'json',
 		url: `${api_path}ess/submit_questionaire`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 
 		error: function(res) {
 			console.log(res);
@@ -178,8 +187,11 @@ function viewSchedule() {
 		.get(`${api_path}ess/get_emloyee_schedule`, {
 			params: {
 				exit_id: exit_id,
-				user_id: user_id,
-				company_id: company_id,
+				// user_id: user_id,
+				// company_id: company_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {

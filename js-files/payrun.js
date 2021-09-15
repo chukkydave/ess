@@ -111,8 +111,11 @@ function listPayRunHistory() {
 	axios
 		.get(`${api_path}hrm/single_pay_run`, {
 			params: {
-				company_id: company_id,
+				// company_id: company_id,
 				pay_run_id: id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -384,7 +387,7 @@ function addPayDates() {
 
 	let data = {
 		pay_schedule_id: sche_id,
-		company_id: company_id,
+		// company_id: company_id,
 		date_range: pay_period,
 
 		pay_date: pay_date,
@@ -397,6 +400,9 @@ function addPayDates() {
 		dataType: 'json',
 		url: `${api_path}hrm/set_pay_period`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -443,9 +449,12 @@ function getPaySlipDetails(emp_id) {
 		dataType: 'json',
 		url: api_path + 'hrm/get_single_employee_slip',
 		data: {
-			company_id: company_id,
+			// company_id: company_id,
 			employee_id: emp_id,
 			pay_run_id: id,
+		},
+		headers: {
+			Authorization: localStorage.getItem('token'),
 		},
 		timeout: 60000,
 
@@ -599,9 +608,12 @@ function getPaySlipDetails2(emp_id) {
 		dataType: 'json',
 		url: api_path + 'hrm/get_single_employee_slip',
 		data: {
-			company_id: company_id,
+			// company_id: company_id,
 			employee_id: emp_id,
 			pay_run_id: id,
+		},
+		headers: {
+			Authorization: localStorage.getItem('token'),
 		},
 		timeout: 60000,
 
@@ -741,8 +753,11 @@ function showSalaryDetails(id) {
 	axios
 		.get(`${api_path}hrm/new_employee_info`, {
 			params: {
-				company_id: company_id,
+				// company_id: company_id,
 				employee_id: employee_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -839,10 +854,9 @@ function addDebitComponent() {
 			});
 		}
 	});
-	console.log('aaaaaaaaaaarrrrrrrr', debit_arr);
 
 	let data = {
-		company_id: company_id,
+		// company_id: company_id,
 		employee_id: employee_id,
 		pay_run_id: payrun_id,
 		payslips: debit_arr,
@@ -850,7 +864,7 @@ function addDebitComponent() {
 	$.ajax({
 		type: 'Post',
 		dataType: 'json',
-		url: `${api_path}hrm/add_break_down_to_pay_slip?company_id=${company_id}&pay_run_id=${payrun_id}&employee_id=${employee_id}`,
+		url: `${api_path}hrm/add_break_down_to_pay_slip?pay_run_id=${payrun_id}&employee_id=${employee_id}`,
 		data: data,
 		// headers: {
 		// 	Accept: 'application/json',
@@ -907,7 +921,7 @@ function addCreditComponent() {
 	});
 
 	let data = {
-		company_id: company_id,
+		// company_id: company_id,
 		employee_id: employee_id,
 		pay_run_id: payrun_id,
 		payslips: credit_arr,
@@ -915,8 +929,11 @@ function addCreditComponent() {
 	$.ajax({
 		type: 'Post',
 		dataType: 'json',
-		url: `${api_path}hrm/add_break_down_to_pay_slip?company_id=${company_id}&pay_run_id=${payrun_id}&employee_id=${employee_id}`,
+		url: `${api_path}hrm/add_break_down_to_pay_slip?pay_run_id=${payrun_id}&employee_id=${employee_id}`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -969,7 +986,7 @@ function deleteBreakdown(id) {
 			let employee_id = $('#add_debitComponent_btn').attr('data');
 			let idd = $(`#creddeb_${id}`).attr('data');
 			let data = {
-				company_id: company_id,
+				// company_id: company_id,
 				pay_slip_id: idd,
 				employee_id: employee_id,
 			};
@@ -979,6 +996,9 @@ function deleteBreakdown(id) {
 				dataType: 'json',
 				url: `${api_path}hrm/delete_sinlge_record_payslip`,
 				data: data,
+				headers: {
+					Authorization: localStorage.getItem('token'),
+				},
 
 				error: function(res) {
 					console.log(res);
@@ -1012,7 +1032,7 @@ function deleteBreakdown2(id) {
 		// let employee_id = window.location.search.split('=')[1];
 		let idd = $(`#delCredDeb_${id}`).attr('data');
 		let data = {
-			company_id: company_id,
+			// company_id: company_id,
 			pay_slip_id: idd,
 			employee_id: employee_id,
 		};
@@ -1022,6 +1042,9 @@ function deleteBreakdown2(id) {
 			dataType: 'json',
 			url: `${api_path}hrm/delete_sinlge_record_payslip`,
 			data: data,
+			headers: {
+				Authorization: localStorage.getItem('token'),
+			},
 
 			error: function(res) {
 				console.log(res);
@@ -1072,7 +1095,7 @@ function saveSalaryBreakdown() {
 	// let obj = { breakdown_id: 9, amount: 5000 };
 
 	let data = {
-		company_id: company_id,
+		// company_id: company_id,
 		employee_id: employee_id,
 		pay_slips: emp_breakdown,
 		pay_run_id: pay_run_id,
@@ -1083,6 +1106,9 @@ function saveSalaryBreakdown() {
 		dataType: 'json',
 		url: `${api_path}hrm/update_pay_slip`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -1119,8 +1145,11 @@ function load_employee() {
 	$.ajax({
 		url: api_path + 'hrm/list_of_company_employees',
 		type: 'POST',
-		data: { company_id: company_id, page: page, limit: limit },
+		data: { page: page, limit: limit },
 		dataType: 'json',
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 
 		success: function(response) {
 			// console.log(response);
@@ -1151,8 +1180,11 @@ function listApprovers() {
 	axios
 		.get(`${api_path}hrm/list_payrun_approval`, {
 			params: {
-				company_id: company_id,
+				// company_id: company_id,
 				pay_run_id: pay_run_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then((response) => {
@@ -1234,7 +1266,7 @@ function addApprovals() {
 	$('#add_apprvoer_loader').show();
 
 	let data = {
-		company_id: company_id,
+		// company_id: company_id,
 		pay_run_id: pay_run_id,
 		approvals: arr,
 	};
@@ -1243,6 +1275,9 @@ function addApprovals() {
 		dataType: 'json',
 		url: `${api_path}hrm/create_payrun_approval`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -1279,7 +1314,7 @@ function deleteAppvrover(id) {
 		let company_id = localStorage.getItem('company_id');
 
 		let data = {
-			company_id: company_id,
+			// company_id: company_id,
 			approval_id: id,
 		};
 
@@ -1288,6 +1323,9 @@ function deleteAppvrover(id) {
 			dataType: 'json',
 			url: `${api_path}hrm/remove_pay_run_approval`,
 			data: data,
+			headers: {
+				Authorization: localStorage.getItem('token'),
+			},
 
 			error: function(res) {
 				console.log(res);
@@ -1321,7 +1359,7 @@ function HRApprove() {
 		let user_id = params.get('aID');
 
 		let data = {
-			company_id: company_id,
+			// company_id: company_id,
 			approval_status: 'approve',
 			approval_id: user_id,
 			approval_person: user_id2,
@@ -1333,6 +1371,9 @@ function HRApprove() {
 			dataType: 'json',
 			url: `${api_path}hrm/approve_pay_run`,
 			data: data,
+			headers: {
+				Authorization: localStorage.getItem('token'),
+			},
 
 			error: function(res) {
 				console.log(res);
@@ -1368,7 +1409,7 @@ function HRDecline() {
 		let user_id = params.get('aID');
 
 		let data = {
-			company_id: company_id,
+			// company_id: company_id,
 			approval_status: 'decline',
 			approval_id: user_id,
 			approval_person: user_id2,
@@ -1380,6 +1421,9 @@ function HRDecline() {
 			dataType: 'json',
 			url: `${api_path}hrm/approve_pay_run`,
 			data: data,
+			headers: {
+				Authorization: localStorage.getItem('token'),
+			},
 
 			error: function(res) {
 				console.log(res);

@@ -27,9 +27,12 @@ function leave_pending_count() {
 		dataType: 'json',
 		url: api_path + 'ess/count_balance_leave',
 		data: {
-			company_id: company_id,
+			// company_id: company_id,
 			email: email,
-			user_id: user_id,
+			// user_id: user_id,
+		},
+		headers: {
+			Authorization: localStorage.getItem('token'),
 		},
 		timeout: 60000,
 		success: function(response) {
@@ -50,8 +53,11 @@ function pending_approvals() {
 	$.ajax({
 		type: 'GET',
 		dataType: 'json',
-		url: `${api_path}ess/ess_approval_count?company_id=${company_id}&user_id=${user_id}`,
+		url: `${api_path}ess/ess_approval_count`,
 		timeout: 60000,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		success: function(response) {
 			$('#pnd_appv').html(response.data);
 			console.log(response);
@@ -76,8 +82,11 @@ function fetch_notice_board() {
 	axios
 		.get(`${api_path}hrm/get_notice_board`, {
 			params: {
-				company_id: company_id,
+				// company_id: company_id,
 				status: 'publish',
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -139,8 +148,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	axios
 		.get(`${api_path}hrm/calender_events`, {
 			params: {
-				company_id: company_id,
+				// company_id: company_id,
 				current_date: current_date,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {

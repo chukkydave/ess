@@ -52,16 +52,19 @@ function addAllotDays() {
 	let allot_no = $('#extra-allot-inp').val();
 
 	let data = {
-		company_id: company_id,
+		// company_id: company_id,
 		employee_id: employee_id,
 		allotted_days: allot_no,
-		user_id: user_id,
+		// user_id: user_id,
 	};
 	$.ajax({
 		type: 'Post',
 		dataType: 'json',
 		url: `${api_path}hrm/save_allotted_days`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 
 		error: function(res) {
 			console.log(res);
@@ -102,9 +105,10 @@ function listAllotDays() {
 	axios
 		.get(`${api_path}hrm/new_employee_info`, {
 			params: {
-				company_id: company_id,
 				employee_id: employee_id,
-				user_id: user_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -158,9 +162,9 @@ function listLeaveGraph() {
 	$('#list_graph_loader').show();
 
 	let data = {
-		company_id: company_id,
+		// company_id: company_id,
 		employee_id: employee_id,
-		user_id: user_id,
+		// user_id: user_id,
 	};
 
 	$.ajax({
@@ -168,6 +172,9 @@ function listLeaveGraph() {
 		dataType: 'json',
 		url: `${api_path}hrm/employeeUsedStatPie`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 
 		error: function(res) {
 			console.log(res);
@@ -250,9 +257,12 @@ function list_employee_leave_history() {
 	$.ajax({
 		type: 'GET',
 		dataType: 'json',
-		url: `${api_path}hrm/new_employee_info?company_id=${company_id}&employee_id=${employee_id}&user_id=${user_id}`,
+		url: `${api_path}hrm/new_employee_info?employee_id=${employee_id}`,
 		// data: { company_id: company_id, employee_id: employee_id, page: page, limit: limit },
 		timeout: 60000,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 
 		success: function(response) {
 			console.log(response);

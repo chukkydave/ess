@@ -14,12 +14,13 @@ function listPayslip(page) {
 	axios
 		.get(`${api_path}hrm/approve_employee_payslip`, {
 			params: {
-				company_id: company_id,
 				employee_id: employee_id,
 				date_range: date_range,
 				page: page,
 				limit: limit,
-				user_id: user_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -111,10 +112,11 @@ function viewslip(id) {
 		dataType: 'json',
 		url: api_path + 'hrm/get_single_employee_slip',
 		data: {
-			company_id: company_id,
 			employee_id: emp_id,
 			pay_run_id: id,
-			user_id: user_id,
+		},
+		headers: {
+			Authorization: localStorage.getItem('token'),
 		},
 		timeout: 60000,
 

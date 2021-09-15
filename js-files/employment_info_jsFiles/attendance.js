@@ -23,13 +23,13 @@ function list_employee_attendance() {
 	let month = parseInt($('#atten_month_filter').val()) + 1;
 	let year = $('#atten_year_filter').val();
 	let data = {
-		company_id: company_id,
+		// company_id: company_id,
 		employee_id: employee_id,
 		page: page,
 		limit: limit,
 		filter_month: month,
 		filter_year: year,
-		user_id: user_id,
+		// user_id: user_id,
 	};
 	console.log(data);
 
@@ -38,6 +38,9 @@ function list_employee_attendance() {
 		dataType: 'json',
 		url: api_path + 'hrm/list_of_employee_attendances',
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		timeout: 60000,
 
 		success: function(response) {

@@ -139,11 +139,12 @@ function list_employment_payment_type() {
 		dataType: 'json',
 		url: api_path + 'hrm/get_employee_salary_breakdown',
 		data: {
-			company_id: company_id,
 			employee_id: employee_id,
-			user_id: user_id,
 		},
 		timeout: 60000,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 
 		success: function(response) {
 			console.log(response);
@@ -283,16 +284,17 @@ function addDebitComponent() {
 	console.log('aaaaaaaaaaarrrrrrrr', debit_arr);
 
 	let data = {
-		company_id: company_id,
 		employee_id: employee_id,
 		breakdown: debit_arr,
-		user_id: user_id,
 	};
 	$.ajax({
 		type: 'Post',
 		dataType: 'json',
 		url: `${api_path}hrm/create_employee_salary_breakdown`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -352,10 +354,8 @@ function addCreditComponent() {
 	});
 
 	let data = {
-		company_id: company_id,
 		employee_id: employee_id,
 		breakdown: credit_arr,
-		user_id: user_id,
 	};
 	$.ajax({
 		type: 'Post',
@@ -422,10 +422,8 @@ function deleteBreakdown(id) {
 			let user_id = localStorage.getItem('user_id');
 			let idd = $(`#creddeb_${id}`).attr('data');
 			let data = {
-				company_id: company_id,
 				breakdown_id: idd,
 				employee_id: employee_id,
-				user_id: user_id,
 			};
 
 			$.ajax({
@@ -433,6 +431,9 @@ function deleteBreakdown(id) {
 				dataType: 'json',
 				url: `${api_path}hrm/delete_employee_salary_breakdown`,
 				data: data,
+				headers: {
+					Authorization: localStorage.getItem('token'),
+				},
 
 				error: function(res) {
 					console.log(res);
@@ -477,10 +478,8 @@ function deleteBreakdown2(id) {
 		let user_id = localStorage.getItem('user_id');
 		let idd = $(`#delCredDeb_${id}`).attr('data');
 		let data = {
-			company_id: company_id,
 			breakdown_id: idd,
 			employee_id: employee_id,
-			user_id: user_id,
 		};
 
 		$.ajax({
@@ -488,6 +487,9 @@ function deleteBreakdown2(id) {
 			dataType: 'json',
 			url: `${api_path}hrm/delete_employee_salary_breakdown`,
 			data: data,
+			headers: {
+				Authorization: localStorage.getItem('token'),
+			},
 
 			error: function(res) {
 				console.log(res);
@@ -533,19 +535,20 @@ function addAcctDetails() {
 	let sort_code = $('#sort_code').val();
 
 	let data = {
-		company_id: company_id,
 		employee_id: employee_id,
 		bank_name: bank_name,
 		account_name: acct_name,
 		account_no: acct_no,
 		sort_code: sort_code,
-		user_id: user_id,
 	};
 	$.ajax({
 		type: 'Put',
 		dataType: 'json',
 		url: `${api_path}hrm/update_employee_bank_account`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -592,9 +595,10 @@ function showBankDetails() {
 	axios
 		.get(`${api_path}hrm/new_employee_info`, {
 			params: {
-				company_id: company_id,
-				user_id: user_id,
 				employee_id: employee_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -655,17 +659,18 @@ function addSalaryDetails() {
 	let result = salary[1].replace(/,/g, '');
 
 	let data = {
-		company_id: company_id,
 		employee_id: employee_id,
 		salary: result,
 		earning_type: type,
-		user_id: user_id,
 	};
 	$.ajax({
 		type: 'Put',
 		dataType: 'json',
 		url: `${api_path}hrm/update_employee_salary`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -708,9 +713,10 @@ function showSalaryDetails() {
 	axios
 		.get(`${api_path}hrm/new_employee_info`, {
 			params: {
-				company_id: company_id,
 				employee_id: employee_id,
-				user_id: user_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -914,13 +920,11 @@ function saveSalaryBreakdown() {
 	// let obj = { breakdown_id: 9, amount: 5000 };
 
 	let data = {
-		company_id: company_id,
 		employee_id: employee_id,
 		employee_salary_breakdown: emp_breakdown,
 		net_pay: net,
 		salary: salary,
 		earning_type: earn_type,
-		user_id: user_id,
 	};
 	console.log(data);
 	$.ajax({
@@ -928,6 +932,9 @@ function saveSalaryBreakdown() {
 		dataType: 'json',
 		url: `${api_path}hrm/update_employee_salary_breakdown`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',

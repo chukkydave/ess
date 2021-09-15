@@ -42,8 +42,11 @@ function fetchSingleExit() {
 		.get(`${api_path}ess/single_staff_exit`, {
 			params: {
 				exited_id: exit_id,
-				user_id: user_id,
-				company_id: company_id,
+				// user_id: user_id,
+				// company_id: company_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -123,8 +126,11 @@ function fetch_employee_details() {
 		type: 'GET',
 		dataType: 'json',
 		url: api_path + 'hrm/new_employee_info',
-		data: { company_id: company_id, employee_id: '', user_id: user_id },
+		data: { employee_id: '' },
 		timeout: 60000,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 
 		success: function(response) {
 			// console.log(response);
@@ -278,8 +284,11 @@ function listApprovers() {
 	axios
 		.get(`${api_path}hrm/fetch_exit_approval`, {
 			params: {
-				company_id: company_id,
+				// company_id: company_id,
 				exit_id: exit_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then((response) => {
@@ -346,8 +355,11 @@ function load_employee() {
 	$.ajax({
 		url: api_path + 'hrm/list_of_company_employees',
 		type: 'POST',
-		data: { company_id: company_id, page: page, limit: limit },
+		data: { page: page, limit: limit },
 		dataType: 'json',
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 
 		success: function(response) {
 			// console.log(response);
@@ -382,8 +394,6 @@ function ESSApprove() {
 			let myUserId = localStorage.getItem('user_id');
 
 			let data = {
-				company_id: company_id,
-				user_id: myUserId,
 				approve_status: 'approved',
 				exit_id: exit_id,
 				comment: comment,
@@ -395,6 +405,9 @@ function ESSApprove() {
 				dataType: 'json',
 				url: `${api_path}ess/ess_approve_exit`,
 				data: data,
+				headers: {
+					Authorization: localStorage.getItem('token'),
+				},
 
 				error: function(res) {
 					console.log(res);
@@ -436,8 +449,6 @@ function ESSDecline() {
 			let myUserId = localStorage.getItem('user_id');
 
 			let data = {
-				company_id: company_id,
-				user_id: myUserId,
 				approve_status: 'declined',
 				exit_id: exit_id,
 				comment: comment,
@@ -449,6 +460,9 @@ function ESSDecline() {
 				dataType: 'json',
 				url: `${api_path}ess/ess_approve_exit`,
 				data: data,
+				headers: {
+					Authorization: localStorage.getItem('token'),
+				},
 
 				error: function(res) {
 					console.log(res);

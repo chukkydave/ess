@@ -19,7 +19,7 @@ function addDepartment() {
 	let data = {
 		started: from,
 		department_id: name,
-		company_id: company_id,
+		// company_id: company_id,
 		employee_id: employee_id,
 		ended: to,
 		type: 'new',
@@ -29,6 +29,9 @@ function addDepartment() {
 		dataType: 'json',
 		url: `${api_path}hrm/update_employee_department`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -65,8 +68,11 @@ function listDepartment() {
 	axios
 		.get(`${api_path}hrm/new_employee_info`, {
 			params: {
-				company_id: company_id,
+				// company_id: company_id,
 				employee_id: employee_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -147,7 +153,10 @@ function list_employee_documents() {
 		type: 'POST',
 		dataType: 'json',
 		url: api_path + 'hrm/list_of_user_docs',
-		data: { company_id: company_id, user_id: user_id, page: page, limit: limit },
+		data: { page: page, limit: limit },
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		timeout: 60000,
 
 		success: function(response) {
@@ -250,7 +259,9 @@ function viewDepartment(id) {
 			params: {
 				dep_his_id: id,
 				employee_id: employee_id,
-				company_id: company_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -292,7 +303,6 @@ function editDepartment() {
 	let data = {
 		started: from,
 		department_id: name,
-		company_id: company_id,
 		employee_id: employee_id,
 		ended: to,
 		dep_his_id: id,
@@ -303,6 +313,9 @@ function editDepartment() {
 		dataType: 'json',
 		url: `${api_path}hrm/update_employee_department`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',
@@ -340,7 +353,6 @@ function deleteDepartment(id) {
 		let data = {
 			dep_his_id: id,
 			employee_id: employee_id,
-			company_id: company_id,
 		};
 
 		$.ajax({
@@ -348,6 +360,9 @@ function deleteDepartment(id) {
 			dataType: 'json',
 			url: `${api_path}hrm/delete_employee_department`,
 			data: data,
+			headers: {
+				Authorization: localStorage.getItem('token'),
+			},
 
 			error: function(res) {
 				console.log(res);
@@ -379,8 +394,11 @@ function list_doctype() {
 		type: 'POST',
 		dataType: 'json',
 		url: api_path + 'hrm/list_of_company_doctypes',
-		data: { company_id: company_id, page: page, limit: limit },
+		data: { page: page, limit: limit },
 		timeout: 60000,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 
 		success: function(response) {
 			// console.log(response);

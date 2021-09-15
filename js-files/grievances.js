@@ -98,7 +98,10 @@ function load_branch() {
 		url: api_path + 'hrm/list_of_company_branches',
 		type: 'POST',
 		data: {
-			company_id: company_id,
+			// company_id: company_id,
+		},
+		headers: {
+			Authorization: localStorage.getItem('token'),
 		},
 		dataType: 'json',
 
@@ -132,9 +135,12 @@ function load_employee() {
 		url: api_path + 'hrm/list_of_company_employees',
 		type: 'POST',
 		data: {
-			company_id: company_id,
+			// company_id: company_id,
 			page: page,
 			limit: limit,
+		},
+		headers: {
+			Authorization: localStorage.getItem('token'),
 		},
 		dataType: 'json',
 
@@ -201,7 +207,7 @@ function edit_employee_grievance(grievance_id) {
 	data.append('g_type', g_type);
 	data.append('incident_date', incident_date);
 	data.append('incident', incident);
-	data.append('company_id', company_id);
+	// data.append('company_id', company_id);
 	data.append('g_by', g_by);
 	data.append('g_against', against);
 	data.append('branch', branch);
@@ -223,6 +229,7 @@ function edit_employee_grievance(grievance_id) {
 		contentType: false,
 		headers: {
 			enctype: 'multipart/form-data',
+			Authorization: localStorage.getItem('token'),
 		},
 		data: data,
 
@@ -305,7 +312,7 @@ function edit_employee_grievance2(grievance_id) {
 	data.append('g_type', g_type);
 	data.append('incident_date', incident_date);
 	data.append('incident', incident);
-	data.append('company_id', company_id);
+	// data.append('company_id', company_id);
 	data.append('g_by', g_by);
 	data.append('g_against', against);
 	data.append('branch', branch);
@@ -327,6 +334,7 @@ function edit_employee_grievance2(grievance_id) {
 		contentType: false,
 		headers: {
 			enctype: 'multipart/form-data',
+			Authorization: localStorage.getItem('token'),
 		},
 		data: data,
 
@@ -381,7 +389,10 @@ function fetch_grievance_details(grievance_id) {
 		url: api_path + 'ess/view_single_grievance',
 		data: {
 			grievance_id: grievance_id,
-			company_id: company_id,
+			// company_id: company_id,
+		},
+		headers: {
+			Authorization: localStorage.getItem('token'),
 		},
 
 		success: function(response) {
@@ -475,7 +486,7 @@ function add_grievance_report() {
 	data.append('g_type', g_type);
 	data.append('incident_date', incident_date);
 	data.append('incident', incident);
-	data.append('company_id', company_id);
+	// data.append('company_id', company_id);
 	data.append('g_by', g_by);
 	data.append('g_against', g_against);
 	data.append('branch', branch);
@@ -497,6 +508,7 @@ function add_grievance_report() {
 		contentType: false,
 		headers: {
 			enctype: 'multipart/form-data',
+			Authorization: localStorage.getItem('token'),
 		},
 		data: data,
 
@@ -586,7 +598,7 @@ function add_grievance_report2() {
 	data.append('g_type', g_type);
 	data.append('incident_date', incident_date);
 	data.append('incident', incident);
-	data.append('company_id', company_id);
+	// data.append('company_id', company_id);
 	data.append('g_by', g_by);
 	data.append('g_against', g_against);
 	data.append('branch', branch);
@@ -608,6 +620,7 @@ function add_grievance_report2() {
 		contentType: false,
 		headers: {
 			enctype: 'multipart/form-data',
+			Authorization: localStorage.getItem('token'),
 		},
 		data: data,
 		success: function(response) {
@@ -673,8 +686,11 @@ function fetch_grievance_info(grievance_id) {
 		cache: false,
 		url: api_path + 'ess/view_single_grievance',
 		data: {
-			company_id: company_id,
+			// company_id: company_id,
 			grievance_id: grievance_id,
+		},
+		headers: {
+			Authorization: localStorage.getItem('token'),
 		},
 
 		success: function(response) {
@@ -750,9 +766,12 @@ function delete_grievance(grievance_id) {
 		dataType: 'json',
 		url: api_path + 'ess/delete_grievance',
 		data: {
-			company_id: company_id,
+			// company_id: company_id,
 			g_by: g_by,
 			grievance_id: grievance_id,
+		},
+		headers: {
+			Authorization: localStorage.getItem('token'),
 		},
 		timeout: 60000, // sets timeout to one minute
 		// objAJAXRequest, strError
@@ -818,14 +837,17 @@ function list_of_grievances(page) {
 		dataType: 'json',
 		url: api_path + 'ess/all_reported_grievance',
 		data: {
-			company_id: company_id,
+			// company_id: company_id,
 			page: page,
 			limit: limit,
-			user_id: user_id,
+			// user_id: user_id,
 			greviance_code: greviance_code,
 			status: status,
 			sort_type: sort_type,
 			grievance_against: gr_by,
+		},
+		headers: {
+			Authorization: localStorage.getItem('token'),
 		},
 		timeout: 60000,
 

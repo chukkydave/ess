@@ -42,11 +42,14 @@ function do_the_action(decision, app_id) {
 		dataType: 'json',
 		url: api_path + 'ess/ess_approval_or_decline',
 		data: {
-			company_id: company_id,
+			// company_id: company_id,
 			email: email,
-			user_id: user_id,
+			// user_id: user_id,
 			decision: decision,
 			app_id: app_id,
+		},
+		headers: {
+			Authorization: localStorage.getItem('token'),
 		},
 		timeout: 60000,
 		success: function(response) {
@@ -116,8 +119,11 @@ function view_approval_details(id) {
 		dataType: 'json',
 		url: api_path + 'ess/view_ess_approval',
 		data: {
-			company_id: company_id,
+			// company_id: company_id,
 			app_id: id,
+		},
+		headers: {
+			Authorization: localStorage.getItem('token'),
 		},
 		timeout: 60000,
 		success: function(response) {
@@ -176,12 +182,15 @@ function pending_approvals_list(page) {
 		dataType: 'json',
 		url: api_path + 'ess/list_employee_approvals',
 		data: {
-			user_id: user_id,
-			company_id: company_id,
+			// user_id: user_id,
+			// company_id: company_id,
 			page: page,
 			limit: limit,
 			email: email,
 			sort_type: sort_type,
+		},
+		headers: {
+			Authorization: localStorage.getItem('token'),
 		},
 		timeout: 60000,
 

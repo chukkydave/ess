@@ -24,10 +24,13 @@ function getCorrespondence(page) {
 	axios
 		.get(`${api_path}hrm/get_exit_correspondence`, {
 			params: {
-				company_id: company_id,
+				// company_id: company_id,
 				exit_id: exitId,
 				page: page,
 				limit: limit,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -88,8 +91,8 @@ function sendMessage() {
 	let msg = $('#corres_msg').val();
 
 	let data = {
-		company_id: company_id,
-		user_id: user_idm,
+		// company_id: company_id,
+		// user_id: user_idm,
 		correspondence_msg: msg,
 		exit_id: exitId,
 	};
@@ -98,6 +101,9 @@ function sendMessage() {
 		dataType: 'json',
 		url: `${api_path}hrm/create_exit_correspondence`,
 		data: data,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		// headers: {
 		// 	Accept: 'application/json',
 		// 	'Content-Type': 'application/json',

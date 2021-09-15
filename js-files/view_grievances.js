@@ -15,8 +15,11 @@ function fetch_grievance_info() {
 		cache: false,
 		url: api_path + 'ess/view_single_grievance',
 		data: {
-			company_id: company_id,
+			// company_id: company_id,
 			grievance_id: grievance_id,
+		},
+		headers: {
+			Authorization: localStorage.getItem('token'),
 		},
 
 		success: function(response) {
@@ -103,9 +106,12 @@ function viewProceedings() {
 		.get(`${api_path}hrm/get_proceeding_header`, {
 			params: {
 				grievance_id: id,
-				company_id: company_id,
+				// company_id: company_id,
 				// page: page,
 				// limit: limit,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -218,7 +224,7 @@ function addComment(proceedings_id) {
 		data.append('proceedings_id', proceedings_id);
 		data.append('comment_by', comment_by);
 		// data.append('greviance_against', greviance_against);
-		data.append('company_id', company_id);
+		// data.append('company_id', company_id);
 		data.append('comments', comment);
 
 		$.ajax({
@@ -230,6 +236,7 @@ function addComment(proceedings_id) {
 			contentType: false,
 			headers: {
 				enctype: 'multipart/form-data',
+				Authorization: localStorage.getItem('token'),
 			},
 			data: data,
 
