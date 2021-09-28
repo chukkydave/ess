@@ -376,6 +376,9 @@ function fetch_leave_info(leave_id) {
 		dataType: 'json',
 		cache: false,
 		url: api_path + 'ess/view_leave_status',
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		data: {
 			leave_id: leave_id,
 			// company_id: company_id,
@@ -480,6 +483,9 @@ function delete_leave(leave_id) {
 		type: 'POST',
 		dataType: 'json',
 		url: api_path + 'ess/delete_leave_request',
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 		data: {
 			// company_id: company_id,
 			email: email,
