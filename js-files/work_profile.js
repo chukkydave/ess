@@ -15,6 +15,9 @@ function fetch_employee_details() {
 		url: api_path + 'hrm/new_employee_info',
 		data: { employee_id: employee_id },
 		timeout: 60000,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 
 		success: function(response) {
 			// console.log(response);

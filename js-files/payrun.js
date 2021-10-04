@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	listPayRunHistory();
+	listPayRunHistory(1);
 
 	let url = window.location.href;
 	let params = new URL(url).searchParams;
@@ -94,7 +94,7 @@ $(document).ready(function() {
 	// listApprovers();
 });
 
-function listPayRunHistory() {
+function listPayRunHistory(page) {
 	let company_id = localStorage.getItem('company_id');
 	// let id = window.location.search.split('=')[1];
 	let url = window.location.href;
@@ -106,13 +106,15 @@ function listPayRunHistory() {
 	$('#list_payrun_loader2').show();
 	$('#list_payrun_table3').hide();
 	$('#list_payrun_loader3').show();
-	let limit = 100;
-	let page = 1;
+	let limit = 10;
+	// let page = 1;
 	axios
 		.get(`${api_path}hrm/single_pay_run`, {
 			params: {
 				// company_id: company_id,
 				pay_run_id: id,
+				page: page,
+				limit: limit,
 			},
 			headers: {
 				Authorization: localStorage.getItem('token'),
@@ -342,6 +344,13 @@ function listPayRunHistory() {
 				$('#list_payrun_loader4').hide();
 				$('#list_payrun_table4').show();
 			}
+			$('#pagination').twbsPagination({
+				totalPages: Math.ceil(response.data.total_rows / limit),
+				visiblePages: 10,
+				onPageClick: function(event, page) {
+					listPayRunHistory(page);
+				},
+			});
 		})
 		.catch(function(error) {
 			console.log(error, 'eeeeeeeerrrrrrrrrooooottt');
@@ -1124,7 +1133,7 @@ function saveSalaryBreakdown() {
 			if (response.status == 200 || response.status == 201) {
 				$('#save_pay_loader').hide();
 				$('#edit_payslip_modal').modal('hide');
-				listPayRunHistory();
+				listPayRunHistory(1);
 				// $('#save_pay').show();
 				// $('#mod_body').html('Salary Breakdown Saved successfully');
 				// $('#successModal').modal('show');

@@ -42,6 +42,9 @@ function list_employee_attendance() {
 			Authorization: localStorage.getItem('token'),
 		},
 		timeout: 60000,
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
 
 		success: function(response) {
 			// console.log(response);
