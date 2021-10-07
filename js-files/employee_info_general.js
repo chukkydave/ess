@@ -1812,6 +1812,9 @@ function edit_employee() {
 
 Dropzone.options.employeepictureform = {
 	maxFiles: 1,
+	headers: {
+		Authorization: localStorage.getItem('token'),
+	},
 	accept: function(file, done) {
 		if (file.type != 'image/jpeg' && file.type != 'image/png' && file.type != 'image/gif') {
 			alert('You are allowed to drag only images');

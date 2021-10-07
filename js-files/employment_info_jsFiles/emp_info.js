@@ -204,6 +204,9 @@ function listDepartment() {
 				employee_id: employee_id,
 				// user_id: user_id,
 			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
+			},
 		})
 		.then(function(response) {
 			let dept_list;

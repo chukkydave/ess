@@ -135,6 +135,10 @@ function listPayRunHistory(page) {
 				pay_period_end,
 				pay_schedule_id,
 				pay_run_name,
+				sum_credit,
+				sum_debit,
+				sum_net_pay,
+				sum_taxed,
 			} = response.data.data;
 			if (is_pay_run_active == 'active') {
 				statuslo = 'Active';
@@ -146,6 +150,59 @@ function listPayRunHistory(page) {
 				$('#payrun_statuslo').css({ 'background-color': '#5cb85c', color: 'white' });
 				$('#whole_loader').hide();
 				$('#second_part').show();
+			}
+
+			let sum_credits;
+			let sum_debits;
+			let sum_net_pays;
+			let sum_taxeds;
+
+			if (
+				sum_credit == '0' ||
+				sum_credit == '' ||
+				sum_credit == null ||
+				sum_credit == NaN ||
+				sum_credit == '0.00'
+			) {
+				sum_credits = 0;
+			} else {
+				sum_credits = parseFloat(sum_credit);
+			}
+
+			if (
+				sum_debit == '0' ||
+				sum_debit == '' ||
+				sum_debit == null ||
+				sum_debit == NaN ||
+				sum_debit == '0.00'
+			) {
+				sum_debits = 0;
+			} else {
+				sum_debits = parseFloat(sum_debit);
+			}
+
+			if (
+				sum_net_pay == '0' ||
+				sum_net_pay == '' ||
+				sum_net_pay == null ||
+				sum_net_pay == NaN ||
+				sum_net_pay == '0.00'
+			) {
+				sum_net_pays = 0;
+			} else {
+				sum_net_pays = parseFloat(sum_net_pay);
+			}
+
+			if (
+				sum_taxed == '0' ||
+				sum_taxed == '' ||
+				sum_taxed == null ||
+				sum_taxed == NaN ||
+				sum_taxed == '0.00'
+			) {
+				sum_taxeds = 0;
+			} else {
+				sum_taxeds = parseFloat(sum_taxed);
 			}
 			if (employee.length > 0) {
 				let grossArr = [];
@@ -256,10 +313,10 @@ function listPayRunHistory(page) {
 				$('#list_payrun_body2').html(payrun_list2);
 				$('#list_payrun_body3').html(payrun_list3);
 				$('#list_payrun_body4').html(payrun_list4);
-				let totalNet = getArraySum(netArr);
-				let totalGross = getArraySum(grossArr);
-				let totalDeduc = getArraySum(deducArr);
-				let totalTax = getArraySum(taxArr);
+				let totalNet = sum_net_pays;
+				let totalGross = sum_credits;
+				let totalDeduc = sum_debits;
+				let totalTax = sum_taxeds;
 				$('#list_payrun_body').append(
 					`<tr style="border-top:3px solid; border-bottom:3px solid;">
                     <td></td>
