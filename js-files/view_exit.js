@@ -22,6 +22,7 @@ const exit_id = params.get('ex');
 const user_id = params.get('us');
 const approve_id = params.get('app_id');
 const exit_status = params.get('status');
+const employee_idt = params.get('emp');
 
 if (exit_status === 'pending') {
 	$('#btnGroup').css('display', 'flex');
@@ -43,7 +44,7 @@ function fetchSingleExit() {
 			params: {
 				exited_id: exit_id,
 				// user_id: user_id,
-				// company_id: company_id,
+				employee_id: employee_idt,
 			},
 			headers: {
 				Authorization: localStorage.getItem('token'),
@@ -54,52 +55,68 @@ function fetchSingleExit() {
 
 			$('#single_view_loader').hide();
 			$('#single_view_btn').show();
+			if (response.data.data.fullname) {
+				let {
+					comment,
+					date_initiated,
+					date_of_employ,
+					department,
+					department_name,
+					document,
+					employee_id,
+					employee_status,
+					exit_status,
+					exit_type_id,
+					exit_type_name,
+					fullname,
+					job_title,
+					position,
+					supervisor,
+					supervisor_name,
+					exited_date,
+				} = response.data.data;
 
-			let {
-				comment,
-				date_initiated,
-				date_of_employ,
-				department,
-				department_name,
-				document,
-				employee_id,
-				employee_status,
-				exit_status,
-				exit_type_id,
-				exit_type_name,
-				fullname,
-				job_title,
-				position,
-				supervisor,
-				supervisor_name,
-				exited_date,
-			} = response.data.data;
-			let DOJ = moment(date_of_employ, 'YYYY-MM-DD').format('LL');
-			let ED =
+				let DOJ = moment(date_of_employ, 'YYYY-MM-DD').format('LL');
+				let ED =
 
-					exited_date !== '0000-00-00' ? moment(exited_date, 'YYYY-MM-DD').format('LL') :
-					'...';
-			$('#single_view_name').html(fullname);
-			$('#single_view_dept').html(department_name);
-			$('#single_view_JT').html(job_title);
-			$('#single_view_DOJ').html(DOJ);
-			$('#single_view_supervisor').html(supervisor_name);
-			$('#single_view_exitType').html(exit_type_name);
-			$('#single_view_comment').html(comment);
-			$('#single_view_doc').html(
+						exited_date !== '0000-00-00' ? moment(exited_date, 'YYYY-MM-DD').format(
+							'LL',
+						) :
+						'...';
+				$('#single_view_name').html(fullname);
+				$('#single_view_dept').html(department_name);
+				$('#single_view_JT').html(job_title);
+				$('#single_view_DOJ').html(DOJ);
+				$('#single_view_supervisor').html(supervisor_name);
+				$('#single_view_exitType').html(exit_type_name);
+				$('#single_view_comment').html(comment);
+				$('#single_view_doc').html(
 
-					document !==
-					'' ? `<a style="text-decoration:underline;color:green;" target="_blank" href="${window
-						.location
-						.origin}/files/images/greviance_document/${document}">View Document</a>` :
-					'No document',
-			);
-			$('#single_view_status').html(
-				`${
-					capitalizeFirstLetter(exit_status) === 'Approve' ? 'Approved' :
-					capitalizeFirstLetter(exit_status)}`,
-			);
-			$('#single_view_exitDate').html(ED);
+						document !==
+						'' ? `<a style="text-decoration:underline;color:green;" target="_blank" href="${window
+							.location
+							.origin}/files/images/greviance_document/${document}">View Document</a>` :
+						'No document',
+				);
+				$('#single_view_status').html(
+					`${
+						capitalizeFirstLetter(exit_status) === 'Approve' ? 'Approved' :
+						capitalizeFirstLetter(exit_status)}`,
+				);
+				$('#single_view_exitDate').html(ED);
+			} else {
+				$('#single_view_name').html('...');
+				$('#single_view_dept').html('...');
+				$('#single_view_JT').html('...');
+				$('#single_view_DOJ').html('...');
+				$('#single_view_supervisor').html('...');
+				$('#single_view_exitType').html('...');
+				$('#single_view_comment').html('...');
+				$('#single_view_doc').html('...');
+				$('#single_view_status').html('...');
+				$('#single_view_exitDate').html('...');
+			}
+
 			// $('#single_view_btn').attr('data-id', employee_id);
 		})
 		.catch(function(error) {
@@ -117,16 +134,12 @@ function fetchSingleExit() {
 
 function fetch_employee_details() {
 	var company_id = localStorage.getItem('company_id');
-	// var pathArray = window.location.pathname.split( '/' );
-	// var employee_id = $.urlParam('id'); //pathArray[4].replace(/%20/g,' ');
 
-	// alert(employee_id);
-	// $('#page_loader').hide();
 	$.ajax({
 		type: 'GET',
 		dataType: 'json',
 		url: api_path + 'hrm/new_employee_info',
-		data: { employee_id: '' },
+		data: { employee_id: employee_idt },
 		timeout: 60000,
 		headers: {
 			Authorization: localStorage.getItem('token'),
@@ -136,9 +149,6 @@ function fetch_employee_details() {
 			// console.log(response);
 			$('#page_loader').hide();
 			$('#employee_details_display').show();
-			// var str = '';
-			// var str2 = '';
-			// var str3 = '';
 
 			if (response.status == '200') {
 				let dobs = moment(response.data.employee_data.dob, 'YYYY-MM-DD').format('LL');
@@ -159,103 +169,6 @@ function fetch_employee_details() {
 						'Terminated' ? 'Exited' :
 						capitalizeFirstLetter(response.data.employee_data.active_status)}`,
 				);
-
-				// $('#profile_name').html(
-				// 	'<b>' +
-				// 		response.data.employee_data.firstname +
-				// 		' ' +
-				// 		response.data.employee_data.lastname +
-				// 		'</b>',
-				// );
-
-				// str2 +=
-				// 	'<a href="' +
-				// 	base_url +
-				// 	'employees"><button id="send"  class="btn btn-default">Back</button></a>';
-				// str2 +=
-				// 	'<a onClick="viewBasicInfo()"><button id="editBasicInfo" data-toggle="modal" data-target="#edit_basic_modal" class="btn btn-primary">Edit</button></a>';
-
-				// str3 += '<div id="crop-avatar">';
-
-				// str3 +=
-				// 	'<img src="' +
-				// 	site_url +
-				// 	'/files/images/employee_images/mid_' +
-				// 	response.data.employee_data.profile_picture +
-				// 	'" alt="..."><div style="text-decoration:underline;text-align:center;margin-top:5px;" data-toggle="modal" data-target="#edit_proPic_modal">Update Image</div>';
-				// str3 += '</div>';
-
-				// str += '<li><i class="fa fa-map-marker user-profile-icon"></i>&nbsp;&nbsp;';
-				// str +=
-				// 	'<a href="' +
-				// 	base_url +
-				// 	'employee_info?id=' +
-				// 	response.data.employee_data.employee_id +
-				// 	'">Profile</a></li>';
-
-				// str += '<li><i class="fa fa-building user-profile-icon"></i>&nbsp;&nbsp;';
-				// str +=
-				// 	'<a href="' +
-				// 	base_url +
-				// 	'view_employment_info?id=' +
-				// 	response.data.employee_data.employee_id +
-				// 	'">Employment Info</a></li>';
-
-				// str += '<li><i class="fa fa-building user-profile-icon"></i>&nbsp;&nbsp;';
-				// str +=
-				// 	'<a href="' +
-				// 	base_url +
-				// 	'view_salary_info?id=' +
-				// 	response.data.employee_data.employee_id +
-				// 	'">Salary Info</a></li>';
-
-				// str += '<li><i class="fa fa-briefcase user-profile-icon"></i>&nbsp;&nbsp;';
-				// str +=
-				// 	'<a href="' +
-				// 	base_url +
-				// 	'view_salary_history?id=' +
-				// 	response.data.employee_data.employee_id +
-				// 	'">Payslips</a></li>';
-
-				// str += '<li><i class="fa fa-sticky-note user-profile-icon"></i>&nbsp;&nbsp;';
-				// str +=
-				// 	'<a href="' +
-				// 	base_url +
-				// 	'view_leave_history?id=' +
-				// 	response.data.employee_data.employee_id +
-				// 	'">Leave History</a></li>';
-
-				// // str += '<li><i class="fa fa-external-link user-profile-icon"></i>&nbsp;&nbsp;';
-				// // str += '<a href="<?= base_url() ?>hrm/view_supervisor/'+response.data.employee_data.employee_id+'">Supervisor/Manager</a></li>';
-
-				// str += '<li><i class="fa fa-bars user-profile-icon"></i>&nbsp;&nbsp;';
-				// str +=
-				// 	'<a href="' +
-				// 	base_url +
-				// 	'view_position_history?id=' +
-				// 	response.data.employee_data.employee_id +
-				// 	'">Job Title History</a></li>';
-
-				// str += '<li><i class="fa fa-folder user-profile-icon"></i>&nbsp;&nbsp;';
-				// str +=
-				// 	'<a href="' +
-				// 	base_url +
-				// 	'emp_documents?id=' +
-				// 	response.data.employee_data.employee_id +
-				// 	'">Documents</a></li>';
-
-				// str += '<li><i class="fa fa-bell user-profile-icon"></i>&nbsp;&nbsp;';
-				// str +=
-				// 	'<a href="' +
-				// 	base_url +
-				// 	'view_attendance?id=' +
-				// 	response.data.employee_data.employee_id +
-				// 	'">Attendance</a></li>';
-
-				// $('#button_link').html(str2);
-				// $('#picture').html(str3);
-				// $('#profile_links').html(str);
-				// $('#profile_links').show();
 			} else if (response.status == '400') {
 				$('#page_loader').hide();
 				$('#employee_details_display').hide();
@@ -297,17 +210,7 @@ function listApprovers() {
 				$(response.data.data).each((i, v) => {
 					let received;
 					let action;
-					// if (v.created_at === '0000-00-00 00:00:00' || v.created_at === null) {
-					// 	received = '';
-					// } else {
-					// 	received = moment(v.created_at, 'YYYY-MM-DD HH:mm:ss').format('LL');
-					// }
 
-					// if (v.date_acted === '0000-00-00 00:00:00' || v.date_acted === null) {
-					// 	action = '';
-					// } else {
-					// 	action = moment(v.date_acted, 'YYYY-MM-DD HH:mm:ss').format('LL');
-					// }
 					appv_list += `<tr id="appv_div${v.approval_id}">`;
 					appv_list += `<td><div class="profile_pic"><img src="${site_url}/files/images/employee_images/sml_${v.profile_picture}" " alt="..." width="50"></div></td>`;
 					appv_list += `<td><b>${v.fullname} (${v.job_title})</b></td>`;

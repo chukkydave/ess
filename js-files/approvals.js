@@ -281,7 +281,7 @@ function pending_approvals_list(page) {
 									'</td><td>' +
 									aprvv_status +
 									'</td>';
-								strTable += `<td> <a href="view_exit_details?ex=${v.use_as_approval_id}&us=${v.request_from}&status=${v.decision}&app_id=${v.app_id}" class="btn btn-primary btn-xs"><i class="fa fa-folder" data-toggle="tooltip" data-placement="top" title=""></i> View</a>   </td ></tr > `;
+								strTable += `<td> <a href="view_exit_details?ex=${v.use_as_approval_id}&emp=${v.employee_id}&us=${v.request_from}&status=${v.decision}&app_id=${v.app_id}" class="btn btn-primary btn-xs"><i class="fa fa-folder" data-toggle="tooltip" data-placement="top" title=""></i> View</a>   </td ></tr > `;
 							} else if (v.decision == 'approved') {
 								aprvv_status =
 									'<i class="fa fa-check fa-2x" style="color: green"></i>';
@@ -295,7 +295,7 @@ function pending_approvals_list(page) {
 									'</td><td>' +
 									aprvv_status +
 									'</td>';
-								strTable += `<td> <a href="view_exit_details?ex=${v.use_as_approval_id}&us=${v.request_from}&status=${v.decision}&app_id=${v.app_id}" class="btn btn-primary btn-xs"><i class="fa fa-folder" data-toggle="tooltip" data-placement="top" title=""></i> View</a>   </td ></tr > `;
+								strTable += `<td> <a href="view_exit_details?ex=${v.use_as_approval_id}&emp=${v.employee_id}&us=${v.request_from}&status=${v.decision}&app_id=${v.app_id}" class="btn btn-primary btn-xs"><i class="fa fa-folder" data-toggle="tooltip" data-placement="top" title=""></i> View</a>   </td ></tr > `;
 							} else if (v.decision == 'declined') {
 								aprvv_status =
 									'<i class="fa fa-times fa-2x" style="color: red"></i>';
