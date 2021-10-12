@@ -406,7 +406,7 @@ include_once("../gen/_common/header.php"); // header contents
                                                                 for="workExp_start">Start<span>*</span>
                                                             </label>
                                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                <input type="text" id="workExp_start"
+                                                                <input type="date" id="workExp_start"
                                                                     required="required"
                                                                     class="form-control col-md-7 col-xs-12 required add_workExp_fields">
                                                             </div>
@@ -417,7 +417,7 @@ include_once("../gen/_common/header.php"); // header contents
                                                                 for="workExp_end">End
                                                             </label>
                                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                <input type="text" id="workExp_end" required="required"
+                                                                <input type="date" id="workExp_end" required="required"
                                                                     class="form-control col-md-7 col-xs-12 required add_workExp_fields">
                                                             </div>
                                                         </div>
@@ -733,7 +733,7 @@ include_once("../gen/_common/header.php"); // header contents
                                                                 for="jobTitle_from">From<span>*</span>
                                                             </label>
                                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                <input type="text" id="jobTitle_from"
+                                                                <input type="date" id="jobTitle_from"
                                                                     required="required"
                                                                     class="form-control col-md-7 col-xs-12 required add_jobTitle_fields">
                                                             </div>
@@ -744,7 +744,7 @@ include_once("../gen/_common/header.php"); // header contents
                                                                 for="jobTitle_to">To
                                                             </label>
                                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                <input type="text" id="jobTitle_to" required="required"
+                                                                <input type="date" id="jobTitle_to" required="required"
                                                                     class="form-control col-md-7 col-xs-12 required ">
                                                             </div>
                                                         </div>
@@ -846,7 +846,7 @@ include_once("../gen/_common/header.php"); // header contents
                                                                 for="dept_from">From<span>*</span>
                                                             </label>
                                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                <input type="text" id="dept_from" required="required"
+                                                                <input type="date" id="dept_from" required="required"
                                                                     class="form-control col-md-7 col-xs-12 required add_dept_fields">
                                                             </div>
                                                         </div>
@@ -856,7 +856,7 @@ include_once("../gen/_common/header.php"); // header contents
                                                                 for="dept_to">To
                                                             </label>
                                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                <input type="text" id="dept_to" required="required"
+                                                                <input type="date" id="dept_to" required="required"
                                                                     class="form-control col-md-7 col-xs-12 required ">
                                                             </div>
                                                         </div>
@@ -958,7 +958,7 @@ include_once("../gen/_common/header.php"); // header contents
                                                                 for="workShift_from">From<span>*</span>
                                                             </label>
                                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                <input type="text" id="workShift_from"
+                                                                <input type="date" id="workShift_from"
                                                                     required="required"
                                                                     class="form-control col-md-7 col-xs-12 required add_workShift_fields">
                                                             </div>
@@ -969,7 +969,7 @@ include_once("../gen/_common/header.php"); // header contents
                                                                 for="workShift_to">To
                                                             </label>
                                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                <input type="text" id="workShift_to" required="required"
+                                                                <input type="date" id="workShift_to" required="required"
                                                                     class="form-control col-md-7 col-xs-12 required ">
                                                             </div>
                                                         </div>
@@ -2809,7 +2809,7 @@ include_once("../gen/_common/header.php"); // header contents
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="edit_workExp_start">Start
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="edit_workExp_start" required="required"
+                                <input type="date" id="edit_workExp_start" required="required"
                                     style="margin-bottom:5px;" class="form-control col-md-7 col-xs-12 required">
 
                             </div>
@@ -2819,7 +2819,7 @@ include_once("../gen/_common/header.php"); // header contents
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="edit_workExp_end">End
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="edit_workExp_end" required="required" style="margin-bottom:5px;"
+                                <input type="date" id="edit_workExp_end" required="required" style="margin-bottom:5px;"
                                     class="form-control col-md-7 col-xs-12 required">
 
                             </div>
@@ -2882,7 +2882,7 @@ include_once("../gen/_common/header.php"); // header contents
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="edit_dept_start">From
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="edit_dept_from" required="required" style="margin-bottom:5px;"
+                                <input type="date" id="edit_dept_from" required="required" style="margin-bottom:5px;"
                                     class="form-control col-md-7 col-xs-12 required">
 
                             </div>
@@ -2892,7 +2892,7 @@ include_once("../gen/_common/header.php"); // header contents
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="edit_dept_end">To
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="edit_dept_to" required="required" style="margin-bottom:5px;"
+                                <input type="date" id="edit_dept_to" required="required" style="margin-bottom:5px;"
                                     class="form-control col-md-7 col-xs-12 required">
 
                             </div>
@@ -3097,7 +3097,7 @@ include_once("../gen/_common/header.php"); // header contents
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="edit_workShift_start">From
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="edit_workShift_from" required="required"
+                                <input type="date" id="edit_workShift_from" required="required"
                                     style="margin-bottom:5px;" class="form-control col-md-7 col-xs-12 required">
 
                             </div>
@@ -3107,7 +3107,7 @@ include_once("../gen/_common/header.php"); // header contents
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="edit_workShift_end">To
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="edit_workShift_to" required="required" style="margin-bottom:5px;"
+                                <input type="date" id="edit_workShift_to" required="required" style="margin-bottom:5px;"
                                     class="form-control col-md-7 col-xs-12 required">
 
                             </div>
@@ -3169,7 +3169,7 @@ include_once("../gen/_common/header.php"); // header contents
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="edit_jobTitle_start">From
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="edit_jobTitle_from" disabled required="required"
+                                <input type="date" id="edit_jobTitle_from" disabled required="required"
                                     style="margin-bottom:5px;" class="form-control col-md-7 col-xs-12 required">
 
                             </div>
@@ -3179,7 +3179,7 @@ include_once("../gen/_common/header.php"); // header contents
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="edit_jobTitle_end">To
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="edit_jobTitle_to" required="required" style="margin-bottom:5px;"
+                                <input type="date" id="edit_jobTitle_to" required="required" style="margin-bottom:5px;"
                                     class="form-control col-md-7 col-xs-12 required">
 
                             </div>

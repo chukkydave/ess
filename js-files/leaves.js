@@ -3,17 +3,17 @@ $(document).ready(function() {
 	load_leave_type();
 	list_of_leaves('');
 
-	$('input#leave_start').datepicker({
-		dateFormat: 'yy-mm-dd',
-	});
+	// $('input#leave_start').datepicker({
+	// 	dateFormat: 'yy-mm-dd',
+	// });
 
-	$('input#resumption_date').datepicker({
-		dateFormat: 'yy-mm-dd',
-	});
+	// $('input#resumption_date').datepicker({
+	// 	dateFormat: 'yy-mm-dd',
+	// });
 
-	$('input#start_date').datepicker({
-		dateFormat: 'yy-mm-dd',
-	});
+	// $('input#start_date').datepicker({
+	// 	dateFormat: 'yy-mm-dd',
+	// });
 
 	$('#apply').on('click', display_apply);
 	$('#add_leave').on('click', add_employee_leave);

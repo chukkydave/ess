@@ -69,10 +69,10 @@ function fetch_employee_details() {
 					);
 				}
 
-				str2 +=
-					'<a href="' +
-					base_url +
-					'employees"><button id="send"  class="btn btn-default">Back</button></a>';
+				// str2 +=
+				// 	'<a href="' +
+				// 	base_url +
+				// 	'employees"><button id="send"  class="btn btn-default">Back</button></a>';
 				str2 +=
 					'<a onClick="viewBasicInfo()"><button id="editBasicInfo" data-toggle="modal" data-target="#edit_basic_modal" class="btn btn-primary">Edit</button></a>';
 

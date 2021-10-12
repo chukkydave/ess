@@ -6,9 +6,9 @@ $(document).ready(function() {
 	list_of_grievances('');
 	// load_leave_type();
 
-	$('input#incident_date').datepicker({
-		dateFormat: 'yy-mm-dd',
-	});
+	// $('input#incident_date').datepicker({
+	// 	dateFormat: 'yy-mm-dd',
+	// });
 	// $('input#resumption_date').datepicker({
 	//   dateFormat: "yy-mm-dd"
 	// });
@@ -858,7 +858,7 @@ function list_of_grievances(page) {
 
 			if (response.status == '200') {
 				$('#loading').hide();
-				if (response.data.length != 0) {
+				if (response.data.length !== 0) {
 					var k = 1;
 					$(response.data).each((i, v) => {
 						strTable += `<tr id="row_${v.id}">`;
@@ -949,6 +949,8 @@ function list_of_grievances(page) {
 				} else {
 					strTable = '<tr><td colspan="5">No Grievance Currently</td></tr>';
 				}
+				$('#grievanceData').html(strTable);
+				$('#grievanceData').show();
 
 				$('#pagination').twbsPagination({
 					totalPages: Math.ceil(response.total_rows / limit),
@@ -957,9 +959,6 @@ function list_of_grievances(page) {
 						list_of_grievances(page);
 					},
 				});
-
-				$('#grievanceData').html(strTable);
-				$('#grievanceData').show();
 			} else if (response.data <= 0) {
 				$('#loading').hide();
 

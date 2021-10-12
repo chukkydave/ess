@@ -18,7 +18,7 @@ include_once("../gen/_common/header.php"); // header contents
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Grievance Request</h3>
+                <h3>Grievance Report</h3>
             </div>
 
             <div class="title_right">
@@ -128,7 +128,7 @@ include_once("../gen/_common/header.php"); // header contents
                                         <div class="input-prepend input-group">
                                             <span class="add-on input-group-addon"><i
                                                     class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
-                                            <input type="text" id="incident_date"
+                                            <input type="date" id="incident_date"
                                                 class="form-control col-md-7 col-xs-12 required1">
                                         </div>
                                     </div>

@@ -114,10 +114,10 @@ function fetch_employee_view_details_salary_info() {
 			var str3 = '';
 
 			if (response.status == '200') {
-				str2 +=
-					'<a href="' +
-					base_url +
-					'employees"><button class="btn btn-default">Back</button></a>';
+				// str2 +=
+				// 	'<a href="' +
+				// 	base_url +
+				// 	'employees"><button class="btn btn-default">Back</button></a>';
 				str2 +=
 					'<a href="' +
 					base_url +
@@ -741,10 +741,10 @@ function fetch_employee_view_details_leave_history() {
 			var str3 = '';
 
 			if (response.status == '200') {
-				str2 +=
-					'<a href="' +
-					base_url +
-					'employees"><button class="btn btn-default">Back</button></a>';
+				// str2 +=
+				// 	'<a href="' +
+				// 	base_url +
+				// 	'employees"><button class="btn btn-default">Back</button></a>';
 				str2 +=
 					'<a href="' +
 					base_url +
@@ -1764,27 +1764,27 @@ function edit_employee() {
 			if (response.status == '200') {
 				// $('#modal_update').modal('show');
 				$('#edit_basic_modal').modal('hide');
-				$('#mod_body').html('Basic Info Edit Successful');
-				$('#successModal').modal('show');
-				fetch_employee_details();
-				$('#edit_basic_modal').on('hidden.bs.modal', function() {
-					// do something…
-					// window.location.reload();
-					// window.location.href = base_url+"/erp/hrm/employees";
-
-					$('#edit_basic_firstname').val('');
-					$('#edit_basic_lastname').val('');
-					$('#edit_basic_middlename').val('');
-					$('#edit_basic_email').val('');
-					$('#edit_basic_DOB').val('');
-					$('#edit_basic_gender').val('');
-					$('#edit_basic_religion').val('');
-					$('#edit_basic_phone').val('');
-					$('#edit_basic_marital_status').val('');
-					$('#edit_basic_address').val('');
-					$('#edit_basic_next_of_kin').val('');
-					$('#edit_basic_status').val('');
+				// $('#mod_body').html('Basic Info Edit Successful');
+				// $('#successModal').modal('show');
+				Swal.fire({
+					title: 'Success',
+					text: `Success`,
+					icon: 'success',
+					confirmButtonText: 'Okay',
+					onClose: fetch_employee_details(),
 				});
+				$('#edit_basic_firstname').val('');
+				$('#edit_basic_lastname').val('');
+				$('#edit_basic_middlename').val('');
+				$('#edit_basic_email').val('');
+				$('#edit_basic_DOB').val('');
+				$('#edit_basic_gender').val('');
+				$('#edit_basic_religion').val('');
+				$('#edit_basic_phone').val('');
+				$('#edit_basic_marital_status').val('');
+				$('#edit_basic_address').val('');
+				$('#edit_basic_next_of_kin').val('');
+				$('#edit_basic_status').val('');
 			} else if (response.status == '400') {
 				// coder error message
 

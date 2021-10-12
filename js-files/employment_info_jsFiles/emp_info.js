@@ -81,51 +81,51 @@ $(document).ready(() => {
 	});
 });
 
-$('#dept_from').datepicker({
-	dateFormat: 'yy-mm-dd',
-});
+// $('#dept_from').datepicker({
+// 	dateFormat: 'yy-mm-dd',
+// });
 
-$('#dept_to').datepicker({
-	dateFormat: 'yy-mm-dd',
-});
-$('#edit_dept_from').datepicker({
-	dateFormat: 'yy-mm-dd',
-});
+// $('#dept_to').datepicker({
+// 	dateFormat: 'yy-mm-dd',
+// });
+// $('#edit_dept_from').datepicker({
+// 	dateFormat: 'yy-mm-dd',
+// });
 
-$('#edit_dept_to').datepicker({
-	dateFormat: 'yy-mm-dd',
-});
+// $('#edit_dept_to').datepicker({
+// 	dateFormat: 'yy-mm-dd',
+// });
 
-$('#workShift_from').datepicker({
-	dateFormat: 'yy-mm-dd',
-});
+// $('#workShift_from').datepicker({
+// 	dateFormat: 'yy-mm-dd',
+// });
 
-$('#workShift_to').datepicker({
-	dateFormat: 'yy-mm-dd',
-});
-$('#edit_workShift_from').datepicker({
-	dateFormat: 'yy-mm-dd',
-});
+// $('#workShift_to').datepicker({
+// 	dateFormat: 'yy-mm-dd',
+// });
+// $('#edit_workShift_from').datepicker({
+// 	dateFormat: 'yy-mm-dd',
+// });
 
-$('#edit_workShift_to').datepicker({
-	dateFormat: 'yy-mm-dd',
-});
+// $('#edit_workShift_to').datepicker({
+// 	dateFormat: 'yy-mm-dd',
+// });
 
-$('input#edit_jobTitle_from').datepicker({
-	dateFormat: 'yy-mm-dd',
-});
+// $('input#edit_jobTitle_from').datepicker({
+// 	dateFormat: 'yy-mm-dd',
+// });
 
-$('input#edit_jobTitle_to').datepicker({
-	dateFormat: 'yy-mm-dd',
-});
+// $('input#edit_jobTitle_to').datepicker({
+// 	dateFormat: 'yy-mm-dd',
+// });
 
-$('input#jobTitle_from').datepicker({
-	dateFormat: 'yy-mm-dd',
-});
+// $('input#jobTitle_from').datepicker({
+// 	dateFormat: 'yy-mm-dd',
+// });
 
-$('input#jobTitle_to').datepicker({
-	dateFormat: 'yy-mm-dd',
-});
+// $('input#jobTitle_to').datepicker({
+// 	dateFormat: 'yy-mm-dd',
+// });
 
 //department starts
 function addDepartment() {

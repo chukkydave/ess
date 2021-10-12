@@ -75,7 +75,7 @@ include_once("../gen/_common/header.php"); // header contents
                                         <div class="input-prepend input-group">
                                             <span class="add-on input-group-addon"><i
                                                     class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
-                                            <input type="text" id="leave_start" required="required"
+                                            <input type="date" id="leave_start" required="required"
                                                 class="form-control col-md-7 col-xs-12 required">
                                         </div>
                                     </div>
@@ -89,7 +89,7 @@ include_once("../gen/_common/header.php"); // header contents
                                         <div class="input-prepend input-group">
                                             <span class="add-on input-group-addon"><i
                                                     class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
-                                            <input type="text" id="resumption_date" required="required"
+                                            <input type="date" id="resumption_date" required="required"
                                                 class="form-control col-md-7 col-xs-12 required">
                                         </div>
                                     </div>
@@ -326,7 +326,7 @@ include_once("../gen/_common/header.php"); // header contents
                                 Date<span>*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="start_date" class="form-control col-md-7 col-xs-12 required1">
+                                <input type="date" id="start_date" class="form-control col-md-7 col-xs-12 required1">
                             </div>
                         </div>
 
@@ -335,7 +335,7 @@ include_once("../gen/_common/header.php"); // header contents
                                 Date<span>*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="resumption_date"
+                                <input type="date" id="resumption_date"
                                     class="form-control col-md-7 col-xs-12 required1">
                             </div>
                         </div>

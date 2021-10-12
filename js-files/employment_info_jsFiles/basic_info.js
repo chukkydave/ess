@@ -45,20 +45,20 @@ $(document).ready(() => {
 	});
 });
 
-$('#workExp_start').datepicker({
-	dateFormat: 'yy-mm-dd',
-});
+// $('#workExp_start').datepicker({
+// 	dateFormat: 'yy-mm-dd',
+// });
 
-$('#workExp_end').datepicker({
-	dateFormat: 'yy-mm-dd',
-});
-$('#edit_workExp_start').datepicker({
-	dateFormat: 'yy-mm-dd',
-});
+// $('#workExp_end').datepicker({
+// 	dateFormat: 'yy-mm-dd',
+// });
+// $('#edit_workExp_start').datepicker({
+// 	dateFormat: 'yy-mm-dd',
+// });
 
-$('#edit_workExp_end').datepicker({
-	dateFormat: 'yy-mm-dd',
-});
+// $('#edit_workExp_end').datepicker({
+// 	dateFormat: 'yy-mm-dd',
+// });
 
 //QC starts
 function addQC() {
