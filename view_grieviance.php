@@ -195,11 +195,10 @@ blockquote p {
                     <div class="x_content">
                         <div
                             style="background:#f9f9f9; padding:10px; display:grid; justify-items:center; text-align:center; letter-spacing:1px;">
-                            <b id="desc_text">
-                                No description available yet...
-                            </b>
+                            <span id="descrip_text"><b>No description available yet...</b></span>
+
                         </div>
-                        <div class="col-md-9 col-sm-9 " id="proceeding_section">
+                        <div class="col-lg-12 col-md-12 col-sm-12 " id="proceeding_section">
 
 
                             <!-- <div>

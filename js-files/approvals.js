@@ -173,9 +173,8 @@ function pending_approvals_list(page) {
 		var page = 1;
 	}
 	var limit = 10;
-
+	$('#approvalData').html('');
 	$('#loading').show();
-	$('#leaveData').html('');
 
 	$.ajax({
 		type: 'POST',

@@ -56,45 +56,51 @@ function list_employee_attendance() {
 					var k = 1;
 
 					$(response.data).each((i, v) => {
-						let clock_in;
-						let clock_out;
-						let date;
-						let work_hours;
+						if (v.clock_in !== '' && v.clock_out !== '') {
+							let clock_in;
+							let clock_out;
+							let date;
+							let work_hours;
 
-						if (v.date == '') {
-							date = '"';
-						} else {
-							date = v.date;
-						}
+							if (v.date == '') {
+								date = '"';
+							} else {
+								date = v.date;
+							}
 
-						if (v.clock_out == '') {
-							clock_out = '"';
-						} else {
-							clock_out = v.clock_out;
-						}
+							if (v.clock_out == '') {
+								clock_out = '"';
+							} else {
+								clock_out = v.clock_out;
+							}
 
-						if (v.clock_in == '') {
-							clock_in = '"';
-						} else {
-							clock_in = v.clock_in;
-						}
+							if (v.clock_in == '') {
+								clock_in = '"';
+							} else {
+								clock_in = v.clock_in;
+							}
 
-						if (v.work_hours == '') {
-							work_hours = '"';
-						} else {
-							work_hours = v.work_hours;
+							if (v.work_hours == '') {
+								work_hours = '"';
+							} else {
+								work_hours = v.work_hours;
+							}
+							strTable += `<tr>`;
+							strTable += `<td>${date}</td>`;
+							strTable += `<td>${clock_in}</td>`;
+							strTable += `<td>${clock_out}</td>`;
+							strTable += `<td>${work_hours}</td>`;
+							// strTable += `<td></td>`;
+							strTable += `</tr>`;
+							k++;
 						}
-						strTable += `<tr>`;
-						strTable += `<td>${date}</td>`;
-						strTable += `<td>${clock_in}</td>`;
-						strTable += `<td>${clock_out}</td>`;
-						strTable += `<td>${work_hours}</td>`;
-						// strTable += `<td></td>`;
-						strTable += `</tr>`;
-						k++;
 					});
 				} else {
-					strTable = '<tr><td colspan="5">No record.</td></tr>';
+					strTable = '<tr><td colspan="5">No record found.</td></tr>';
+				}
+
+				if (strTable === '') {
+					strTable = '<tr><td colspan="5">No record found</td></tr>';
 				}
 
 				$('#attData').html(strTable);

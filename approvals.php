@@ -228,7 +228,7 @@ include_once("../gen/_common/header.php"); // header contents
                         <div class="table-responsive">
                             <select class="form-select no-border" id="sort_type" aria-label="Default select example">
                                 <option value="leaves">Leaves</option>
-                                <option value="pay_run">Pay Run</option>
+                                <option class="feat_5" value="pay_run">Pay Run</option>
                                 <option value="exit">Exits</option>
                             </select>
                             <table class="table table-striped jambo_table bulk_action">

@@ -188,7 +188,7 @@ function listQC() {
 				$('#list_QC_loader').hide();
 				$('#list_QC_table').show();
 			} else {
-				$('#list_QC_body').html(`<tr><td colspan="4">No record</td></tr>`);
+				$('#list_QC_body').html(`<tr><td colspan="4">No record found</td></tr>`);
 				$('#list_QC_loader').hide();
 				$('#list_QC_table').show();
 			}
@@ -504,7 +504,7 @@ function listWorkExp() {
 				$('#list_workExp_loader').hide();
 				$('#list_workExp_table').show();
 			} else {
-				$('#list_workExp_body').html(`<tr><td colspan="5">No record</td></tr>`);
+				$('#list_workExp_body').html(`<tr><td colspan="5">No record found</td></tr>`);
 				$('#list_workExp_loader').hide();
 				$('#list_workExp_table').show();
 			}
@@ -823,7 +823,7 @@ function listNOK() {
 				$('#list_nok_loader').hide();
 				$('#list_nok_table').show();
 			} else {
-				$('#list_nok_body').html(`<tr><td colspan="5">No record</td></tr>`);
+				$('#list_nok_body').html(`<tr><td colspan="5">No record found</td></tr>`);
 				$('#list_nok_loader').hide();
 				$('#list_nok_table').show();
 			}

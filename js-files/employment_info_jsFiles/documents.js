@@ -139,7 +139,7 @@ function list_employee_documents() {
 				$('#list_docx_loader').hide();
 				$('#list_docx_table').show();
 			} else {
-				$('#documentData').html(`<tr><td colspan="4">No record</td></tr>`);
+				$('#documentData').html(`<tr><td colspan="4">No record found</td></tr>`);
 				$('#list_docx_loader').hide();
 				$('#list_docx_table').show();
 			}
@@ -307,7 +307,7 @@ function list_doctype() {
 						options += `<option value="${v.doctype_id}">${v.doctype_name}</option>`;
 					});
 				} else {
-					options += `<option>No record</option>`;
+					options += `<option>No record found</option>`;
 				}
 
 				$('#docx_type').append(options);

@@ -264,7 +264,7 @@ function listDepartment() {
 				$('#list_dept_loader').hide();
 				$('#list_dept_table').show();
 			} else {
-				$('#list_dept_body').html(`<tr><td colspan="4">No record</td></tr>`);
+				$('#list_dept_body').html(`<tr><td colspan="4">No record found</td></tr>`);
 				$('#list_dept_loader').hide();
 				$('#list_dept_table').show();
 			}
@@ -631,7 +631,7 @@ function listWorkShift() {
 				$('#list_workShift_loader').hide();
 				$('#list_workShift_table').show();
 			} else {
-				$('#list_workShift_body').html(`<tr><td colspan="4">No record</td></tr>`);
+				$('#list_workShift_body').html(`<tr><td colspan="4">No record found</td></tr>`);
 				$('#list_workShift_loader').hide();
 				$('#list_workShift_table').show();
 			}
@@ -1217,7 +1217,7 @@ function listJobTitle() {
 					$('#list_jobTitle_loader').hide();
 					$('#list_jobTitle_table').show();
 				} else {
-					$('#list_jobTitle_body').html(`<tr><td colspan="4">No record</td></tr>`);
+					$('#list_jobTitle_body').html(`<tr><td colspan="4">No record found</td></tr>`);
 					$('#list_jobTitle_loader').hide();
 					$('#list_jobTitle_table').show();
 				}
@@ -1225,7 +1225,7 @@ function listJobTitle() {
 				// coder error message
 				$('#list_jobTitle_loader').hide();
 				$('#list_jobTitle_table').show();
-				$('#list_jobTitle_body').html(`<tr><td colspan="4">No record</td></tr>`);
+				$('#list_jobTitle_body').html(`<tr><td colspan="4">No record found</td></tr>`);
 			} else if (response.status == '401') {
 				//user error message
 				$('#list_jobTitle_loader').hide();

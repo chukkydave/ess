@@ -131,9 +131,9 @@ function listAllotDays() {
 				// $('#list_allot_loader').hide();
 				// $('#list_allot_table').show();
 			} else {
-				$('#annual_allowance').html('No record');
-				$('#extra-allot-inp').val('No record');
-				$('#total_leaves_daysi').html('No record');
+				$('#annual_allowance').html('No record found');
+				$('#extra-allot-inp').val('No record found');
+				$('#total_leaves_daysi').html('No record found');
 				// $('#list_allot_loader').hide();
 				// $('#list_allot_table').show();
 			}
@@ -290,7 +290,7 @@ function list_employee_leave_history() {
 						k++;
 					});
 				} else {
-					strTable = '<tr><td colspan="4">No record.</td></tr>';
+					strTable = '<tr><td colspan="4">No record found</td></tr>';
 				}
 
 				$('#summaryData').html(strTable);

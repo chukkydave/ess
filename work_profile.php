@@ -199,7 +199,7 @@ include_once("../gen/_common/header.php"); // header contents
                             <a class="nav-link no" id="salary-tab" data-toggle="tab" href="#salary_info_block"
                                 role="tab" aria-controls="salary" aria-selected="false">Salary Info</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item feat_5">
                             <a class="nav-link no" id="payslip-tab" data-toggle="tab" href="#payslip_block" role="tab"
                                 aria-controls="payslip" aria-selected="false">Payslips</a>
                         </li>
@@ -212,7 +212,7 @@ include_once("../gen/_common/header.php"); // header contents
                                 href="#job_title_history_block" role="tab" aria-controls="job_title_history"
                                 aria-selected="false">Job Title History</a>
                         </li> -->
-                        <li class="nav-item">
+                        <li class="nav-item feat_4">
                             <a class="nav-link no" id="attendance-tab" data-toggle="tab" href="#attendance_block"
                                 role="tab" aria-controls="attendance" aria-selected="false">Attendance</a>
                         </li>
@@ -251,7 +251,7 @@ include_once("../gen/_common/header.php"); // header contents
                                             <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
 
-                                        <li data-toggle="tooltip" id="add_QC" title="Add Q&C">
+                                        <li class="is_exited_stat" data-toggle="tooltip" id="add_QC" title="Add Q&C">
                                             <a class=""><i class="fa fa-plus"></i></a>
                                         </li>
 
@@ -362,7 +362,8 @@ include_once("../gen/_common/header.php"); // header contents
                                             <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
 
-                                        <li data-toggle="tooltip" id="add_work-exp" title="Add Work Exp.">
+                                        <li class="is_exited_stat" data-toggle="tooltip" id="add_work-exp"
+                                            title="Add Work Exp.">
                                             <a class=""><i class="fa fa-plus"></i></a>
                                         </li>
 
@@ -486,7 +487,7 @@ include_once("../gen/_common/header.php"); // header contents
                                             <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
 
-                                        <li data-toggle="tooltip" id="add_NOK" title="Add N.O.K">
+                                        <li class="is_exited_stat" data-toggle="tooltip" id="add_NOK" title="Add N.O.K">
                                             <a class=""><i class="fa fa-plus"></i></a>
                                         </li>
 
@@ -1964,7 +1965,8 @@ include_once("../gen/_common/header.php"); // header contents
                                             <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
 
-                                        <li data-toggle="tooltip" id="add_docx" title="Add Document">
+                                        <li class="is_exited_stat" data-toggle="tooltip" id="add_docx"
+                                            title="Add Document">
                                             <a class=""><i class="fa fa-plus"></i></a>
                                         </li>
 

@@ -1,9 +1,31 @@
 $(document).ready(function() {
+	var myVar2 = setInterval(function() {
+		if ($('#user_features').html() != '') {
+			//stop the loop
+			myStopFunction();
+
+			//does user have access to this module
+			user_page_access();
+		} else {
+			console.log('No features');
+		}
+	}, 1000);
+
+	function myStopFunction() {
+		clearInterval(myVar2);
+	}
+	//end of interval set
+
 	var grievance_id;
 
-	load_employee();
-	load_branch();
-	list_of_grievances('');
+	$('#buttontt').click(function() {
+		$("input[type='file']#upload_doc_e").trigger('click');
+	});
+
+	$("input[type='file']#upload_doc_e").change(function() {
+		$('#valtt').text(this.value.replace(/C:\\fakepath\\/i, ''));
+	});
+
 	// load_leave_type();
 
 	// $('input#incident_date').datepicker({
@@ -90,6 +112,23 @@ $(document).ready(function() {
 		list_of_grievances('');
 	});
 });
+
+function user_page_access() {
+	// var role_list = $('#does_user_have_roles').html();
+	let pack_list = $('#user_features').html();
+
+	if (pack_list.indexOf('-3-') >= 0) {
+		$('#main_display_loader_page').hide();
+		$('#main_display').show();
+		load_employee();
+		load_branch();
+		list_of_grievances('');
+	} else {
+		$('#loader_mssg').html('Your package doen not cover this feature');
+		$('#ldnuy').hide();
+		// $("#modal_no_access").modal('show');
+	}
+}
 
 function load_branch() {
 	var company_id = localStorage.getItem('company_id');
@@ -413,19 +452,27 @@ function fetch_grievance_details(grievance_id) {
 			if (response.status == '200') {
 				let date = response.data.incident_date.split(' ');
 				let doc;
-				if (response.data.document === null) {
+				if (
+					response.data.document === null ||
+					response.data.document === '' ||
+					!response.data.document
+				) {
 					doc = '';
 				} else {
 					doc = `<a target="_blank" href="${window.location
 						.origin}/files/images/greviance_document/${response.data
 						.document}"><i class="fa fa-paperclip"></i> View attachment</a>`;
 				}
+				let aganistPerson =
+
+						response.data.g_against === '0' ? 'employer' :
+						response.data.g_against;
 				$('#modal_edit_g #g_type').val(response.data.gri_type);
 				$('#modal_edit_g #incident_date').val(date[0]);
 				$('#modal_edit_g #incident').val(response.data.incident);
 				// $('#modal_edit_g #approval').val(response.data.approval);
 				$('#modal_edit_g #branch').val(response.data.branch);
-				$('#modal_edit_g #g_against_e').val(response.data.g_against);
+				$('#modal_edit_g #g_against_e').val(aganistPerson);
 				$('#modal_edit_g #prior_action_e').val(response.data.action_prior_reporting);
 				$('#modal_edit_g #upload_doc_e2').html(doc);
 
@@ -721,7 +768,11 @@ function fetch_grievance_info(grievance_id) {
 
 				let doc;
 
-				if (response.data.document === null) {
+				if (
+					response.data.document === null ||
+					response.data.document === '' ||
+					!response.data.document
+				) {
 					doc = 'None';
 				} else {
 					doc = `<a target="_blank" href="${window.location
@@ -947,7 +998,7 @@ function list_of_grievances(page) {
 						k++;
 					});
 				} else {
-					strTable = '<tr><td colspan="5">No Grievance Currently</td></tr>';
+					strTable = '<tr><td colspan="5">No record found</td></tr>';
 				}
 				$('#grievanceData').html(strTable);
 				$('#grievanceData').show();

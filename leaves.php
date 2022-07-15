@@ -3,8 +3,23 @@ include_once("_common/menu.php"); // menu list
 include_once("../gen/_common/header.php"); // header contents
 ?>
 
+<div class="right_col" role="main" id="main_display_loader_page" style="display: ;">
+
+    <div class="page-title">
+        <div class="title_left">
+            <i class="fa fa-spinner fa-spin fa-fw fa-3x" style="display: ; margin-top: 20px;" id="ldnuy"></i>
+            <div id="loader_mssg" style="color: red; font-size: 14px; margin-top: 30px; background-color: ;"></div>
+        </div>
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /loader page content -->
 <!-- page content -->
-<div class="right_col" role="main">
+<div class="right_col" role="main" id="main_display" style="display: none;">
     <div class="">
         <div class="page-title">
             <div class="title_left">
@@ -209,7 +224,7 @@ include_once("../gen/_common/header.php"); // header contents
                                 <thead>
                                     <tr class="headings">
 
-                                        <th class="column-title">Code</th>
+                                        <th class="column-title">ID</th>
                                         <th class="column-title">Date Requested</th>
                                         <th class="column-title">Leave Type</th>
 
@@ -217,8 +232,7 @@ include_once("../gen/_common/header.php"); // header contents
                                         <!-- <th class="column-title">Start Date</th> -->
                                         <!-- <th class="column-title">Resumption Date</th> -->
                                         <th class="column-title">Status</th>
-                                        <th width="10%" class="column-title no-link last"><span
-                                                class="nobr">Actions</span>
+                                        <th width="10%" class="column-title no-link last"><span class="nobr"></span>
                                         </th>
                                         <!-- <th class="bulk-actions" colspan="6">
                                             <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span

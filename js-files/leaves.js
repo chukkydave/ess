@@ -1,7 +1,22 @@
 $(document).ready(function() {
+	var myVar2 = setInterval(function() {
+		if ($('#user_features').html() != '') {
+			//stop the loop
+			myStopFunction();
+
+			//does user have access to this module
+			user_page_access();
+		} else {
+			console.log('No features');
+		}
+	}, 1000);
+
+	function myStopFunction() {
+		clearInterval(myVar2);
+	}
+	//end of interval set
+
 	var leave_id;
-	load_leave_type();
-	list_of_leaves('');
 
 	// $('input#leave_start').datepicker({
 	// 	dateFormat: 'yy-mm-dd',
@@ -55,6 +70,22 @@ $(document).ready(function() {
 		// alert(warehouse_id);
 	});
 });
+
+function user_page_access() {
+	// var role_list = $('#does_user_have_roles').html();
+	let pack_list = $('#user_features').html();
+
+	if (pack_list.indexOf('-2-') >= 0) {
+		$('#main_display_loader_page').hide();
+		$('#main_display').show();
+		load_leave_type();
+		list_of_leaves('');
+	} else {
+		$('#loader_mssg').html('Your package doen not cover this feature');
+		$('#ldnuy').hide();
+		// $("#modal_no_access").modal('show');
+	}
+}
 
 function load_leave_type() {
 	var company_id = localStorage.getItem('company_id');

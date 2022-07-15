@@ -39,7 +39,7 @@ function getCorrespondence(page) {
 			if (response.data.data.length > 0) {
 				$(response.data.data).map((i, v) => {
 					let datey = moment(v.created_at, 'YYYY-MM-DD HH:mm:ss').format('LLL');
-					if (v.user_id !== user_idm.toString()) {
+					if (v.sender_user_id !== user_idm.toString()) {
 						corres_list += `<div class="incoming_msg">
                                             <div class="incoming_msg_img"> <img
                                                     src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
@@ -119,7 +119,7 @@ function sendMessage() {
 			if (response.status == 200 || response.status == 201) {
 				$('#add_corres_loader').hide();
 				$('#add_corres_btn').show();
-				$('#corres_msg').val('');
+				document.getElementById('corres_msg').value = '';
 				getCorrespondence('');
 
 				// $('#edit_nok_modal').modal('hide');
@@ -127,6 +127,10 @@ function sendMessage() {
 				// $('#mod_body').html('Next Of Kin Edit Successful');
 				// $('#successModal').modal('show');
 				// listNOK();
+			} else {
+				$('#add_corres_loader').hide();
+				$('#add_corres_btn').show();
+				alert(response.msg);
 			}
 		},
 	});

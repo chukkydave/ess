@@ -1476,7 +1476,7 @@ function HRDecline() {
 
 		let data = {
 			// company_id: company_id,
-			approval_status: 'decline',
+			approval_status: 'declined',
 			approval_id: user_id,
 			approval_person: user_id2,
 			pay_run_id: pay_run_id,

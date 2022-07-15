@@ -120,7 +120,7 @@ function listDepartment() {
 				$('#list_dept_loader').hide();
 				$('#list_dept_table').show();
 			} else {
-				$('#list_dept_body').html(`<tr><td colspan="4">No record</td></tr>`);
+				$('#list_dept_body').html(`<tr><td colspan="4">No record found</td></tr>`);
 				$('#list_dept_loader').hide();
 				$('#list_dept_table').show();
 			}
@@ -202,7 +202,7 @@ function list_employee_documents() {
 						k++;
 					});
 				} else {
-					strTable = '<tr><td colspan="4">No record.</td></tr>';
+					strTable = '<tr><td colspan="4">No record found</td></tr>';
 				}
 
 				$('#documentData').html(strTable);
@@ -414,7 +414,7 @@ function list_doctype() {
 						options += `<option value="${v.doctype_id}">${v.doctype_name}</option>`;
 					});
 				} else {
-					options += `<option>No record</option>`;
+					options += `<option>No record found</option>`;
 				}
 
 				$('#docx_type').append(options);

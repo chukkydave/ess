@@ -11,10 +11,29 @@ include_once("../gen/_common/header.php"); // header contents
     padding: 5px;
     margin-bottom: 2em;
 }
+
+#upload_doc_e {
+    opacity: 0;
+}
 </style>
 
+<div class="right_col" role="main" id="main_display_loader_page" style="display: ;">
+
+    <div class="page-title">
+        <div class="title_left">
+            <i class="fa fa-spinner fa-spin fa-fw fa-3x" style="display: ; margin-top: 20px;" id="ldnuy"></i>
+            <div id="loader_mssg" style="color: red; font-size: 14px; margin-top: 30px; background-color: ;"></div>
+        </div>
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /loader page content -->
 <!-- page content -->
-<div class="right_col" role="main">
+<div class="right_col" role="main" id="main_display" style="display: none;">
     <div class="">
         <div class="page-title">
             <div class="title_left">
@@ -108,7 +127,7 @@ include_once("../gen/_common/header.php"); // header contents
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <select class="form-control col-md-7 col-xs-12 required1" id="g_type">
                                             <option value="">-- Select --</option>
-                                            <option value="Assualt">Assualt</option>
+                                            <option value="Assault">Assault</option>
                                             <option value="Molestation">Molestation</option>
                                             <option value="Employee Conduct">Employee Conduct</option>
                                             <option value="Employee Capability">Employee Capability</option>
@@ -313,7 +332,7 @@ include_once("../gen/_common/header.php"); // header contents
                                 <thead>
                                     <tr class="headings">
 
-                                        <th class="column-title">Code</th>
+                                        <th class="column-title">ID</th>
                                         <th class="column-title">Against</th>
                                         <th class="column-title">Grievance Type</th>
                                         <th class="column-title">Status</th>
@@ -394,14 +413,15 @@ include_once("../gen/_common/header.php"); // header contents
                     <span id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="g_type">Grievance Type
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="g_type">Grievance
+                                Type<span>*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select class="form-control col-md-7 col-xs-12 required" id="g_type">
                                     <option value="">-- Select --</option>
                                     <option value="assualt">Assualt</option>
                                     <option value="molestation">Molestation</option>
-                                    <option value="Employe Conduct">Employee Conduct</option>
+                                    <option value="Employee Conduct">Employee Conduct</option>
                                     <option value="Employee Capability">Employee Capability</option>
                                     <option value="Working Conditions">Working Conditions</option>
                                     <option value="Management Policy">Management Policy</option>
@@ -480,7 +500,9 @@ include_once("../gen/_common/header.php"); // header contents
                                 Document<br><span style="font-size:0.8em;">(If any)</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="upload_doc_e" type="file" class="form-control col-md-7 col-xs-12">
+                                <span id='buttontt' class="form-control col-md-7 col-xs-12">Select File</span>
+                                <span id='valtt'></span>
+                                <input id="upload_doc_e" type="file" class="">
                             </div>
 
                         </div>

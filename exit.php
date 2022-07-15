@@ -17,8 +17,9 @@ include_once("../gen/_common/header.php"); // header contents
 }
 </style>
 
+
 <!-- page content -->
-<div class="right_col" role="main">
+<div class="right_col" role="main" id="main_display">
     <div class="">
         <div class="page-title">
             <div class="title_left">
@@ -29,7 +30,7 @@ include_once("../gen/_common/header.php"); // header contents
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                     <div class="input-group" style="float: right; display:flex;">
                         <!-- <button type="button" class="btn btn-default" id="incoming_filter">Filter</button> -->
-                        <button type="button" class="btn btn-success" id="view_policy_btn">View Exit Policy</button>
+                        <!-- <button type="button" class="btn btn-success" id="view_policy_btn">View Exit Policy</button> -->
                         <button type="button" class="btn btn-danger" data-toggle="collapse"
                             data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
                             id="intiating_btn">Initiate Exit</button>

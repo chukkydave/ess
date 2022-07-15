@@ -1,6 +1,40 @@
 $(document).ready(function() {
-	defCalls(); //returns the promise object
+	//returns the promise object
+	check_if_user_is_exited3();
 });
+
+function check_if_user_is_exited3() {
+	var url = `${api_path}ess/restrict_ess_action`;
+
+	fetch(url, {
+		headers: {
+			Authorization: localStorage.getItem('token'),
+		},
+	})
+		.then((response) => response.json())
+		.then((response) => {
+			// document.getElementById("demoShow").innerHTML = response;
+			user_page_access(response.is_employee_existed);
+		})
+		.catch((error) => {
+			console.log(error);
+		});
+}
+
+function user_page_access(is_exited) {
+	console.log(is_exited, 'noooop');
+	if (is_exited) {
+		$('.hi_user_name').html(localStorage.getItem('firstname'));
+		$('#loader_mssg').show();
+		$('#ldnuy').hide();
+	} else {
+		// $("#modal_no_access").modal('show');
+		//Settings
+		$('#main_display_loader_page').hide();
+		$('#main_display').show();
+		defCalls();
+	}
+}
 
 function defCalls() {
 	var def = $.Deferred();
@@ -60,7 +94,6 @@ function pending_approvals() {
 		},
 		success: function(response) {
 			$('#pnd_appv').html(response.data);
-			console.log(response);
 		},
 		error: function(response) {
 			console.log(response);
@@ -92,7 +125,7 @@ function fetch_notice_board() {
 		.then(function(response) {
 			$('#notice_board_loading').hide();
 			$('#notice_board').show();
-			if (response.data.data !== '') {
+			if (response.data.data.board_notice.length > 0) {
 				let allNotice = '';
 				const { board_notice, schedule_notification } = response.data.data;
 				board_notice.map((item) => {
@@ -115,7 +148,7 @@ function fetch_notice_board() {
 
 				$('#notice_board').html(allNotice);
 			} else {
-				$('#notice_board').html('No Notification for now');
+				$('#notice_board').html('No Notices Currently');
 			}
 
 			$('#notice_board_loading').hide();

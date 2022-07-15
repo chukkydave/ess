@@ -220,7 +220,8 @@ function list_employment_payment_type() {
 					});
 					$('#total_debit').val(response.total_debit);
 					$('#total_credit').val(response.total_credit);
-					$('#net_payment').html(`₦${response.net_pay}`);
+					// $('#net_payment').html(`₦${response.net_pay}`);
+					$('#net_payment').html(formatToCurrency(response.net_pay));
 				} else {
 					debit_checker += `<p>No record found</p>`;
 					credit_checker += `<p>No record found</p>`;
@@ -586,6 +587,14 @@ function addAcctDetails() {
 	});
 }
 
+function formatToCurrency(amount) {
+	if (amount === '0' || amount === '0.0') {
+		return '₦' + '0.00';
+	} else {
+		return '₦' + parseFloat(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+	}
+}
+
 function showBankDetails() {
 	let company_id = localStorage.getItem('company_id');
 	let employee_id = '';
@@ -735,7 +744,7 @@ function showSalaryDetails() {
 				// $('#list_workShift_body').html(`<tr><td colspan="4">No record</td></tr>`);
 				// $('#list_workShift_loader').hide();
 				// $('#list_workShift_table').show();
-				$('#salaryDetails_error').html(`<span style="color:red;">No record</span>`);
+				$('#salaryDetails_error').html(`<span style="color:red;">No record found</span>`);
 			}
 		})
 		.catch(function(error) {

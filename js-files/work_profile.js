@@ -78,12 +78,10 @@ function fetch_employee_details() {
 
 				str3 += '<div id="crop-avatar">';
 
-				str3 +=
-					'<img src="' +
-					site_url +
-					'/files/images/employee_images/mid_' +
-					response.data.employee_data.profile_picture +
-					'" alt="..."><div style="text-decoration:underline;text-align:center;margin-top:5px;" data-toggle="modal" data-target="#edit_proPic_modal">Update Image</div>';
+				str3 += `<img src="${site_url}/files/images/employee_images/mid_${
+					response.data.employee_data.profile_picture === '' ? 'avatar.png' :
+					response.data.employee_data
+						.profile_picture}" alt="..."><div style="text-decoration:underline;text-align:center;margin-top:5px; cursor:pointer;" data-toggle="modal" data-target="#edit_proPic_modal">Update Image</div>`;
 				str3 += '</div>';
 
 				str += '<li><i class="fa fa-map-marker user-profile-icon"></i>&nbsp;&nbsp;';

@@ -2,6 +2,7 @@ $(document).ready(function() {
 	fetch_grievance_info();
 	viewProceedings();
 });
+
 function fetch_grievance_info() {
 	let grievance_id = window.location.search.split('=')[1];
 	var company_id = localStorage.getItem('company_id');
@@ -65,7 +66,13 @@ function fetch_grievance_info() {
 				$('#griev_date').html(datestring);
 				$('#griev_report').html(response.data.incident);
 				$('#griev_branch').html(response.data.branch_name);
-				$('#desc_text').val(response.data.grievance_proceeding_description);
+				$('#descrip_text').html(
+					`<b>${
+						response.data.grievance_proceeding_description ? response.data
+							.grievance_proceeding_description :
+						''}</b>`,
+				);
+
 				$('#griev_doc').html(doc);
 
 				// $('#modal_view_g #g_type').html(response.data.gri_type);
@@ -128,7 +135,7 @@ function viewProceedings() {
 							$(v.comments).each((i, v) => {
 								comment += `<li><div class="message_wrapper">
                                         <h4 class="heading">${v.fullname}</h4>
-                                        <div class="col-md-12 col-sm-12">
+                                        <div class="col-md-12 col-sm-12" style="margin-bottom: 1em;">
                                             <blockquote>
                                                 <p>${v.comments}</p>
                                             </blockquote>

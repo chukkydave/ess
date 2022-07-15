@@ -66,7 +66,7 @@ function listPayslip(page) {
 				$('#list_slip_loader').hide();
 				$('#list_slip_table').show();
 			} else {
-				$('#list_slip_body').html(`<tr><td colspan="3">No record</td></tr>`);
+				$('#list_slip_body').html(`<tr><td colspan="3">No record found</td></tr>`);
 				$('#list_slip_loader').hide();
 				$('#list_slip_table').show();
 			}

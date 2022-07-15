@@ -1860,9 +1860,16 @@ Dropzone.options.employeepictureform = {
 		});
 
 		$('#edit_proPic_modal').modal('hide');
-		$('#mod_body').html('Image Upload Successful');
-		$('#successModal').modal('show');
-		fetch_employee_details();
+		Swal.fire({
+			title: 'Success',
+			text: `Success`,
+			icon: 'success',
+			confirmButtonText: 'Okay',
+			onClose: fetch_employee_details(),
+		});
+		// $('#mod_body').html('Image Upload Successful');
+		// $('#successModal').modal('show');
+		// fetch_employee_details();
 	},
 };
 // basic info end

@@ -102,10 +102,14 @@ function listExits() {
 								'YYYY-MM-DD HH:mm:ss',
 							).format('LL') :
 							v.date_initiated;
+					let empStat =
+
+							v.employee_status.toLowerCase() === 'terminated' ? 'Exited' :
+							capitalizeFirstLetter(v.employee_status);
 					exit_list += `<tr class="even pointer" id="exitList_row${v.exit_id}">`;
 					exit_list += `<td>${capitalizeFirstLetter(v.exit_type_name)}</td>`;
 					exit_list += `<td>${dates}</td>`;
-					exit_list += `<td>${capitalizeFirstLetter(v.employee_status)}</td>`;
+					exit_list += `<td>${empStat}</td>`;
 					// exit_list += `<td>${capitalizeFirstLetter(v.exit_status)}</td>`;
 					statusArr.push(v.exit_status);
 					if (v.exit_status === 'approve') {
@@ -398,23 +402,24 @@ function viewEmploymentInfo() {
 
 			$('#view_exit_loader').hide();
 			$('#view_exit_div').show();
-
-			let {
-				supervisor,
-				job_title,
-				fullname,
-				department_name,
-				date_of_employ,
-				employee_id,
-			} = response.data.data;
-			let DOJ = moment(date_of_employ, 'YYYY-MM-DD').format('LL');
-			$('#date_of_joining').html(DOJ);
-			$('#department').html(department_name);
-			$('#name').html(fullname);
-			$('#employee_idr').html(employee_id);
-			$('#job_title').html(job_title);
-			$('#supervisor').val(supervisor);
-			// $('#view_exit_div').attr('data-id', id);
+			if (response.data.data) {
+				let {
+					supervisor,
+					job_title,
+					fullname,
+					department_name,
+					date_of_employ,
+					employee_id,
+				} = response.data.data;
+				let DOJ = moment(date_of_employ, 'YYYY-MM-DD').format('LL');
+				$('#date_of_joining').html(DOJ);
+				$('#department').html(department_name);
+				$('#name').html(fullname);
+				$('#employee_idr').html(employee_id);
+				$('#job_title').html(job_title);
+				$('#supervisor').val(supervisor);
+				// $('#view_exit_div').attr('data-id', id);
+			}
 		})
 		.catch(function(error) {
 			console.log(error);
@@ -479,10 +484,12 @@ function listExitType() {
 
 			if (response.data.data.length > 0) {
 				$(response.data.data).map((i, v) => {
-					options += `<option value="${v.exit_type_id}">${v.exit_type}</option>`;
+					options += `<option value="${v.exit_type_id}">${capitalizeFirstLetter(
+						v.exit_type,
+					)}</option>`;
 				});
 			} else {
-				options += `<option value="${v.exit_type_id}">No Record</option>`;
+				options += `<option value="">No Record</option>`;
 			}
 			$('#exit_type').append(options);
 		})
@@ -507,8 +514,11 @@ function viewExit(id) {
 		.get(`${api_path}ess/single_staff_exit`, {
 			params: {
 				exited_id: id,
-				user_id: user_id,
+				// user_id: user_id,
 				// company_id: company_id,
+			},
+			headers: {
+				Authorization: localStorage.getItem('token'),
 			},
 		})
 		.then(function(response) {
@@ -558,7 +568,7 @@ function viewExit(id) {
 			$('#single_view_JT').html(job_title);
 			$('#single_view_DOJ').html(DOJ);
 			$('#single_view_supervisor').html(supervisor_name);
-			$('#single_view_exitType').html(exit_type_name);
+			$('#single_view_exitType').html(capitalizeFirstLetter(exit_type_name));
 			$('#single_view_comment').html(comment);
 			$('#single_view_doc').html(
 
